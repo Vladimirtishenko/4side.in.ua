@@ -1,0 +1,149 @@
+@import '001func.styl'
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&subset=cyrillic,latin')
+
+@font-face
+	font-family SFRegular
+	font-style normal
+	src url(../font/SFUIDisplay-Regular.otf)
+
+@font-face
+	font-family SFSemibold
+	src url(../font/SFUIDisplay-Semibold.otf)
+
+@font-face
+	font-family SFBold
+	src url(../font/SFUIDisplay-Bold.otf)
+
+h1, h2, h3, h4, h5, h6, p
+	color greyText
+
+.-light-blue
+	background-color lightBlue
+
+.-rigth-align
+	text-align right
+
+.-center-align
+	text-align center
+
+.name-of-services
+	font-size 53px
+	text-align center
+	font-family SFBold
+	margin-top 70px
+	margin-bottom 35px
+
+.name-of-mini-description
+	font-size 19px
+	text-align center
+	max-width 780px
+	margin auto
+	font-family 'Playfair Display'
+	margin-bottom 80px
+
+.item-serv-icon, .item-process-icon
+	width 100px
+	height 100px
+	display inline-block
+	vertical-align middle
+
+.item-serv-description
+	display inline-block
+	vertical-align middle
+	width calc(100% - 100px)
+	padding-left 20px
+
+.item-serv-description h3, .container-item-precess h3
+	font-family SFSemibold
+	font-size 17px
+	letter-spacing 2px
+	text-transform uppercase
+	margin 0px 0 10px 0
+
+.container-item-precess
+	margin-bottom 70px
+
+.container-item-precess p
+	color #787878
+	font-size 14px
+	font-family Arial
+
+.margin-class
+	margin-top 50px i
+
+.margin-more
+	margin-bottom 75px i
+
+.container-for-subscribe
+	text-align center
+
+.container-for-subscribe h2
+	font-size 35px
+	font-family 'Playfair Display'
+	margin 65px 0 45px 0
+
+.form-to-control
+	display: table
+	width 100%
+
+.form-input
+	border 3px solid lightgray
+	border-radius 3px
+	background transparent
+	height 57px
+	margin-right 20px
+	padding 0 20px
+	display inline-block
+
+.text-for-subscribe
+	color #787878
+	font-size 14px
+	font-family Arial
+	margin 35px 0 70px 0
+
+.-side-for-logo
+	background-image url(../images/big_logo.png)
+	background-position 125% 68%
+	background-repeat no-repeat
+
+/* icon serv */
+
+.branding
+	background url(../images/sprite.png) no-repeat -88px 5px
+
+.web-design
+	background url(../images/sprite.png) no-repeat -191px 5px
+
+.illustration
+	background url(../images/sprite.png) no-repeat 12px 3px
+
+.web-development
+	background url(../images/sprite.png) no-repeat -307px 4px
+
+.bussines
+	background url(../images/sprite.png) no-repeat 3px -107px
+
+
+/* icon process */
+
+.brain-storm
+	background url(../images/sprite.png) -131px -218px no-repeat
+
+.planning
+	background url(../images/sprite.png) 2px -218px no-repeat
+
+.design
+	background url(../images/sprite.png) -253px -99px no-repeat
+
+.development
+	background url(../images/sprite.png) -123px -99px no-repeat
+
+
+@media screen and (max-width: 770px)
+	.form-to-control button
+		margin 20px auto
+		float none
+
+	.-all-to-center
+		text-align center

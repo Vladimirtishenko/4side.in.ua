@@ -1,0 +1,53 @@
+@import '001func.styl'
+
+.-dark-grey
+	background-color greyText
+
+.footer-container
+	padding 35px 70px
+	display table
+	width 100%
+	
+.footer-container p 
+	margin 0
+	color #b9b9b9
+	font-size 15px
+
+.mini-logo
+	width 70px
+	height 70px
+	background url(../images/sprite.png) no-repeat -8px -334px
+	display inline-block
+	
+.social-share-button
+	margin-top 10px
+	
+.social-link
+	width 35px
+	height 35px
+	margin-left 10px
+	display inline-block
+	vertical-align middle
+
+.vk
+	background url(../images/sprite.png) -237px -228px no-repeat
+	&:hover
+		background-position -237px -279px
+
+.fb
+	background url(../images/sprite.png) -285px -228px no-repeat
+	&:hover
+		background-position -285px -279px
+
+.twitter
+	background url(../images/sprite.png) -335px -228px no-repeat
+	&:hover
+		background-position -335px -279px 
+
+
+@media screen and (max-width: 770px)
+	.footer-container div
+		margin 10px 0
+			
+	.footer-container *
+		text-align center

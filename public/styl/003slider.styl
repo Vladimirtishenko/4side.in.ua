@@ -1,0 +1,91 @@
+@import '001func.styl'
+
+.slider-side
+	width 100%
+	height 790px
+	overflow hidden
+	position relative
+
+.slider-list
+	padding 0
+	margin 0
+	list-style none
+	display table
+	transform translateX(0px)
+
+.slider-list-item
+	text-align center
+	padding-bottom 103px
+	float left
+
+.container-item-serv
+	margin-bottom 60px
+
+.slider-title
+	font-family 'Playfair Display'
+	font-size 87px
+	color #fff
+	margin-bottom 34px
+
+.slider-author
+	color: #fff
+	opacity .5
+	font-size 17px
+	text-transform uppercase
+	font-family SFSemibold
+	letter-spacing 2px
+
+.slider-description
+	margin-top -108px
+
+.button 
+	background blueDark
+	border-radius 30px
+	border none
+	padding 16px
+	color #fff
+	text-transform uppercase
+	width 247px
+	font-size 18px
+	display inline-block
+	font-family SFSemibold
+	letter-spacing 2px
+	&:hover
+		color #fff
+		text-decoration none
+
+.-shadow-blue
+	box-shadow 0px 5px 22px 10px rgba(33,102,172, .68)
+
+.-blue
+	background blues
+
+.-ros
+	background ros
+
+.-greens
+	background greens
+
+.-violets
+	background violets
+
+.controls-slider
+	width 100%
+	position absolute
+	bottom 20px
+	height 20px
+	text-align center
+
+.controls-slider span
+	cursor pointer
+	display inline-block
+	width 8px
+	height 8px
+	border-radius 50%
+	background-color #fff
+	border 1px solid transparent
+	margin 0 10px
+
+.controls-slider .-active-slide
+	background-color transparent
+	border 1px solid #fff
