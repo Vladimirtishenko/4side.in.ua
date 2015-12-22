@@ -18,6 +18,43 @@
 h1, h2, h3, h4, h5, h6, p
 	color greyText
 
+.container-all-outer
+	position relative
+	transition .5s
+	transition-timing-function ease-in-out
+	left 0
+	z-index 1
+	box-shadow 0px 0px 8px 4px rgba(0,0,0, .3)
+	background #fff
+
+.container-fixed-menu
+	position fixed
+	width 200px
+	right 0
+	height 100%
+	background smokeWhite
+	padding 20px 0
+	text-align center
+
+.list-menu
+	padding 0
+	margin 0
+	list-style none
+
+.list-menu li 
+	padding 23px 0
+
+.list-menu li a
+	font-size 15px
+	padding 2px 0
+	text-transform uppercase
+	text-decoration none
+	border-bottom 1px solid transparent
+	color greyText
+	&:hover
+		border-bottom 1px solid rgba(48, 121, 193, .38)
+		color blues
+
 .-light-blue
 	background-color lightBlue
 

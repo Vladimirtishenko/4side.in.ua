@@ -14,6 +14,7 @@ function Slider(element, list) {
     this.controlsBuild = false;
     this.currentSlide = 0;
     this.move = 0;
+    this.preloader = document.querySelector(".-absolute-preloader");
 
     if (window.innerHeight > 600 && window.innerHeight < 790) {
         element.style.height = window.innerHeight + "px";
@@ -26,18 +27,24 @@ function Slider(element, list) {
     function resizeHandler() {
         self.height = window.innerHeight;
         self.width = window.innerWidth;
-        self.running();
+        self.running("resize");
     }
 
 }
 
-Slider.prototype.running = function() {
+Slider.prototype.running = function(options) {
 
     var self = this;
 
-    if (!this.controlsBuild)
+    if (!this.controlsBuild){
         this.createControls();
+    }
 
+    if(options){
+    	this.move = this.currentSlide * (-self.width);
+    	this.list.style.cssText += "transition-timing-function: cubic-bezier(0, 0, 0.58, 1); transition-duration: 1s; transform: translateX("+this.move+"px)";
+    }
+    
 
     [].forEach.call(self.list.children, staticSize)
 
@@ -46,7 +53,10 @@ Slider.prototype.running = function() {
         item.setAttribute("data-slides-number", i)
     }
 
-    this.list.style.width = this.width * this.list.children.length + "px";
+    this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
+
+    self.preloader.classList.add("hiddens-preloader")
+    
 
 }
 
@@ -68,6 +78,7 @@ Slider.prototype._clickSlideHandlers = function() {
     var target = event.target,
         self = this,
         clicked;
+
 
     if (target.getAttribute("data-slide")) {
         clicked = parseInt(target.getAttribute("data-slide"))
@@ -100,7 +111,7 @@ Slider.prototype._clickSlideHandlers = function() {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
 
-        self.list.style.cssText += "transition-timing-function: cubic-bezier(0, 0, 0.58, 1.0); transition-duration: "+speed+"s; ";
+        self.list.style.cssText += "transition-timing-function: cubic-bezier(0, 0, 0.58, 1.0); transition-duration: " + speed + "s; ";
         self.list.style.cssText += "transform: translateX(" + move + "px)";
         self.currentSlide = clicked;
         self.move = move;
@@ -115,3 +126,101 @@ Slider.prototype._clickSlideHandlers = function() {
 
 var _Slider_ = new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
 _Slider_.running();
+
+
+function SandwichMenu(element) {
+    var self = this;
+
+    this.state = true;
+
+    element.addEventListener("click", self.actions.bind(this, element, self))
+}
+
+SandwichMenu.prototype.actions = function(element, self) {
+
+	if(!self.state) return;
+
+	self.state = false;
+
+    var first = element.querySelector(".first-line"),
+        second = element.querySelector(".two-line"),
+        third = element.querySelector(".third-line");
+
+    if (element.classList.contains("-open")) {
+
+
+        cssAnimate([{
+            operator: "",
+            state: first,
+            delay: "two",
+            label: "one"
+        }, {
+            operator: "-",
+            state: third,
+            delay: "two",
+            label: "one"
+        }, {
+            operator: 1,
+            state: second,
+            delay: "four"
+        }]);
+
+        element.classList.remove("-open")
+        document.querySelector(".container-all-outer").style.left = "0px";
+
+    } else {
+
+        cssAnimate([{
+            operator: "",
+            state: first,
+            delay: "three",
+            label: "one"
+        }, {
+            operator: "-",
+            state: third,
+            delay: "three",
+            label: "one"
+        }, {
+            operator: 0,
+            state: second,
+            delay: "four"
+        }])
+
+        element.classList.add("-open");
+
+        document.querySelector(".container-all-outer").style.left = "-200px";
+    }
+
+    function cssAnimate(objects) {
+
+        for (var i = 0; i < objects.length; i++) {
+
+            if (objects[i].label) {
+                objects[i].state.style.cssText = createCss(objects[i].operator, objects[i].label);
+            }
+
+            (function(i) {
+                setTimeout(function() {
+                    objects[i].state.style.cssText = createCss(objects[i].operator, objects[i].delay);
+                    self.state = true;
+                }, 400)
+            })(i);
+        };
+
+    }
+
+    function createCss(operator, step) {
+
+        var objectStep = {
+            one: "transition: .4s; transform: translateY(" + operator + "12px) rotate(0deg)",
+            two: "transition: .4s; transform: translateY(0px) rotate(0deg)",
+            three: "transition: .4s; transform: translateY(" + operator + "12px) rotate(" + operator + "45deg)",
+            four: "opacity: " + operator
+        }
+        return objectStep[step];
+
+    }
+
+}
+
+var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
