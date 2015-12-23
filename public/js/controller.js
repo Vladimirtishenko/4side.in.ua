@@ -15,6 +15,7 @@ function Slider(element, list) {
     this.currentSlide = 0;
     this.move = 0;
     this.preloader = document.querySelector(".-absolute-preloader");
+    this.listImages = this.list.querySelectorAll("img");
 
     window.addEventListener("resize", resizeHandler);
 
@@ -51,12 +52,15 @@ Slider.prototype.running = function(options) {
     this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
 
 
-    var img = new Image();
-    img.src = '/images/slide_one.png';
-    img.onload = function(){
-         self.preloader.classList.add("hiddens-preloader")
-         document.body.appendChild(img);
-    }
+    for (var i = 0; i < this.listImages.length; i++) {
+        var img = new Image();
+        img.src = this.listImages[i].src;
+        img.onload = function(){
+            if(!self.preloader.classList.contains("hiddens-preloader")){
+                self.preloader.classList.add("hiddens-preloader")
+            }
+        }
+    };
 
 
 }
