@@ -47,10 +47,17 @@ Slider.prototype.running = function(options) {
         item.setAttribute("data-slides-number", i)
     }
 
+    
     this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
 
-    self.preloader.classList.add("hiddens-preloader")
-    
+
+    var img = new Image();
+    img.src = '/images/slide_one.png';
+    img.onload = function(){
+         self.preloader.classList.add("hiddens-preloader")
+         document.body.appendChild(img);
+    }
+
 
 }
 
