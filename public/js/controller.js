@@ -8,6 +8,7 @@ function Slider(element, list) {
     var self = this;
 
     this.list = list;
+    this.countSlide = this.list.children.length -1;
     this.element = element;
     this.height = window.innerHeight;
     this.width = window.innerWidth;
@@ -51,6 +52,7 @@ Slider.prototype.running = function(options) {
     
     this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
 
+    this.touchEvents();
 
     for (var i = 0; i < this.listImages.length; i++) {
         var img = new Image();
@@ -61,7 +63,38 @@ Slider.prototype.running = function(options) {
             }
         }
     };
+}
 
+Slider.prototype.touchEvents = function(){
+
+    var self = this;
+
+    this.list.addEventListener("touchstart", touchStart, false);
+    this.list.addEventListener("touchend", touchEnd, false);
+
+    var startPosition = 0;
+    var endPosition = 0;
+
+    function touchStart(event){
+        var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
+        startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
+        startPosition = startx;
+        event.preventDefault()
+    }
+
+    function touchEnd(event){
+        var touchobj = event.changedTouches[0] // reference first touch point for this event
+        endx = parseInt(touchobj.clientX)
+        endPosition = endx;
+        if(startPosition > endPosition){
+            var clicked = ((self.currentSlide + 1) > self.countSlide) ? 0 : self.currentSlide + 1;
+            self._clickSlideHandlers(parseInt(clicked))
+        } else {
+            var clicked = ((self.currentSlide - 1) < 0) ? self.countSlide : self.currentSlide - 1;
+            self._clickSlideHandlers(parseInt(clicked))
+        }
+        event.preventDefault()
+    }
 
 }
 
@@ -79,16 +112,21 @@ Slider.prototype.createControls = function() {
     this.controlsBuild = true;
 }
 
-Slider.prototype._clickSlideHandlers = function() {
-    var target = event.target,
+Slider.prototype._clickSlideHandlers = function(event) {
+    var target = event.target ? event.target : event,
         self = this,
         clicked;
 
 
-    if (target.getAttribute("data-slide")) {
+    if (!isNaN(target)) {
+        clicked = target;
+        if(clicked == this.currentSlide) return;
+    } 
+    else if(target.getAttribute("data-slide")){
         clicked = parseInt(target.getAttribute("data-slide"))
         if(clicked == this.currentSlide) return;
-    } else {
+    }    
+    else {
         return;
     }
 
@@ -122,8 +160,8 @@ Slider.prototype._clickSlideHandlers = function() {
         self.currentSlide = clicked;
         self.move = move;
 
+        activeBeforeSlide.parentNode.querySelector("span[data-slide='"+clicked+"']").classList.add("-active-slide");
         activeBeforeSlide.classList.remove("-active-slide");
-        target.classList.add("-active-slide");
 
     }
 
