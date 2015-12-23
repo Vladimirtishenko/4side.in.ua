@@ -62,5 +62,5 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 app.listen(config.get("port"), function () {
-  console.log("4 Side server is started");
+  console.log("4 Side server is started on port "+config.get("port"));
 })
