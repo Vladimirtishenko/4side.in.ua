@@ -79,21 +79,19 @@ Slider.prototype.touchEvents = function(){
         var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         startPosition = startx;
-        event.preventDefault()
     }
 
     function touchEnd(event){
         var touchobj = event.changedTouches[0] // reference first touch point for this event
         endx = parseInt(touchobj.clientX)
         endPosition = endx;
-        if(startPosition > endPosition){
+        if(startPosition > endPosition && (startPosition - endPosition) > 150){
             var clicked = ((self.currentSlide + 1) > self.countSlide) ? 0 : self.currentSlide + 1;
             self._clickSlideHandlers(parseInt(clicked))
-        } else {
+        } else if(endPosition > startPosition && (endPosition - startPosition) > 150) {
             var clicked = ((self.currentSlide - 1) < 0) ? self.countSlide : self.currentSlide - 1;
             self._clickSlideHandlers(parseInt(clicked))
         }
-        event.preventDefault()
     }
 
 }
