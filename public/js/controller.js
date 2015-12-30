@@ -85,10 +85,10 @@ Slider.prototype.touchEvents = function(){
         var touchobj = event.changedTouches[0] // reference first touch point for this event
         endx = parseInt(touchobj.clientX)
         endPosition = endx;
-        if(startPosition > endPosition && (startPosition - endPosition) > 150){
+        if(startPosition > endPosition && (startPosition - endPosition) > 50){
             var clicked = ((self.currentSlide + 1) > self.countSlide) ? 0 : self.currentSlide + 1;
             self._clickSlideHandlers(parseInt(clicked))
-        } else if(endPosition > startPosition && (endPosition - startPosition) > 150) {
+        } else if(endPosition > startPosition && (endPosition - startPosition) > 50) {
             var clicked = ((self.currentSlide - 1) < 0) ? self.countSlide : self.currentSlide - 1;
             self._clickSlideHandlers(parseInt(clicked))
         }
@@ -280,4 +280,4 @@ function allHandlerToload(){
     Grid(); // Load Grig Portfolio Layout
 }
 
-window.addEventListener("DOMContentLoaded", allHandlerToload)
+window.addEventListener("load", allHandlerToload)
