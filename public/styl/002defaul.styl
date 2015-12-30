@@ -143,6 +143,28 @@ h1, h2, h3, h4, h5, h6, p
 	background-position 125% 68%
 	background-repeat no-repeat
 
+.arrow-class
+	position relative
+	&:before
+		content ""
+		position absolute
+		width 100%
+		right 0
+		height 5px
+		background url(../images/sprite.png) -13px -365px no-repeat
+		top 7px
+		z-index 1
+
+.counts-process > div:last-child .arrow-class:before
+	display none i
+
+.arrow-class span
+	position relative
+	z-index 2
+	display inline-block
+	padding-right 10px
+	background #fff 
+
 /* icon serv */
 
 .branding
@@ -175,11 +197,31 @@ h1, h2, h3, h4, h5, h6, p
 .development
 	background url(../images/sprite.png) -123px -99px no-repeat
 
+@media screen and (max-width: 1200px)		
+	.arrow-class:before
+		background url(../images/sprite.png) -60px -364px no-repeat
+		top 6px
+		height 7px
 
-@media screen and (max-width: 770px)
+	.arrow-class span
+		padding-right 0px
+
+@media screen and (max-width: 991px)
+	.arrow-class span
+		padding-right 10px
+		
+	.arrow-class:before
+		background url(../images/sprite.png) 60px -364px no-repeat
+
+
+@media screen and (max-width: 768px)
+	.arrow-class:before
+		display none
+
 	.form-to-control button
 		margin 20px auto
 		float none
 
 	.-all-to-center
 		text-align center
+
