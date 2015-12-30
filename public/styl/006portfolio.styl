@@ -8,31 +8,60 @@
 	background rgb(245, 245, 245)
 
 .container-of-slider img 
-	padding 15px 
-	box-sizing border-box
-	
-.container-of-slider img:nth-child(1)
+	width 100%
+
+.discription-of-work
+	opacity 0
+	position absolute
+	background-color rgba(0,0,0,.9)
+	width calc(100% - 30px)
+	height calc(100% - 30px)
+	transition all .3s ease
+	&:hover 
+		opacity 1
+
+.discription-of-work h3
+	width 100%
+	text-align center
+	top 50%
+	font-size 40px
+	transform translateY(-50%)
+	color #ffffff !important
+	position absolute
+
+.discription-of-work h3 span
+	color #aaa
+	display block
+	margin-top 8px
+	line-height 14px
+	font-size 14px
+
+
+.grid-item
+	padding 15px
+
+.container-of-slider .grid-item:nth-child(1)
 	width 29.2%
 	
-.container-of-slider img:nth-child(2)
+.container-of-slider .grid-item:nth-child(2)
 	width 35%
 	
-.container-of-slider img:nth-child(3)
+.container-of-slider .grid-item:nth-child(3)
 	width 34.9%
 	
-.container-of-slider img:nth-child(4)
+.container-of-slider .grid-item:nth-child(4)
 	width 34.9%
 	
-.container-of-slider img:nth-child(5)
+.container-of-slider .grid-item:nth-child(5)
 	width 64.2%
 	
-.container-of-slider img:nth-child(6)
+.container-of-slider .grid-item:nth-child(6)
 	width 34.9%
 	
-.container-of-slider img:nth-child(7)
+.container-of-slider .grid-item:nth-child(7)
 	width 29.2%
 	
-.container-of-slider img:nth-child(8)
+.container-of-slider .grid-item:nth-child(8)
 	width 34.9%
 
 @media screen and (max-width: 1280px)	
