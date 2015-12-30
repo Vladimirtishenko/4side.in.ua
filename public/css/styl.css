@@ -193,9 +193,9 @@ p {
   position: absolute;
   width: 100%;
   right: 0;
-  height: 5px;
-  background: url("../images/sprite.png") -13px -365px no-repeat;
-  top: 7px;
+  height: 10px;
+  background: url("../images/sprite.png") -97px -362px no-repeat;
+  top: 3px;
   z-index: 1;
 }
 
@@ -253,7 +253,7 @@ p {
 
 @media screen and (max-width: 1200px) {
   .arrow-class:before {
-    background: url("../images/sprite.png") -60px -364px no-repeat;
+    background: url("../images/sprite.png") -147px -364px no-repeat;
     top: 6px;
     height: 7px;
   }
@@ -269,7 +269,7 @@ p {
   }
 
   .arrow-class:before {
-    background: url("../images/sprite.png") 60px -364px no-repeat;
+    background: url("../images/sprite.png") -23px -364px no-repeat;
   }
 }
 
