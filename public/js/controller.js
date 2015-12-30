@@ -266,3 +266,11 @@ SandwichMenu.prototype.actions = function(element, self) {
 }
 
 var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
+
+
+
+var msnry = new Masonry( '.grid', {
+  itemSelector: '.grid-item',
+  columnWidth: 1,
+  percentPosition: true
+});
