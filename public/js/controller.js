@@ -8,6 +8,7 @@ function Slider(element, list) {
     var self = this;
 
     this.list = list;
+    this.countSlide = this.list.children.length -1;
     this.element = element;
     this.height = window.innerHeight;
     this.width = window.innerWidth;
@@ -15,12 +16,7 @@ function Slider(element, list) {
     this.currentSlide = 0;
     this.move = 0;
     this.preloader = document.querySelector(".-absolute-preloader");
-
-    if (window.innerHeight > 600 && window.innerHeight < 790) {
-        element.style.height = window.innerHeight + "px";
-    } else {
-        element.removeAttribute("style");
-    }
+    this.listImages = this.list.querySelectorAll("img");
 
     window.addEventListener("resize", resizeHandler);
 
@@ -42,7 +38,7 @@ Slider.prototype.running = function(options) {
 
     if(options){
     	this.move = this.currentSlide * (-self.width);
-    	this.list.style.cssText += "transition-timing-function: cubic-bezier(0, 0, 0.58, 1); transition-duration: 1s; transform: translateX("+this.move+"px)";
+    	this.list.style.cssText += "transition-duration: 1s; transform: translateX("+this.move+"px)";
     }
     
 
@@ -53,10 +49,50 @@ Slider.prototype.running = function(options) {
         item.setAttribute("data-slides-number", i)
     }
 
+    
     this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
 
-    self.preloader.classList.add("hiddens-preloader")
-    
+    this.touchEvents();
+
+    for (var i = 0; i < this.listImages.length; i++) {
+        var img = new Image();
+        img.src = this.listImages[i].src;
+        img.onload = function(){
+            if(!self.preloader.classList.contains("hiddens-preloader")){
+                self.preloader.classList.add("hiddens-preloader")
+            }
+        }
+    };
+}
+
+Slider.prototype.touchEvents = function(){
+
+    var self = this;
+
+    this.list.addEventListener("touchstart", touchStart, false);
+    this.list.addEventListener("touchend", touchEnd, false);
+
+    var startPosition = 0;
+    var endPosition = 0;
+
+    function touchStart(event){
+        var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
+        startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
+        startPosition = startx;
+    }
+
+    function touchEnd(event){
+        var touchobj = event.changedTouches[0] // reference first touch point for this event
+        endx = parseInt(touchobj.clientX)
+        endPosition = endx;
+        if(startPosition > endPosition && (startPosition - endPosition) > 50){
+            var clicked = ((self.currentSlide + 1) > self.countSlide) ? 0 : self.currentSlide + 1;
+            self._clickSlideHandlers(parseInt(clicked))
+        } else if(endPosition > startPosition && (endPosition - startPosition) > 50) {
+            var clicked = ((self.currentSlide - 1) < 0) ? self.countSlide : self.currentSlide - 1;
+            self._clickSlideHandlers(parseInt(clicked))
+        }
+    }
 
 }
 
@@ -74,15 +110,21 @@ Slider.prototype.createControls = function() {
     this.controlsBuild = true;
 }
 
-Slider.prototype._clickSlideHandlers = function() {
-    var target = event.target,
+Slider.prototype._clickSlideHandlers = function(event) {
+    var target = event.target ? event.target : event,
         self = this,
         clicked;
 
 
-    if (target.getAttribute("data-slide")) {
+    if (!isNaN(target)) {
+        clicked = target;
+        if(clicked == this.currentSlide) return;
+    } 
+    else if(target.getAttribute("data-slide")){
         clicked = parseInt(target.getAttribute("data-slide"))
-    } else {
+        if(clicked == this.currentSlide) return;
+    }    
+    else {
         return;
     }
 
@@ -94,7 +136,7 @@ Slider.prototype._clickSlideHandlers = function() {
             toSlideAnimation(move, 0.5);
         } else {
             var move = parseInt(self.move) + parseInt(-self.width)
-            toSlideAnimation(move, 1);
+            toSlideAnimation(move, 0.8);
         }
 
     } else {
@@ -103,7 +145,7 @@ Slider.prototype._clickSlideHandlers = function() {
             toSlideAnimation(move, 0.5);
         } else {
             var move = parseInt(self.move) + parseInt(self.width)
-            toSlideAnimation(move, 1);
+            toSlideAnimation(move, 0.8);
         }
     }
 
@@ -111,13 +153,13 @@ Slider.prototype._clickSlideHandlers = function() {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
 
-        self.list.style.cssText += "transition-timing-function: cubic-bezier(0, 0, 0.58, 1.0); transition-duration: " + speed + "s; ";
+        self.list.style.cssText += "transition-duration: " + speed + "s; ";
         self.list.style.cssText += "transform: translateX(" + move + "px)";
         self.currentSlide = clicked;
         self.move = move;
 
+        activeBeforeSlide.parentNode.querySelector("span[data-slide='"+clicked+"']").classList.add("-active-slide");
         activeBeforeSlide.classList.remove("-active-slide");
-        target.classList.add("-active-slide");
 
     }
 
@@ -166,7 +208,7 @@ SandwichMenu.prototype.actions = function(element, self) {
         }]);
 
         element.classList.remove("-open")
-        document.querySelector(".container-all-outer").style.left = "0px";
+        document.querySelector(".container-all-outer").style.cssText = "transform: translateX(0)";
 
     } else {
 
@@ -188,7 +230,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.add("-open");
 
-        document.querySelector(".container-all-outer").style.left = "-200px";
+        document.querySelector(".container-all-outer").style.cssText = "transform: translateX(-200px)";
     }
 
     function cssAnimate(objects) {
@@ -224,3 +266,18 @@ SandwichMenu.prototype.actions = function(element, self) {
 }
 
 var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
+
+function Grid() {
+    var msnry = new Masonry( '.grid', {
+      itemSelector: '.grid-item',
+      columnWidth: 1,
+      percentPosition: true
+    });
+}
+
+
+function allHandlerToload(){
+    Grid(); // Load Grig Portfolio Layout
+}
+
+window.addEventListener("load", allHandlerToload)
