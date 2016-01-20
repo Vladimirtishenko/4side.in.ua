@@ -14,6 +14,14 @@ module.exports.get = function(req, res, next) {
 
 }
 
+module.exports.delete = function(req, res, next) {
+    Team.remove({ _id: req.body.id }, function(err) {
+    if (err) next(err);
+    res.send({status: 200});
+});
+
+}
+
 module.exports.post = function(req, res, next) {
 
 

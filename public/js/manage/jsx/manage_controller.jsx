@@ -69,6 +69,25 @@ function Controller () {
 		xhr.send(data);
 	}
 
+	this.OnlyDelete = function(id, type, actionName, string){
+		
+		var xhr = this.crossdomainXHR(),
+			self = this;
+
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				if(JSON.parse(xhr.responseText).status == '200'){
+					self.Menu(string, actionName, "GET")
+				}
+			}
+		}
+
+		xhr.open('DELETE', string, true);
+		xhr.setRequestHeader("Content-Type", type);
+		xhr.send('id='+id);
+
+	}
+
 
 	this.Menu();
 

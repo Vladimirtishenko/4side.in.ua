@@ -31,11 +31,21 @@ var TemplateTeam = React.createClass({
 		})
 	},
 
+	deleteItem: function(){
+		var _id = this.props.data._id,
+			type = 'application/x-www-form-urlencoded',
+			url = '/manage/Team',
+			actionName = 'Team';
+
+	_controller_.OnlyDelete(_id, type, actionName, url);
+
+	},
+
 	render: function(){	
 		if(this.props.data == this.state.data)	{
-			return (<this.state.context replace={this.replaceTemplate} data={this.state.data} />);
+			return (<this.state.context delets={this.deleteItem} replace={this.replaceTemplate} data={this.state.data} />);
 		} else {
-			return (<this.props.context replace={this.replaceTemplate} data={this.props.data} />);
+			return (<this.props.context delets={this.deleteItem} replace={this.replaceTemplate} data={this.props.data} />);
 		}
 	}	
 })
@@ -48,6 +58,7 @@ var TemplateWithoutInput = React.createClass({
 			<div className="outer-of-team">
 				<div className="members-item">
 					<i className="fa fa-pencil edit-about-block" onClick={this.props.replace}></i>
+					<i className="fa fa-trash edit-about-block-right" onClick={this.props.delets}></i>
 					<img src={this.props.data.src} />
 					<h3>{this.props.data.name}</h3>
 					<h4>{this.props.data.profession}</h4>
