@@ -45,7 +45,8 @@ var addTemplate = React.createClass({
 		return {
 			imagesContent: [],
 			imagesArray: {},
-			imagesTemp: '/images/add_gen_photo.png'
+			imagesTempString: '/images/add_gen_photo.png',
+			imageTemp: null
 		}
 	},
 
@@ -117,7 +118,8 @@ var addTemplate = React.createClass({
 		return function(e) {
 
 			self.setState({
-				imagesTemp: e.target.result
+				imagesTempString: e.target.result,
+				imageTemp: theFile
 			})
 
 		};
@@ -128,6 +130,22 @@ var addTemplate = React.createClass({
 	},
 
 	addFormGalery: function(){
+		event.preventDefault();
+		var input = event.target.querySelectorAll('input[type="text"]'),
+			data = {},
+			url = '/manage/Portfolio',
+			method = 'POST',
+			type = null,
+			actionName = 'Portfolio';
+
+		for (var i = 0; i < input.length; i++) {
+			data[input[i].name] = input[i].value;
+		};
+
+		data['upload_temp_image'] = this.state.imageTemp;
+		data['upload_galery_image'] = this.state.imagesArray;
+
+		_controller_.OnlyAddNoResponseData(url, data, method, type, actionName);
 
 	},
 
@@ -168,15 +186,15 @@ var addTemplate = React.createClass({
 					<div className="outer-levels-step">
 						<div className="left-to-gen-image">
 							<label htmlFor="hidden_file">
-								<img className="add-gen-photo" src={this.state.imagesTemp} />
-								<input onChange={this.tempImageToGallery} type="file" name="upload" id="hidden_file" />
+								<img className="add-gen-photo" src={this.state.imagesTempString} />
+								<input onChange={this.tempImageToGallery} type="file" name="upload" id="hidden_file" required="required"/>
 							</label>
 						</div>
 						<div className="right-to-desctiption">
-							<input type="text" className="title-portfolio" name="title" placeholder="Название проекта" />
-							<input type="text" className="description-portfolio" name="description" placeholder="Описание проекта" />
-							<input type="text" className="technology-portfolio" name="technology" placeholder="Технологии" />
-							<input type="text" className="origin-portfolio" name="origin" placeholder="Особенности" />
+							<input type="text" className="title-portfolio" name="title" placeholder="Название проекта" required="required"/>
+							<input type="text" className="description-portfolio" name="description" placeholder="Описание проекта" required="required"/>
+							<input type="text" className="technology-portfolio" name="technology" placeholder="Технологии" required="required"/>
+							<input type="text" className="origin-portfolio" name="origin" placeholder="Особенности" required="required"/>
 						</div>
 					</div>
 					<div className="outer-all-photos">
