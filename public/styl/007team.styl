@@ -1,0 +1,60 @@
+@import '001func.styl'
+
+.block-outer-team
+	padding 75px 0
+	
+.mini-description
+	font-size 19px
+	color greyText
+	font-family 'Playfair Display'
+	padding 0 50px 
+	text-align center
+	margin 0
+	
+.title-of-h1
+	text-align center
+	font-family SFBold
+	font-size 69px
+	margin 0
+	padding 30px 0 40px
+	
+.outer-of-team
+	display table
+	width 100%
+	margin-top 70px
+
+.item-team
+	background #fff 
+	width 40%
+	padding 65px 25px 0
+	margin 0 5%
+	text-align center
+	&:nth-child(even)
+		float left
+	&:nth-child(odd)
+		float right
+
+.item-team h3
+	font-family 'Playfair Display'
+	font-size 33px
+	color greyText
+	margin 50px 0 25px
+
+.item-team h4
+	font-family SFSemibold
+	font-size 17px
+	margin 0 0 35px
+	color greyText
+	text-transform uppercase
+
+.item-team p
+	font-size 14px
+	color weryLightGrey
+	line-height 25px
+	
+@media screen and (max-width: 991px)	
+	.item-team
+		width 70%
+		margin 0 auto
+		float none i
+		display table

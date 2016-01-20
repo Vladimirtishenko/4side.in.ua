@@ -2,18 +2,7 @@ extends layout
 
 block content
 	body
-		.container-fixed-menu
-			ul(class="list-menu")
-				li
-					a(href="") Главная
-				li 
-					a(href="") О Компании
-				li 
-					a(href="") Портфолио
-				li 
-					a(href="") Команда
-				li 
-					a(href="") Контакты
+		include menu.jade
 		.container-all-outer
 			header(class="header-to-site")
 				a(href="/" class="logo-for-site")
@@ -160,32 +149,7 @@ block content
 								h3(class="margin-class arrow-class") 
 									span Разработка
 								p В процесе дизайна, разработчики уже строят архитектуру баз данных, конфигурируют выбранные фреймверки для воплощения идеи, создают абстрактные шаблоны.
-			div(class="container-fluid -light-blue -side-for-logo")
-				.row
-					.container
-						.row
-							div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
-								.container-for-subscribe
-									h2 Подписаться на обновления
-									form(action="" class="form-to-control")
-										input(type="text" class="form-input col-xs-12 col-sm-7 col-md-8 col-lg-8" placeholder="Email адрес")
-										button(class="button col-xs-12 col-sm-5 col-md-4 col-lg-4") Подписаться
-									p(class="text-for-subscribe") Будет использоваться в соответствии с нашей политикой конфиденциальности
-			div(class="container-fluid -dark-grey")
-				.row
-					div(class="footer-container")
-						div(class="col-xs-12 col-sm-5 col-md-4 col-lg-4")
-							p Телефон: +38 (063) 441 83 82
-							p Адрес: Украина, Киев, ул. Архитектора Городецкого, 10/1
-							p E-mail: our@4side.in.ua
-						div(class="col-xs-12 col-sm-2 col-md-4 col-lg-4 -center-align")
-							span(class="mini-logo")
-						div(class="col-xs-12 col-sm-5 col-md-4 col-lg-4 -rigth-align")
-							p © 2015 4Side Web Agency All rights reserved
-							.social-share-button
-								a(href="" class="vk social-link")
-								a(href="" class="fb social-link")
-								a(href="" class="twitter social-link")
+			include footer.jade
 		script(src="/build/masonry.pkgd.min.js")
 		script(src="/build/controller.js")
 		

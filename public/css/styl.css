@@ -26,6 +26,10 @@ p {
   color: #393939;
 }
 
+a {
+  color: #508dcb;
+}
+
 .container-all-outer {
   position: relative;
   -webkit-transition: 0.3s;
@@ -38,6 +42,13 @@ p {
   -webkit-box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.3);
   box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.3);
   background: #fff;
+}
+
+.container-all-outer.grey-color {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafafb), to(#fff));
+  background: -webkit-linear-gradient(top, #fafafb 0%, #fff 100%);
+  background: -o-linear-gradient(top, #fafafb 0%, #fff 100%);
+  background: linear-gradient(to bottom, #fafafb 0%, #fff 100%);
 }
 
 .container-fixed-menu {
@@ -643,6 +654,15 @@ p {
   text-decoration: none;
 }
 
+.brif-for-site.colors-blue {
+  color: #508dcb;
+  border-bottom: 1px solid rgba(80,141,203,0.5);
+}
+
+.brif-for-site.colors-blue:hover {
+  border-bottom: 1px solid transparent;
+}
+
 .menu-to-site {
   float: right;
   width: 43px;
@@ -657,6 +677,15 @@ p {
   width: 100%;
   background: #fff;
   margin: auto;
+}
+
+.outers-to-block {
+  padding: 25px 0;
+  float: right;
+}
+
+.menu-to-site.-colors span {
+  background: #393939;
 }
 
 .first-line {
@@ -674,6 +703,12 @@ p {
 
 .-logo-mobile {
   display: none;
+}
+
+.header-to-all-page {
+  width: 100%;
+  padding: 30px 70px;
+  background: #fff;
 }
 
 @media screen and (max-width: 980px) {
@@ -878,4 +913,139 @@ p {
   .container-of-slider .grid-item {
     width: 99.9% !important;
   }
+}
+.block-outer-team {
+  padding: 75px 0;
+}
+
+.mini-description {
+  font-size: 19px;
+  color: #393939;
+  font-family: 'Playfair Display';
+  padding: 0 50px;
+  text-align: center;
+  margin: 0;
+}
+
+.title-of-h1 {
+  text-align: center;
+  font-family: SFBold;
+  font-size: 69px;
+  margin: 0;
+  padding: 30px 0 40px;
+}
+
+.outer-of-team {
+  display: table;
+  width: 100%;
+  margin-top: 70px;
+}
+
+.item-team {
+  background: #fff;
+  width: 40%;
+  padding: 65px 25px 0;
+  margin: 0 5%;
+  text-align: center;
+}
+
+.item-team:nth-child(even) {
+  float: left;
+}
+
+.item-team:nth-child(odd) {
+  float: right;
+}
+
+.item-team h3 {
+  font-family: 'Playfair Display';
+  font-size: 33px;
+  color: #393939;
+  margin: 50px 0 25px;
+}
+
+.item-team h4 {
+  font-family: SFSemibold;
+  font-size: 17px;
+  margin: 0 0 35px;
+  color: #393939;
+  text-transform: uppercase;
+}
+
+.item-team p {
+  font-size: 14px;
+  color: #787878;
+  line-height: 25px;
+}
+
+@media screen and (max-width: 991px) {
+  .item-team {
+    width: 70%;
+    margin: 0 auto;
+    float: none !important;
+    display: table;
+  }
+}
+.outer-of-breadcrumps {
+  display: table;
+  width: 100%;
+}
+
+.list-of-breadcrumps {
+  display: table;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.list-of-breadcrumps li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 15px;
+  position: relative;
+  color: #787878;
+}
+
+.list-of-breadcrumps li:before {
+  width: 6px;
+  height: 5px;
+  position: absolute;
+  background: url("../images/arrow.png") no-repeat 0px 0px;
+  right: -3px;
+  top: 7px;
+  content: "";
+}
+
+.list-of-breadcrumps li:last-child:before {
+  display: none;
+}
+
+.list-of-breadcrumps li a {
+  border-bottom: 1px solid rgba(80,141,203,0.5);
+  padding: 0 0 2px;
+}
+
+.list-of-breadcrumps li a:hover {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  color: #508dcb;
+}
+.block-for-slides-campany {
+  display: table;
+}
+
+.-for-text,
+.-for-photo {
+  display: table-cell;
+  background-color: #fff;
+  width: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.-for-photo img {
+  width: 100%;
+}
+
+.-for-text p {
+  padding: 0 65px;
 }

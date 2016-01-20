@@ -1,3 +1,6 @@
 {
-	"port": 2020
+	"port": 3020,
+	"mongoose": {
+		"uri": "mongodb://localhost/side"
+	}
 }

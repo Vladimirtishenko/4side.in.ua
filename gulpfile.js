@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     stylus = require('gulp-stylus'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant');
+    pngquant = require('imagemin-pngquant'),
+    react = require('gulp-react');
+
 
 gulp.task('js', function () {
     return gulp.src('./public/js/*.js')
@@ -15,6 +17,14 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./public/build/'));
 });
 
+gulp.task('jsx', function () {
+    return gulp.src('./public/js/manage/jsx/*.jsx')
+        .pipe(react())
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('./public/js/manage/js/'));
+});
 
 gulp.task('styl', function() {
     return gulp.src('./public/styl/*.styl')
@@ -45,6 +55,15 @@ gulp.task('css', function () {
         .pipe(gulp.dest('./public/build/'));
 });
 
+gulp.task('css-manage', function () {
+    return gulp.src('./public/css/Manage/*.css')
+        .pipe(cssmin())
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('./public/css/Manage/build/'));
+});
+
 
 gulp.task('image', function () {
     return gulp.src('public/images/*')
@@ -60,5 +79,7 @@ gulp.task('image', function () {
 gulp.task('watch', function() {
     gulp.watch("./public/styl/*.styl", ['styl']);
     gulp.watch("./public/css/*.css", ['css']);
+    gulp.watch("./public/css/Manage/*.css", ['css-manage']);
     gulp.watch("./public/js/*.js", ['js']);
+    gulp.watch("./public/js/manage/jsx/*.jsx", ['jsx']);
 });

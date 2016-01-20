@@ -4,19 +4,18 @@ function Site() {
 
 
 function Slider(element, list) {
-
     var self = this;
 
-    this.list = list;
-    this.countSlide = this.list.children.length -1;
-    this.element = element;
+    this.list = list ? list : null;
+    this.countSlide = this.list ? this.list.children.length -1: null;
+    this.element = element ? element : null;
     this.height = window.innerHeight;
     this.width = window.innerWidth;
     this.controlsBuild = false;
     this.currentSlide = 0;
     this.move = 0;
     this.preloader = document.querySelector(".-absolute-preloader");
-    this.listImages = this.list.querySelectorAll("img");
+    this.listImages = this.list ? this.list.querySelectorAll("img") : null;
 
     window.addEventListener("resize", resizeHandler);
 
@@ -31,6 +30,8 @@ function Slider(element, list) {
 Slider.prototype.running = function(options) {
 
     var self = this;
+
+    if(!self.element && !self.list) return;
 
     if (!this.controlsBuild){
         this.createControls();
@@ -268,11 +269,12 @@ SandwichMenu.prototype.actions = function(element, self) {
 var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
 
 function Grid() {
-    var msnry = new Masonry( '.grid', {
+
+    var msnry = (typeof Masonry == 'function') ? new Masonry( '.grid', {
       itemSelector: '.grid-item',
       columnWidth: 1,
       percentPosition: true
-    });
+    }): null;
 }
 
 

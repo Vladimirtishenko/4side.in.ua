@@ -1,0 +1,35 @@
+@import '001func.styl'
+
+.outer-of-breadcrumps
+	display table
+	width 100%
+
+.list-of-breadcrumps
+	display table
+	margin 0 auto
+	padding 0
+
+.list-of-breadcrumps li
+	list-style none
+	display inline-block
+	padding 0 15px
+	position relative
+	color #787878
+	&:before
+		width 6px
+		height 5px
+		position absolute	
+		background url(../images/arrow.png) no-repeat 0px 0px
+		right -3px
+		top 7px
+		content ""
+	&:last-child:before
+		display none
+	
+.list-of-breadcrumps li a 
+	border-bottom 1px solid rgba(80,141,203, .5)
+	padding 0 0 2px
+	&:hover 
+		text-decoration none
+		border-bottom 1px solid transparent
+		color link
