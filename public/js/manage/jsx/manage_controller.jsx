@@ -48,7 +48,13 @@ function Controller () {
 		if(typeof dataStore == 'object'){
 			data = new FormData();
 			for(var val in dataStore){
-				data.append(val, dataStore[val]);
+				if(val == 'upload_galery_image'){
+					for (var i = 0; i < dataStore[val].length; i++) {
+						data.append(val, dataStore[val][i]);
+					};
+				} else {
+					data.append(val, dataStore[val]);
+				}
 			};
 		} else {
 			data = dataStore;
@@ -56,9 +62,9 @@ function Controller () {
 
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
-				if(JSON.parse(xhr.responseText).status == '200'){
-					self.Menu(string, actionName, "GET")
-				}
+				// if(JSON.parse(xhr.responseText).status == '200'){
+				// 	self.Menu(string, actionName, "GET")
+				// }
 			}
 		}
 

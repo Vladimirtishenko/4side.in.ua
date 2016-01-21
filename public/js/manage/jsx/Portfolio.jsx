@@ -73,6 +73,7 @@ var addTemplate = React.createClass({
 
 	addPhoto: function(event, files){
 
+
 		var Files = (event && event.target && event.target.files) ? event.target.files : files,
 			self = this;
 
@@ -143,7 +144,12 @@ var addTemplate = React.createClass({
 		};
 
 		data['upload_temp_image'] = this.state.imageTemp;
-		data['upload_galery_image'] = this.state.imagesArray;
+		data['upload_galery_image'] = [];
+
+
+		for (var i in this.state.imagesArray) {
+			data['upload_galery_image'].push(this.state.imagesArray[i])
+		};
 
 		_controller_.OnlyAddNoResponseData(url, data, method, type, actionName);
 
