@@ -12,5 +12,7 @@ app.delete("/manage/Team", require("./team_manage").delete);
 
 app.get("/manage/Portfolio", require("./portfolio_manage").get);
 app.post("/manage/Portfolio", require("./portfolio_manage").post);
+app.delete("/manage/Portfolio", require("./portfolio_manage").delete);
+
 
 }

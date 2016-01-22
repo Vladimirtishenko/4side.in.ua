@@ -62,9 +62,9 @@ function Controller () {
 
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
-				// if(JSON.parse(xhr.responseText).status == '200'){
-				// 	self.Menu(string, actionName, "GET")
-				// }
+				if(JSON.parse(xhr.responseText).status == '200'){
+					self.Menu(string, actionName, "GET")
+				}
 			}
 		}
 
@@ -75,7 +75,7 @@ function Controller () {
 		xhr.send(data);
 	}
 
-	this.OnlyDelete = function(id, type, actionName, string){
+	this.OnlyDelete = function(id, galeryId, type, actionName, string){
 		
 		var xhr = this.crossdomainXHR(),
 			self = this;
@@ -90,7 +90,7 @@ function Controller () {
 
 		xhr.open('DELETE', string, true);
 		xhr.setRequestHeader("Content-Type", type);
-		xhr.send('id='+id);
+		xhr.send('id='+id+'&galeryId='+galeryId);
 
 	}
 
@@ -162,8 +162,6 @@ function View (MenuItem) {
 		},
 		asynXhr: function (event) {
 			var contextToRender = allMyComponents[event.data.name];
-
-			event.data.content.newvariable = Math.random();
 
 			this.setState({
 				block: contextToRender,

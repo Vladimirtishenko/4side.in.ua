@@ -15,10 +15,14 @@ module.exports.get = function(req, res, next) {
 }
 
 module.exports.delete = function(req, res, next) {
-    Team.remove({ _id: req.body.id }, function(err) {
-    if (err) next(err);
-    res.send({status: 200});
-});
+    Team.remove({
+        _id: req.body.id
+    }, function(err) {
+        if (err) next(err);
+        res.send({
+            status: 200
+        });
+    });
 
 }
 
@@ -57,8 +61,8 @@ module.exports.post = function(req, res, next) {
             profession: namefile.obj ? namefile.obj.profession : req.body.profession
         };
 
-        if(namefile.src){
-        	variables.src = namefile.src;
+        if (namefile.src) {
+            variables.src = namefile.src;
         }
 
         var _id = (namefile.obj && namefile.obj.id) || (req.body.id) || new mongoose.mongo.ObjectID();
@@ -71,7 +75,9 @@ module.exports.post = function(req, res, next) {
             upsert: true
         }, function(err) {
             if (err) return next(err);
-            res.send({status: 200});
+            res.send({
+                status: 200
+            });
         });
     });
 

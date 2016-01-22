@@ -1,10 +1,9 @@
 var mongoose = require("../lib/mongoose"),
-	Schema = mongoose.Schema,
-	async = require("async");
+	Schema = mongoose.Schema;
 
 var schema = new Schema({
 	src: {
-		type: String,
+		type: Array,
 		required: true
 	},
 	gallery_id: {

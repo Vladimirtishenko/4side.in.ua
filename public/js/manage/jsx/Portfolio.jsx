@@ -2,7 +2,8 @@ var Portfolio = React.createClass({
 		
 	getInitialState: function(){
 		return {
-			template: MainTemplateTable
+			template: MainTemplateTable,
+			content: this.props.content
 		}
 	},
 
@@ -12,18 +13,50 @@ var Portfolio = React.createClass({
 		})
 	},
 
+	componentWillReceiveProps: function(nextProps){
+		this.setState({
+			template: MainTemplateTable,
+			content: nextProps.content
+		})
+	},
+
 	render: function () {
 		return (
 			<div className="Portfolio height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
-				{this.state.template ? <this.state.template change={this.changeTemplate}/> : <MainTemplateTable />}
+				{this.state.template ? <this.state.template data={this.state.content} change={this.changeTemplate}/> : <MainTemplateTable data={this.state.content}/>}
 			</div>
 		)
 	}
 });
 
 var MainTemplateTable = React.createClass({
+	
+	deleteItem: function(){
+		var _id = event.target.getAttribute("data-id-path"),
+			categoryId = event.target.getAttribute("data-id-category"),
+			type = 'application/x-www-form-urlencoded',
+			url = '/manage/Portfolio',
+			actionName = 'Portfolio';
+
+		_controller_.OnlyDelete(_id, categoryId, type, actionName, url);
+	},
+
 	render: function(){
+
+		var TableArray = this.props.data.map(function(item, i){
+				return (
+						<tr key={i}>
+							<td>{i + 1}</td>
+							<td>{item.title}</td>
+							<td><img src={item.src} /></td>
+							<td>
+								<i className="fa fa-pencil" data-id-path={item._id} data-id-category={item.gallery_id}></i>
+								<i className="fa fa-trash" data-id-path={item._id} data-id-category={item.gallery_id} onClick={this.deleteItem}></i>
+							</td>
+						</tr>
+					);
+		}.bind(this));	
 		return(
 			<div className="outer-tebles">
 				<button onClick={this.props.change} className="btn btn-info add-portfolio">Добавить работу</button>
@@ -31,8 +64,10 @@ var MainTemplateTable = React.createClass({
 					<tr className="info">  
 						<th>#</th>
 						<th>Название</th>
+						<th>Превью</th>
 						<th>Действия</th>
 					</tr>
+					{TableArray}
 				</table>
 			</div>
 		);
