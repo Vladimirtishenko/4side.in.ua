@@ -75,12 +75,12 @@ var About = React.createClass({
 
 			for (var i = 1; i <= 6; i++) {
 				if(relate = this.inArray(i)){
-					ArrayOfTemplateComponents.push(<TemplateForAboutBusy infoAdd={this.newAddInformation} edit={this.editState} content={relate} keys={i} />);
+					ArrayOfTemplateComponents.push(<TemplateForAboutBusy key={i+Math.random()} infoAdd={this.newAddInformation} edit={this.editState} content={relate} keys={i} />);
 				} else {
-					ArrayOfTemplateComponents.push(<TemplateForAbout imgAdd={this.newAddImages} infoAdd={this.newAddInformation} keys={i}/>);
+					ArrayOfTemplateComponents.push(<TemplateForAbout key={i+Math.random()} imgAdd={this.newAddImages} infoAdd={this.newAddInformation} keys={i}/>);
 				}
 				if(i%2 == 0){
-					ArrayOfComponents.push(<TemplateOuterForAbout element={ArrayOfTemplateComponents} />);
+					ArrayOfComponents.push(<TemplateOuterForAbout key={i+Math.random()} element={ArrayOfTemplateComponents} />);
 					ArrayOfTemplateComponents = [];
 				}
 			};

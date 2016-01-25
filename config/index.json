@@ -2,5 +2,16 @@
 	"port": 3020,
 	"mongoose": {
 		"uri": "mongodb://localhost/side"
+	},
+	"session" : {
+		"secret": "KillJoneDou",
+		"key": "sid",
+		"resave": true,
+    	"saveUninitialized": true,
+		"cookie": {
+			"maxAge": null,
+			"path": "/",
+			"httpOnly": true
+		}
 	}
 }

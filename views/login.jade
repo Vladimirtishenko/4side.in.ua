@@ -1,0 +1,17 @@
+extends layout_panel
+
+block content
+	body
+		.outrer-for-logo-table
+			.outer-for-logo-cell
+				.outer-center-block
+					img(src="/images/big_logo-blue.png", alt="")
+					form(action="/login" method="POST" id="form-authorize")
+						p Логин		
+						input(type="text", class="form-input", name="username", id="login")
+						p Пароль
+						input(type="password", class="form-input", name="password", id="pass")
+						button(type="submit", class="button") Войти
+		script(src="/js/manage/lib/authorize.js")
+
+		

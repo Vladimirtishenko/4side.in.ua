@@ -2,6 +2,7 @@ var Team = require("../model/team").Team;
 var multer = require('multer');
 var sha1 = require('sha1');
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 module.exports.get = function(req, res, next) {
 
@@ -15,14 +16,18 @@ module.exports.get = function(req, res, next) {
 }
 
 module.exports.delete = function(req, res, next) {
-    Team.remove({
-        _id: req.body.id
-    }, function(err) {
-        if (err) next(err);
-        res.send({
-            status: 200
+    Team.findByIdAndRemove(
+        req.body.id,
+        function(err, offen) {
+            if (err) next(err);
+            fs.unlink(filePath, function(err) {
+                if (err) next(err);
+                res.send({
+                    status: 200
+                });
+            });
+
         });
-    });
 
 }
 

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-html(lang="en")
-	head
-		meta(charset="UTF-8")
-		title Manage
-		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
-		link(rel="stylesheet", href="/css/Manage/build/manage.min.css")
-		link(rel="stylesheet", href="/css/Manage/build/font-awesome.min.css")
+extends layout_panel
+	
+block content
 	body
 		.container-fluid
 			.row
 				div(id="container-for-content")
 		script(src="/js/manage/lib/system.js")
-		script(src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js")
 		script(src="/js/manage/js/manage_controller.min.js")
 	

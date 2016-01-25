@@ -32,7 +32,7 @@ var Portfolio = React.createClass({
 
 var MainTemplateTable = React.createClass({
 	
-	deleteItem: function(){
+	deleteItem: function(event){
 		var _id = event.target.getAttribute("data-id-path"),
 			categoryId = event.target.getAttribute("data-id-category"),
 			type = 'application/x-www-form-urlencoded',
@@ -43,8 +43,7 @@ var MainTemplateTable = React.createClass({
 	},
 
 	render: function(){
-
-		var TableArray = this.props.data.map(function(item, i){
+		var TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
 				return (
 						<tr key={i}>
 							<td>{i + 1}</td>
@@ -56,18 +55,22 @@ var MainTemplateTable = React.createClass({
 							</td>
 						</tr>
 					);
-		}.bind(this));	
+		}, this) : null;	
 		return(
 			<div className="outer-tebles">
 				<button onClick={this.props.change} className="btn btn-info add-portfolio">Добавить работу</button>
 				<table className="table-for-portfolio table">
-					<tr className="info">  
-						<th>#</th>
-						<th>Название</th>
-						<th>Превью</th>
-						<th>Действия</th>
-					</tr>
-					{TableArray}
+					<thead>
+						<tr className="info">  
+							<th>#</th>
+							<th>Название</th>
+							<th>Превью</th>
+							<th>Действия</th>
+						</tr>
+					</thead>
+					<tbody>
+						{TableArray}
+					</tbody>
 				</table>
 			</div>
 		);
@@ -85,7 +88,7 @@ var addTemplate = React.createClass({
 		}
 	},
 
-	deletePhoto: function(){
+	deletePhoto: function(event){
 		var identify = event.target.parentNode.getAttribute('name'),
 			self = this;
 
@@ -123,7 +126,7 @@ var addTemplate = React.createClass({
 
 				self.state.imagesArray[Random] = theFile;
 
-				self.state.imagesContent.push(<span name={Random}><img src={e.target.result}/><i onClick={self.deletePhoto}></i></span>);
+				self.state.imagesContent.push(<span key={i+Math.random()} name={Random}><img src={e.target.result}/><i onClick={self.deletePhoto}></i></span>);
 
 			  	self.setState({
 					imagesContent: self.state.imagesContent,
@@ -144,7 +147,7 @@ var addTemplate = React.createClass({
 
 	},
 
-	tempImageToGallery: function(){
+	tempImageToGallery: function(event){
 		var file = event.target.files[0],
 			self = this;
 
@@ -165,7 +168,7 @@ var addTemplate = React.createClass({
 
 	},
 
-	addFormGalery: function(){
+	addFormGalery: function(event){
 		event.preventDefault();
 		var input = event.target.querySelectorAll('input[type="text"]'),
 			data = {},
@@ -190,7 +193,7 @@ var addTemplate = React.createClass({
 
 	},
 
-	onDragOver: function(){
+	onDragOver: function(event){
 		event.preventDefault();
 		event.stopPropagation();
 		if(!this.refs.target.getDOMNode().classList.contains("-drag-start")){
@@ -198,7 +201,7 @@ var addTemplate = React.createClass({
 		}
 	},
 
-	onDrops: function(){
+	onDrops: function(event){
 		event.preventDefault();
 
 		this.refs.target.getDOMNode().classList.remove("-drag-start")
@@ -214,7 +217,7 @@ var addTemplate = React.createClass({
 
 	},
 
-	onDragLeave: function(){
+	onDragLeave: function(event){
 		event.preventDefault();
 		event.stopPropagation();
 		this.refs.target.getDOMNode().classList.remove("-drag-start")

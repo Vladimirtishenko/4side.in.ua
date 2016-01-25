@@ -1,18 +1,23 @@
+var CheckAuth = require("../middleware/checkAuthorize");
+
 module.exports = function(app){
 
-app.get("/manage", require("./general_manage").get);
-app.post("/manage", require("./general_manage").post);
+app.get("/login", require("./login").get);
+app.post("/login", require("./login").post);
 
-app.get("/manage/About", require("./about_manage").get);
-app.post("/manage/About", require("./about_manage").post);
+app.get("/manage", CheckAuth, require("./general_manage").get);
+app.post("/manage", CheckAuth, require("./general_manage").post);
 
-app.get("/manage/Team", require("./team_manage").get);
-app.post("/manage/Team", require("./team_manage").post);
-app.delete("/manage/Team", require("./team_manage").delete);
+app.get("/manage/About", CheckAuth, require("./about_manage").get);
+app.post("/manage/About", CheckAuth, require("./about_manage").post);
 
-app.get("/manage/Portfolio", require("./portfolio_manage").get);
-app.post("/manage/Portfolio", require("./portfolio_manage").post);
-app.delete("/manage/Portfolio", require("./portfolio_manage").delete);
+app.get("/manage/Team", CheckAuth ,require("./team_manage").get);
+app.post("/manage/Team", CheckAuth, require("./team_manage").post);
+app.delete("/manage/Team", CheckAuth, require("./team_manage").delete);
+
+app.get("/manage/Portfolio", CheckAuth, require("./portfolio_manage").get);
+app.post("/manage/Portfolio", CheckAuth, require("./portfolio_manage").post);
+app.delete("/manage/Portfolio", CheckAuth, require("./portfolio_manage").delete);
 
 
 }

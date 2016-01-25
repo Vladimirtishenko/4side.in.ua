@@ -120,7 +120,7 @@ function View (MenuItem) {
 				title: 'Портфолио'
 			};
 		},
-		contextReplace: function () {
+		contextReplace: function (event) {
 			event.preventDefault();
 
 			var context = event.target.getAttribute('name');
@@ -158,11 +158,10 @@ function View (MenuItem) {
 		},
 		componentDidMount: function () {
 			var self = this;
-			window.addEventListener("message", self.asynXhr.bind(self));
+			window.addEventListener("message", self.asynXhr);
 		},
 		asynXhr: function (event) {
 			var contextToRender = allMyComponents[event.data.name];
-
 			this.setState({
 				block: contextToRender,
 				content: event.data.content
@@ -174,8 +173,8 @@ function View (MenuItem) {
 		render: function () {
 			var MenuArray = this.props.menu ? this.props.menu : null,
 				Menu = MenuArray ? MenuArray.map(function (item, i) {
-					return item.active ? <li key={i} className="active-list"><span>{item.name_rus}</span></li> : <li key={i}><a onClick={this.props.context} name={item.context} data-rus-title={item.name_rus} href={item.link}>{item.name_rus}</a></li>
-				}.bind(this)) : null;
+					return item.active ? <li key={i} className="active-list"><span>{item.name_rus}</span></li> : <li key={i}><a onClick={this.props.context} name={item.context} data-rus-title={item.name_rus} href="#">{item.name_rus}</a></li>
+				}, this) : null;
 
 			return (
 				<nav className="side-bar">
@@ -244,6 +243,6 @@ function View (MenuItem) {
 
 	System.import('About.min.js?hash='+Math.random().toString().slice(2));
 
-	React.render(<Outer />, document.getElementById('container-for-content'));
+	ReactDOM.render(<Outer />, document.getElementById('container-for-content'));
 
 };
