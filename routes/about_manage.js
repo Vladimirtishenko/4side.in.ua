@@ -6,6 +6,7 @@ var sha1 = require('sha1');
 module.exports.get = function(req, res, next) {
 
     About.find({}, function(err, result) {
+        if (err) next(err);
         res.send({
             abouts: result
         });
@@ -32,7 +33,9 @@ module.exports.post = function(req, res, next) {
         }, function(err) {
 
             if (err) return next(err);
-            res.send("Add in DataBase");
+            res.send({
+                'status': 200
+            });
 
         });
 
@@ -44,7 +47,7 @@ module.exports.post = function(req, res, next) {
                 var description = '/images/about/';
                 namefile.name = description;
                 namefile.number = req.body;
-                callback(null, './public'+description);
+                callback(null, './public' + description);
             },
             filename: function(req, file, callback) {
                 var filename = sha1(Math.random()) + file.originalname;
@@ -73,8 +76,15 @@ module.exports.post = function(req, res, next) {
             }, {
                 upsert: true
             }, function(err) {
-                if (err) return next(err);
-                res.send(namefile.name);
+                if (err) {
+                    res.send({
+                        'status': 500,
+                        'message': err
+                    });
+                }
+                res.send({
+                    'status': 200
+                });
 
             });
         });

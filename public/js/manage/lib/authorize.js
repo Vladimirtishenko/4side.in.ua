@@ -29,8 +29,9 @@ Authorize.prototype.xhrValidate = function(arrayOfArguments){
 	 		if(JSON.parse(xhr.responseText).status == 200){
 	 			window.location.href = '/manage';
 	 		}
-	 	} else {
-
+	 		else if(JSON.parse(xhr.responseText).status == 500){
+	 			document.querySelector(".error-message").style.display = "block"
+	 		}
 	 	}
 	 }
 

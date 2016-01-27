@@ -168,6 +168,7 @@ a:hover {
     right: 40px;
     font-size: 20px !important;
     cursor: pointer;
+    z-index: 10;
 }
 
 .edit-about-block-right{
@@ -190,6 +191,7 @@ a:hover {
     max-width: 1100px;
     display: table;
     width: 100%;
+    position: relative;
 }
 .outer-of-team {
     width: 47%;
@@ -297,7 +299,7 @@ a:hover {
 .add-gen-photo{
     width: 70%;
     margin: 0 auto;
-
+    cursor: pointer;
 }
 
 .outer-all-photos {
@@ -451,6 +453,44 @@ a:hover {
     padding: 0 20px;
     display: table;
     width: 100%;
+}
+
+.error-message{
+    padding: 0 0 15px;
+    margin: 0;
+    display: none;
+    color: rgba(255, 0, 0, 0.45);
+    font-size: 16px;
+}
+
+.error-block-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    padding: 30px;
+    background: rgb(57, 57, 57);
+    z-index: 1;
+    color: rgba(253, 176, 176, 0.97);
+    font-size: 16px;
+}
+
+.hidden-error{
+    display: none;
+}
+
+.padding-block{
+    padding: 40px 0
+}
+
+.outer-table{
+    display: table;
+    width: 100%;
+}
+
+.button-center{
+    display: table;
+    margin: 40px auto;
 }
 
 @media screen and (max-width: 980px) {

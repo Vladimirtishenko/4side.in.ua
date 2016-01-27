@@ -2,26 +2,18 @@ var mongoose = require("../lib/mongoose"),
 	Schema = mongoose.Schema;
 
 var schema = new Schema({
-	src: {
+	adress: {
 		type: String,
 		required: true
 	},
-	name: {
+	number: {
 		type: String,
 		required: true
 	},
-	profession: {
+	mail: {
 		type: String,
 		required: true
-	},
-	description: {
-		type: String,
-		required: true
-	},
-	data: {
-		type: Date,
-		require: true
 	}
 });
 
-exports.Team = mongoose.model("Team", schema);
+exports.Contact = mongoose.model("Contact", schema);

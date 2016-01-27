@@ -54,8 +54,15 @@ schema.statics.authorize = function(username, password, callback){
 					callback(new Error(403));
 				}
 			} else {
+				// Uncoment for registration 
+				// var user = new User({username: username, password: password});
+				// user.save(function(err){
+				// 	callback(null, user);
+				// })
 				callback(new Error(403));
 			}
+			
+			
 		}
 	], callback);
 

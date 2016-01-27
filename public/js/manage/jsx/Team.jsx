@@ -77,7 +77,7 @@ var TemplateWithInput = React.createClass({
 		}
 	},
 
-	addNewUser: function(){
+	addNewUser: function(event){
 		event.preventDefault();
 
 		var variables = event.target.querySelectorAll('input'),
@@ -111,7 +111,7 @@ var TemplateWithInput = React.createClass({
 	},
 
 
-	fileReaderImage: function(){
+	fileReaderImage: function(event){
 
 		var reader = new FileReader(),
 			self = this,

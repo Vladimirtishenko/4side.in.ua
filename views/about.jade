@@ -18,20 +18,16 @@ block content
 										li= val.inRus
 						h1(class="title-of-h1") О Компании
 						p(class="mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
+
+				- for (var i = 0; i < data.length; i += 2)
 					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
-						div(class="-for-text")
-							p Наша студия на рынке ИТ услуг с 2008 года, и уже заслужила уважение как многих больших компаний так и индивидуальных клиентов. За долгие годы работы мы собрали в нашей команде только лучших специалистов. Наши услуги славяться прекрастной архитектурой и дизайном.
-						div(class="-for-photo")
-							img(src="/images/place.jpg", alt="")
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
-						div(class="-for-photo")
-							img(src="/images/place1.jpg", alt="")
-						div(class="-for-text")
-							p Мы используем методику мозгового штурма для ярких и красочных идей. Моделируем и разрабатываем каждый конкретный бизнес-процес. Гарантируем, качественное функционирование программного обеспечения и правильное построение архитектуры, чтобы удовлетворить ваши требования.
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
-						div(class="-for-text")
-							p В разработке и дизайне используем новейшие технологии Предпочитаем работать на Node.js сервере с использованием Express и MongoDb, так же PHP с фреймверками Yii, Codegniter, Kohana, Laravel. Для одностраницных приложений предпочитаем работать с React и Knockout.
-						div(class="-for-photo")
-							img(src="/images/place2.jpg", alt="")
+						- for (var j = i; j < 2+i; j++)  
+							- if(data[j].description)
+								div(class="-for-text")
+									p= data[j].description
+							- else
+								div(class="-for-photo")
+									img(src= data[j].src, alt="")
+				
 			include footer.jade
 		script(src="/build/controller.js")

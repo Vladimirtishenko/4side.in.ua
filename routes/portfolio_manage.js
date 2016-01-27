@@ -54,7 +54,12 @@ module.exports.delete = function(req, res, next) {
             }
         ],
         function(err, results) {
-            if (err) return next(err);
+            if (err) {
+                res.send({
+                    'status': 500,
+                    'message': err
+                });
+            }
             res.json(results[results.length - 1]);
         });
 
@@ -91,7 +96,11 @@ module.exports.post = function(req, res, next) {
 
     upload(req, res, function(err) {
         if (err) {
-            res.send("Error uploading file.");
+            res.send({
+                'status': 500,
+                'message': err
+            });
+            return;
         }
         var categoryRandom = sha1(Math.random()),
             _idPreview = req.body.idPreview || new mongoose.mongo.ObjectID(),
@@ -138,7 +147,12 @@ module.exports.post = function(req, res, next) {
                 }
             ],
             function(err, results) {
-                if (err) return next(err);
+                if (err) {
+                    res.send({
+                        'status': 500,
+                        'message': err
+                    });
+                }
                 res.json(results[results.length - 1]);
             });
     });

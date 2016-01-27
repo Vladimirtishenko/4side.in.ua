@@ -6,7 +6,7 @@ var About = React.createClass({
 			}
 		},
 
-		editState: function () {
+		editState: function (event) {
 
 			var NumberBlock = event.target.parentNode.getAttribute('name'),
 				self = this;
@@ -22,23 +22,23 @@ var About = React.createClass({
 			})
 		},
 
-		newAddInformation: function (descr, num) {
 
+		componentWillReceiveProps: function(nextProps){
+			this.setState({
+				content: nextProps.content
+			})
+		},
+
+		newAddInformation: function (descr, num) {
 			var data = 'description='+descr+'&src='+null+'&number='+num,
 				url = '/manage/About',
 				method = 'POST',
 				type = 'application/x-www-form-urlencoded';
 
 			_controller_.OnlyAddNoResponseData(url, data, method, type, "About");
-
-			this.state.content.abouts.push({description: descr, src: null, number: parseInt(num)})
-
-			this.setState({
-				content: this.state.content
-			})
 		},
 
-		newAddImages: function(){
+		newAddImages: function(event){
 			var files = event.target.files[0],
 				num = event.target.parentNode.getAttribute('name');
 				url = '/manage/About',
@@ -62,9 +62,7 @@ var About = React.createClass({
 
 			      reader.readAsDataURL(files);
 
-			 _controller_.OnlyAddNoResponseData(url, {upload:files, number: parseInt(num)}, method, type, actionName);
-
-			 
+			 _controller_.OnlyAddNoResponseData(url, {upload:files, number: parseInt(num)}, method, type, actionName); 
 
 		},
 

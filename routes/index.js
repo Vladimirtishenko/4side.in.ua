@@ -6,4 +6,6 @@ app.get("/team", require("./team").get);
 
 app.get("/about", require("./about").get);
 
+app.get("/contact", require("./contact").get);
+
 }

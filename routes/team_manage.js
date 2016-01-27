@@ -21,7 +21,12 @@ module.exports.delete = function(req, res, next) {
         function(err, offen) {
             if (err) next(err);
             fs.unlink(filePath, function(err) {
-                if (err) next(err);
+                if (err) {
+                    res.send({
+                        'status': 500,
+                        'message': err
+                    });
+                }
                 res.send({
                     status: 200
                 });
@@ -56,14 +61,19 @@ module.exports.post = function(req, res, next) {
     upload(req, res, function(err) {
 
         if (err) {
-            return res.end("Error uploading file.");
+            res.send({
+                'status': 500,
+                'message': err
+            });
+            return;
         }
 
 
         var variables = {
             description: namefile.obj ? namefile.obj.description : req.body.description,
             name: namefile.obj ? namefile.obj.name : req.body.name,
-            profession: namefile.obj ? namefile.obj.profession : req.body.profession
+            profession: namefile.obj ? namefile.obj.profession : req.body.profession,
+            data: new Date()
         };
 
         if (namefile.src) {
@@ -79,7 +89,12 @@ module.exports.post = function(req, res, next) {
         }, {
             upsert: true
         }, function(err) {
-            if (err) return next(err);
+            if (err) {
+                res.send({
+                    'status': 500,
+                    'message': err
+                });
+            }
             res.send({
                 status: 200
             });

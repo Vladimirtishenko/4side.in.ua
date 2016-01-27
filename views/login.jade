@@ -6,6 +6,7 @@ block content
 			.outer-for-logo-cell
 				.outer-center-block
 					img(src="/images/big_logo-blue.png", alt="")
+					p(class="error-message") Не верно введен логин или пароль
 					form(action="/login" method="POST" id="form-authorize")
 						p Логин		
 						input(type="text", class="form-input", name="username", id="login")

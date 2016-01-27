@@ -64,6 +64,10 @@ function Controller () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				if(JSON.parse(xhr.responseText).status == '200'){
 					self.Menu(string, actionName, "GET")
+				} else if(JSON.parse(xhr.responseText).status == '500'){
+					window.postMessage({error: JSON.parse(xhr.responseText)}, "/")
+				} else {
+					console.log("no think");
 				}
 			}
 		}
@@ -94,7 +98,6 @@ function Controller () {
 
 	}
 
-
 	this.Menu();
 
 }
@@ -117,7 +120,9 @@ function View (MenuItem) {
 				menu: MenuItem,
 				block: null,
 				content: null,
-				title: 'Портфолио'
+				title: 'Портфолио',
+				errorBlock: 'hidden-error',
+				errorMessage: null
 			};
 		},
 		contextReplace: function (event) {
@@ -153,6 +158,7 @@ function View (MenuItem) {
 				<div className="outer-all-container">
 					<SideBar menu={this.state.menu} context={this.contextReplace} />
 					<Main block={this.state.block} content={this.state.content} title={this.state.title}/>
+					<Error show={this.state.errorBlock} error={this.state.errorMessage}/>
 				</div>
 			);
 		},
@@ -161,11 +167,21 @@ function View (MenuItem) {
 			window.addEventListener("message", self.asynXhr);
 		},
 		asynXhr: function (event) {
-			var contextToRender = allMyComponents[event.data.name];
-			this.setState({
-				block: contextToRender,
-				content: event.data.content
-			})
+			if(event.data.content && event.data.name){
+				var contextToRender = allMyComponents[event.data.name];
+				this.setState({
+					block: contextToRender,
+					content: event.data.content,
+					errorBlock: 'hidden-error',
+					errorMessage: null
+				})
+			} else if(event.data.error){
+				this.setState({
+					errorBlock: '',
+					errorMessage: event.data.error
+				})
+			}
+			
 		}
 	});
 
@@ -198,6 +214,15 @@ function View (MenuItem) {
 			)
 		}
 	});
+
+	var Error = React.createClass({
+		render: function(){
+			var shadow = "error-block-top "+this.props.show;
+			var message = this.props.error && this.props.error.message ? this.props.error.message.code : null;
+
+			return (<div className={shadow} ><p className="error-block-message">Этот сервис сейчас недоступен обновите страницу или попробуйте позже <br /> Приложение вернуло ошибку с текстом: <b>{message}</b></p></div>);
+		}
+	})
 
 	/*
 
@@ -242,6 +267,20 @@ function View (MenuItem) {
 	*/
 
 	System.import('About.min.js?hash='+Math.random().toString().slice(2));
+
+	/*
+
+		This all Contact components
+
+		Consist of:
+
+		@Contact
+		
+
+	*/
+
+	System.import('Contact.min.js?hash='+Math.random().toString().slice(2));
+
 
 	ReactDOM.render(<Outer />, document.getElementById('container-for-content'));
 
