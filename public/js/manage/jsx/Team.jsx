@@ -1,7 +1,7 @@
 var Team = React.createClass({
 	render: function () {
 		var ArrayTeam = this.props.content.team.length > 0 ? this.props.content.team.map(function(item, i){
-			return <TemplateTeam data={item} context={TemplateWithoutInput} />
+			return <TemplateTeam key={i} data={item} context={TemplateWithoutInput} />
 		}): null;
 		return (
 			<div className="Team height-full">

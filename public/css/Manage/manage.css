@@ -395,6 +395,64 @@ a:hover {
     width: 50px;
 }
 
+.outrer-for-logo-table{
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.outer-for-logo-cell{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.outer-center-block{
+    margin: 0 auto;
+    display: table;
+    padding: 20px;
+    text-align: center;
+}
+
+.outer-center-block p {
+    margin: 0;
+}
+
+.outer-center-block input{
+    margin: 5px 0 10px;
+    text-align: center;
+}
+
+.outer-center-block img{
+    width: 160px;
+    padding: 0px 0 20px
+}
+
+.outer-center-block button{
+    margin-top: 20px;
+}
+
+.button {
+    background: #508dcb;
+    border-radius: 30px;
+    border: none;
+    padding: 16px;
+    width: 247px;
+    font-size: 18px;
+    display: inline-block;
+    color: #fff;
+}
+
+.form-input {
+    border: 3px solid #edeced;
+    border-radius: 3px;
+    background: 0 0;
+    height: 57px;
+    margin-right: 20px;
+    padding: 0 20px;
+    display: table;
+    width: 100%;
+}
+
 @media screen and (max-width: 980px) {
     .outer-of-team {
         width: 100%;

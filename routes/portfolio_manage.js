@@ -39,9 +39,17 @@ module.exports.delete = function(req, res, next) {
                     }
                 }).exec(function(err, doc) {
                     var arrayForDelete = doc.src;
+                    async.each(arrayForDelete, function(src, callback) {
+                        fs.unlink("./public" + src, function(err) {
+                            callback();
+                        });
+                    }, function(err) {
+                        if (err) return next(err);
+                        callback(null, {
+                            'status': 200
+                        });
+                    });
 
-                    
-                    
                 });
             }
         ],
