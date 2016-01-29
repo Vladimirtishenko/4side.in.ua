@@ -1,29 +1,28 @@
 extends layout
 
 block content
-	body
-		include menu.jade
-		div(class="container-all-outer grey-color")
-			include allHeader.jade
-			.container
-				.row
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
-						nav(class="outer-of-breadcrumps")
-							ul(class="list-of-breadcrumps")
-								each val in breadcrumps
-									if(val.link)
-										li 
-											a(href=val.link)= val.inRus
-									else
-										li= val.inRus
-						h1(class="title-of-h1") Команда
-						p(class="mini-description") Значимость этих проблем настолько очевидна, что консультация с широким активом представляет собой интересный эксперимент проверки дальнейших направлений развития
-						.outer-of-team
-							each value in data
-								.item-team
-									img(src=value.src)
-									h3= value.name
-									h4= value.profession
-									p= value.description 
-			include footer.jade
-		script(src="/build/controller.js")
+	include menu.jade
+	div(class="container-all-outer grey-color")
+		include allHeader.jade
+		.container
+			.row
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
+					nav(class="outer-of-breadcrumps")
+						ul(class="list-of-breadcrumps")
+							each val in breadcrumps
+								if(val.link)
+									li 
+										a(href=val.link)= val.inRus
+								else
+									li= val.inRus
+					h1(class="title-of-h1") Команда
+					p(class="mini-description") Значимость этих проблем настолько очевидна, что консультация с широким активом представляет собой интересный эксперимент проверки дальнейших направлений развития
+					.outer-of-team
+						each value in data
+							.item-team
+								img(src=value.src)
+								h3= value.name
+								h4= value.profession
+								p= value.description 
+		include footer.jade
+	script(src="/build/controller.js")

@@ -15,4 +15,19 @@ var schema = new Schema({
 	}
 });
 
+schema.statics.updates = function(where, variables, callback) {
+    var About = this;
+
+    About.update(where, {
+        $set: variables
+    }, {
+        upsert: true
+    }, function(err) {
+        if (err) {
+            callback(err);
+        }
+        callback(null);
+    })
+}
+
 exports.About = mongoose.model("About", schema);

@@ -21,6 +21,10 @@ a:hover {
     text-decoration: none;
 }
 
+label {
+    font-weight: normal;
+}
+
 .outer-all-container,
 .container-fluid,
 #container-for-content,
@@ -170,15 +174,13 @@ a:hover {
     cursor: pointer;
     z-index: 10;
 }
-
-.edit-about-block-right{
+.edit-about-block-right {
     right: 10px;
     position: absolute;
     top: 10px;
     font-size: 20px !important;
     cursor: pointer;
 }
-
 .padding-area p,
 .to-text-form p {
     font-family: 'Playfair Display';
@@ -295,67 +297,56 @@ a:hover {
     float: right;
     width: 70%;
 }
-
-.add-gen-photo{
+.add-gen-photo {
     width: 70%;
     margin: 0 auto;
     cursor: pointer;
 }
-
 .outer-all-photos {
     display: table;
     float: left;
     margin: 40px 0 0;
     width: 100%;
 }
-
-.outer-all-photos h4{
+.outer-all-photos h4 {
     font-family: 'Playfair Display';
 }
-
-.add-many-images{
+.add-many-images {
     width: 100%;
     min-height: 200px;
     border: 1px solid #ddd;
     margin: 10px 0;
 }
-
-.area-of-drop{
+.area-of-drop {
     width: 100%;
     height: 200px;
     text-align: center;
     padding: 40px 0;
 }
-
-.area-of-drop h2{
+.area-of-drop h2 {
     color: #999;
     font-family: SFSemibold;
     margin: 0;
 }
-
-.area-of-drop p{
+.area-of-drop p {
     font-family: 'Playfair Display';
     margin: 20px 0
 }
-
-.area-of-drop input{
+.area-of-drop input {
     display: inline-block;
 }
-
-.area-of-many-images{
+.area-of-many-images {
     display: table;
     width: 100%;
 }
-
-.area-of-many-images span{
+.area-of-many-images span {
     width: 100px;
     float: left;
     display: table;
     margin: 5px;
     position: relative;
 }
-
-.area-of-many-images i{
+.area-of-many-images i {
     position: absolute;
     top: -7px;
     right: -7px;
@@ -364,75 +355,59 @@ a:hover {
     font-size: 10px;
     cursor: pointer;
 }
-
-.area-of-many-images i:before{
+.area-of-many-images i:before {
     color: #fff;
     content: "X";
 }
-
-.area-of-many-images img{
+.area-of-many-images img {
     width: 100%;
 }
-
-.outer-levels-step{
+.outer-levels-step {
     display: table;
 }
-
-.-drag-start{
+.-drag-start {
     border: 1px solid #ccc;
-    box-shadow: 0px 0px 2px 2px rgba(0,0,0, .1); 
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, .1);
 }
-
-.table-for-portfolio i{
+.table-for-portfolio i {
     padding: 0 10px;
     cursor: pointer;
 }
-
-.table-for-portfolio tr td{
+.table-for-portfolio tr td {
     vertical-align: middle !importantF;
 }
-
-
-.table-for-portfolio tr td img{
+.table-for-portfolio tr td img {
     width: 50px;
 }
-
-.outrer-for-logo-table{
+.outrer-for-logo-table {
     display: table;
     height: 100%;
     width: 100%;
 }
-
-.outer-for-logo-cell{
+.outer-for-logo-cell {
     display: table-cell;
     vertical-align: middle;
 }
-
-.outer-center-block{
+.outer-center-block {
     margin: 0 auto;
     display: table;
     padding: 20px;
     text-align: center;
 }
-
 .outer-center-block p {
     margin: 0;
 }
-
-.outer-center-block input{
+.outer-center-block input {
     margin: 5px 0 10px;
     text-align: center;
 }
-
-.outer-center-block img{
+.outer-center-block img {
     width: 160px;
     padding: 0px 0 20px
 }
-
-.outer-center-block button{
+.outer-center-block button {
     margin-top: 20px;
 }
-
 .button {
     background: #508dcb;
     border-radius: 30px;
@@ -443,7 +418,10 @@ a:hover {
     display: inline-block;
     color: #fff;
 }
-
+.button-no-with {
+    padding: 10px 16px;
+    width: initial !important;
+}
 .form-input {
     border: 3px solid #edeced;
     border-radius: 3px;
@@ -454,16 +432,14 @@ a:hover {
     display: table;
     width: 100%;
 }
-
-.error-message{
+.error-message {
     padding: 0 0 15px;
     margin: 0;
     display: none;
     color: rgba(255, 0, 0, 0.45);
     font-size: 16px;
 }
-
-.error-block-top{
+.error-block-top {
     position: fixed;
     top: 0;
     right: 0;
@@ -474,25 +450,28 @@ a:hover {
     color: rgba(253, 176, 176, 0.97);
     font-size: 16px;
 }
-
-.hidden-error{
+.hidden-error {
     display: none;
 }
-
-.padding-block{
+.padding-block {
     padding: 40px 0
 }
-
-.outer-table{
+.outer-table {
     display: table;
     width: 100%;
 }
-
-.button-center{
+.button-center {
     display: table;
     margin: 40px auto;
 }
-
+.-or {
+    margin: 20px 0;
+}
+.area-of-text {
+    margin-bottom: 10px;
+    border: 1px solid rgba(80, 141, 203, 0.18);
+    resize: none;
+}
 @media screen and (max-width: 980px) {
     .outer-of-team {
         width: 100%;

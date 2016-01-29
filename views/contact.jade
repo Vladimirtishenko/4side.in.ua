@@ -1,27 +1,30 @@
 extends layout
 
 block content
-	body
-		include menu.jade
-		div(class="container-all-outer grey-color")
-			include allHeader.jade
-			.container
-				.row
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
-						nav(class="outer-of-breadcrumps")
-							ul(class="list-of-breadcrumps")
-								each val in breadcrumps
-									if(val.link)
-										li 
-											a(href=val.link)= val.inRus
-									else
-										li= val.inRus
-						h1(class="title-of-h1") Контакты
-						p(class="mini-description") Звоните в любое удобное для вас время, и наша служба поддержки вам поможет решить любые проблемы на сайте и не только.
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
-						div(class="-for-text")
-							p Украина, Киев, ул.Городецкого
-						div(class="-for-photo")
-							img(src="/images/contact.jpg", alt="")
-			include footer.jade
-		script(src="/build/controller.js")
+	include menu.jade
+	div(class="container-all-outer grey-color")
+		include allHeader.jade
+		.container
+			.row
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
+					nav(class="outer-of-breadcrumps")
+						ul(class="list-of-breadcrumps")
+							each val in breadcrumps
+								if(val.link)
+									li 
+										a(href=val.link)= val.inRus
+								else
+									li= val.inRus
+					h1(class="title-of-h1") Контакты
+					p(class="mini-description") Звоните в любое удобное для вас время, и наша служба поддержки вам поможет решить любые проблемы на сайте и не только.
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
+					div(class="-for-text")
+						- var phones = data[0].phone.split(';');
+						each value in phones
+							p(class="-side-phone")= '+ '+value	 
+						p(class="-side-adress")= data[0].adress
+						p(class="-side-mail")= data[0].mail
+					div(class="-for-photo")
+						img(src=data[0].src, alt="")
+		include footer.jade
+	script(src="/build/controller.js")

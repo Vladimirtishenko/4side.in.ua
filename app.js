@@ -31,9 +31,9 @@ app.use(session({
     store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
-
 require('./routes')(app);
 require('./routes/manage')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

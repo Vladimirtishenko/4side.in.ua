@@ -1,13 +1,106 @@
 function Site() {
+    this.xhr = function() {
+        var xmlhttp;
+        try {
+            xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (E) {
+                xmlhttp = false;
+            }
+        }
+        if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+            xmlhttp = new XMLHttpRequest();
+        }
+        return xmlhttp;
+    }
+}
+
+var site_ = new Site();
+
+function Modal() {
+
+    var self = this;
+
+    this.buttonOpen = document.querySelector('.brif-for-site');
+    this.buttonClose = document.querySelector('.side-modal-close');
+    this.blurElement = document.querySelector('.container-all-outer');
+    this.openElementModal = document.querySelector('.side-modal-outer');
+    this.form = document.getElementById('modal-letter');
+
+    this.buttonOpen.addEventListener('click', self.openHandler.bind(self));
+    this.buttonClose.addEventListener('click', self.closeHandler.bind(self));
+    this.form.addEventListener('submit', self.letterSend.bind(self));
 
 }
 
+Modal.prototype.openHandler = function() {
+    this.blurElement.classList.add('-blur');
+    this.openElementModal.style.display = 'table';
+    this.animate(this.openElementModal);
+}
+
+Modal.prototype.closeHandler = function() {
+    var self = this;
+    this.blurElement.classList.remove('-blur');
+    this.openElementModal.classList.remove('-animate-modal');
+    setTimeout(function() {
+        self.openElementModal.style.display = 'none';
+    }, 1000)
+}
+
+Modal.prototype.animate = function(openElementModal) {
+    setTimeout(function() {
+        openElementModal.classList.add('-animate-modal');
+    }, 1)
+}
+
+Modal.prototype.letterSend = function(event) {
+    event.preventDefault();
+    var elementToSend = event.target.querySelectorAll('input, textarea'),
+        data = '',
+        validate = ['name', 'number', 'email'],
+        messageInfo = document.querySelector('.hide-message');
+    for (var i = 0; i < elementToSend.length; i++) {
+        if(validate.indexOf(elementToSend[i].name) > -1 && elementToSend[i].value){
+            data += elementToSend[i].name+"="+elementToSend[i].value+"&";
+            elementToSend[i].classList.remove('no-validate');
+        }
+        else if (validate.indexOf(elementToSend[i].name) == -1){
+            data += elementToSend[i].name+"="+elementToSend[i].value+"&";
+        } else {
+            elementToSend[i].classList.add('no-validate');
+            return;
+        }
+    };
+
+    var xhr = site_.xhr();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.status == 200 && xhr.readyState == 4){
+            if(JSON.parse(xhr.responseText).status != 200){
+                messageInfo.innerHTML = 'Ваше сообщение не отправлено попробуйте позже';
+            } else {
+
+            }
+            event.target.reset();
+        }
+    }
+
+    xhr.open('POST', '/mail', true);
+    xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
+    xhr.send(data.slice(0, -1));
+    
+}
+
+new Modal();
 
 function Slider(element, list) {
     var self = this;
 
     this.list = list ? list : null;
-    this.countSlide = this.list ? this.list.children.length -1: null;
+    this.countSlide = this.list ? this.list.children.length - 1 : null;
     this.element = element ? element : null;
     this.height = window.innerHeight;
     this.width = window.innerWidth;
@@ -31,17 +124,17 @@ Slider.prototype.running = function(options) {
 
     var self = this;
 
-    if(!self.element && !self.list) return;
+    if (!self.element && !self.list) return;
 
-    if (!this.controlsBuild){
+    if (!this.controlsBuild) {
         this.createControls();
     }
 
-    if(options){
-    	this.move = this.currentSlide * (-self.width);
-    	this.list.style.cssText += "transition-duration: 1s; transform: translateX("+this.move+"px)";
+    if (options) {
+        this.move = this.currentSlide * (-self.width);
+        this.list.style.cssText += "transition-duration: 1s; transform: translateX(" + this.move + "px)";
     }
-    
+
 
     [].forEach.call(self.list.children, staticSize)
 
@@ -50,7 +143,7 @@ Slider.prototype.running = function(options) {
         item.setAttribute("data-slides-number", i)
     }
 
-    
+
     this.list.style.width = this.width * (this.list.children.length + 0.5) + "px";
 
     this.touchEvents();
@@ -58,15 +151,15 @@ Slider.prototype.running = function(options) {
     for (var i = 0; i < this.listImages.length; i++) {
         var img = new Image();
         img.src = this.listImages[i].src;
-        img.onload = function(){
-            if(!self.preloader.classList.contains("hiddens-preloader")){
+        img.onload = function() {
+            if (!self.preloader.classList.contains("hiddens-preloader")) {
                 self.preloader.classList.add("hiddens-preloader")
             }
         }
     };
 }
 
-Slider.prototype.touchEvents = function(){
+Slider.prototype.touchEvents = function() {
 
     var self = this;
 
@@ -76,20 +169,20 @@ Slider.prototype.touchEvents = function(){
     var startPosition = 0;
     var endPosition = 0;
 
-    function touchStart(event){
+    function touchStart(event) {
         var touchobj = event.changedTouches[0] // reference first touch point (ie: first finger)
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         startPosition = startx;
     }
 
-    function touchEnd(event){
+    function touchEnd(event) {
         var touchobj = event.changedTouches[0] // reference first touch point for this event
         endx = parseInt(touchobj.clientX)
         endPosition = endx;
-        if(startPosition > endPosition && (startPosition - endPosition) > 50){
+        if (startPosition > endPosition && (startPosition - endPosition) > 50) {
             var clicked = ((self.currentSlide + 1) > self.countSlide) ? 0 : self.currentSlide + 1;
             self._clickSlideHandlers(parseInt(clicked))
-        } else if(endPosition > startPosition && (endPosition - startPosition) > 50) {
+        } else if (endPosition > startPosition && (endPosition - startPosition) > 50) {
             var clicked = ((self.currentSlide - 1) < 0) ? self.countSlide : self.currentSlide - 1;
             self._clickSlideHandlers(parseInt(clicked))
         }
@@ -119,13 +212,11 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
     if (!isNaN(target)) {
         clicked = target;
-        if(clicked == this.currentSlide) return;
-    } 
-    else if(target.getAttribute("data-slide")){
+        if (clicked == this.currentSlide) return;
+    } else if (target.getAttribute("data-slide")) {
         clicked = parseInt(target.getAttribute("data-slide"))
-        if(clicked == this.currentSlide) return;
-    }    
-    else {
+        if (clicked == this.currentSlide) return;
+    } else {
         return;
     }
 
@@ -159,7 +250,7 @@ Slider.prototype._clickSlideHandlers = function(event) {
         self.currentSlide = clicked;
         self.move = move;
 
-        activeBeforeSlide.parentNode.querySelector("span[data-slide='"+clicked+"']").classList.add("-active-slide");
+        activeBeforeSlide.parentNode.querySelector("span[data-slide='" + clicked + "']").classList.add("-active-slide");
         activeBeforeSlide.classList.remove("-active-slide");
 
     }
@@ -181,9 +272,9 @@ function SandwichMenu(element) {
 
 SandwichMenu.prototype.actions = function(element, self) {
 
-	if(!self.state) return;
+    if (!self.state) return;
 
-	self.state = false;
+    self.state = false;
 
     var first = element.querySelector(".first-line"),
         second = element.querySelector(".two-line"),
@@ -270,15 +361,15 @@ var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
 
 function Grid() {
 
-    var msnry = (typeof Masonry == 'function') ? new Masonry( '.grid', {
-      itemSelector: '.grid-item',
-      columnWidth: 1,
-      percentPosition: true
-    }): null;
+    var msnry = (typeof Masonry == 'function') ? new Masonry('.grid', {
+        itemSelector: '.grid-item',
+        columnWidth: 1,
+        percentPosition: true
+    }) : null;
 }
 
 
-function allHandlerToload(){
+function allHandlerToload() {
     Grid(); // Load Grig Portfolio Layout
 }
 

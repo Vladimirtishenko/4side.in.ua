@@ -1,0 +1,65 @@
+@import '001func.styl'
+
+.side-modal-outer
+	width 100%
+	height 100%
+	background rgba(255,255,255, .5)
+	position fixed
+	display none
+	opacity 0
+	transition 1s
+	z-index 99	
+
+.-animate-modal 
+	opacity 1
+
+.side-modal-cell
+	display table-cell
+	vertical-align middle
+	width 100%
+
+.side-madal-content
+	width 850px
+	text-align center
+	margin 0 auto
+	background #fff
+	padding 40px 0 100px
+	box-shadow 0px 0px 55px 4px rgb(230, 230, 230)
+
+.side-modal-title
+	font-family 'Playfair Display'
+	font-size 35px
+	margin 90px 0 40px
+	color greyText
+
+.side-modal-close
+	width 28px 
+	height 28px
+	display inline-block
+	background url(../images/close.png)
+	transform rotate(0deg)
+	transition .5s
+	&:hover
+		transform rotate(90deg)	
+		
+
+.modal-input
+	margin 20px auto 
+	width 70%
+	display block
+
+.form-textarea	
+	border 3px solid #edeced
+	border-radius 3px
+	background transparent
+	padding 20px
+	resize none
+	height 150px
+	margin 20px auto 50px
+
+.no-validate
+	background rgba(255, 0, 0, 0.11)
+
+@media screen and (max-width: 991px)
+	.side-madal-content
+		width 80%;

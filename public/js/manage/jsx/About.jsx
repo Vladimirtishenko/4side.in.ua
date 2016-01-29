@@ -166,9 +166,9 @@ var About = React.createClass({
 			return (
 				<div className="area-for-content">
 					<div className="padding-area">
-						<button onClick={this.props.addText} className="btn btn-info">Добавить текст</button>
-						<p>или</p>
-						<label htmlFor="hidden_file" className="btn btn-success" name={this.props.name}>
+						<button onClick={this.props.addText} className="button button-no-with">Добавить текст</button>
+						<p className="-or">или</p>
+						<label htmlFor="hidden_file" className="button button-no-with" name={this.props.name}>
 							Добавить изображение
 							<input onChange={this.props.addImage} name='upload' type="file" id="hidden_file" />
 						</label>
@@ -185,9 +185,9 @@ var About = React.createClass({
 					<i className="fa fa-long-arrow-left edit-about-block" onClick={this.props.edit}></i>
 					<form className="to-text-form" onSubmit={this.props.contentUpgrade}>
 						<p>Добавить текст</p>
-						<textarea name="description"></textarea>
+						<textarea className="area-of-text" name="description"></textarea>
 						<input type="hidden" name="number" value={this.props.name} />
-						<button type="submit" className="btn btn-info">Сохранить</button>
+						<button type="submit" className="button button-no-with">Сохранить</button>
 					</form>
 				</div>
 			)

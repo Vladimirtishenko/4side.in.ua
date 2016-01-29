@@ -2,6 +2,9 @@ var Team = require("../model/team").Team;
 var multer = require('multer');
 var sha1 = require('sha1');
 var mongoose = require('mongoose');
+var multerCommon = require('../middleware/multerCommon').multerCommon;
+var responseResult = require('../middleware/responseResult').responseResult;
+var variables = require('../middleware/variables').Variables;
 var fs = require('fs');
 
 module.exports.get = function(req, res, next) {
@@ -19,17 +22,10 @@ module.exports.delete = function(req, res, next) {
     Team.findByIdAndRemove(
         req.body.id,
         function(err, offen) {
-            if (err) next(err);
+            if (err) {responseResult(err, res)};
+            var filePath = "./public" + offen.src;
             fs.unlink(filePath, function(err) {
-                if (err) {
-                    res.send({
-                        'status': 500,
-                        'message': err
-                    });
-                }
-                res.send({
-                    status: 200
-                });
+                responseResult(err, res);
             });
 
         });
@@ -38,67 +34,34 @@ module.exports.delete = function(req, res, next) {
 
 module.exports.post = function(req, res, next) {
 
-
-
-    var namefile = {};
-    var storage = multer.diskStorage({
-        destination: function(req, file, callback) {
-            var dir = '/images/team/';
-            namefile.src = dir;
-            namefile.obj = req.body;
-            callback(null, './public' + dir);
-        },
-        filename: function(req, file, callback) {
-            var filename = sha1(Math.random()) + file.originalname;
-            namefile.src += filename;
-            callback(null, filename);
-        }
-    });
-    var upload = multer({
-        storage: storage
-    }).array('upload', 'name', 'profession', 'description', 'id');
+    var multerStorage = multerCommon('/images/team/'),
+        upload = multer({
+            storage: multerStorage.storage
+        }).array('upload', 'name', 'profession', 'description', 'id');
 
     upload(req, res, function(err) {
 
         if (err) {
-            res.send({
-                'status': 500,
-                'message': err
-            });
-            return;
+            responseResult(err, res);
         }
 
+        var variable = variables(req.body),
+            _id = req.body.id || new mongoose.mongo.ObjectID();
 
-        var variables = {
-            description: namefile.obj ? namefile.obj.description : req.body.description,
-            name: namefile.obj ? namefile.obj.name : req.body.name,
-            profession: namefile.obj ? namefile.obj.profession : req.body.profession,
-            data: new Date()
-        };
+        variable.data = new Date();
 
-        if (namefile.src) {
-            variables.src = namefile.src;
+        delete variable.upload;
+
+        if (multerStorage.namefile.name) {
+            variable.src = multerStorage.namefile.name;
         }
-
-        var _id = (namefile.obj && namefile.obj.id) || (req.body.id) || new mongoose.mongo.ObjectID();
-
-        Team.update({
+        
+        Team.updates({
             _id: _id
-        }, {
-            $set: variables
-        }, {
-            upsert: true
-        }, function(err) {
-            if (err) {
-                res.send({
-                    'status': 500,
-                    'message': err
-                });
-            }
-            res.send({
-                status: 200
-            });
+        }, variable, function(err) {
+            responseResult(err, res);
         });
+
     });
 
 }

@@ -1,33 +1,32 @@
 extends layout
 
 block content
-	body
-		include menu.jade
-		div(class="container-all-outer grey-color")
-			include allHeader.jade
-			.container
-				.row
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
-						nav(class="outer-of-breadcrumps")
-							ul(class="list-of-breadcrumps")
-								each val in breadcrumps
-									if(val.link)
-										li 
-											a(href=val.link)= val.inRus
-									else
-										li= val.inRus
-						h1(class="title-of-h1") О Компании
-						p(class="mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
+	include menu.jade
+	div(class="container-all-outer grey-color")
+		include allHeader.jade
+		.container
+			.row
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
+					nav(class="outer-of-breadcrumps")
+						ul(class="list-of-breadcrumps")
+							each val in breadcrumps
+								if(val.link)
+									li 
+										a(href=val.link)= val.inRus
+								else
+									li= val.inRus
+					h1(class="title-of-h1") О Компании
+					p(class="mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
 
-				- for (var i = 0; i < data.length; i += 2)
-					div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
-						- for (var j = i; j < 2+i; j++)  
-							- if(data[j].description)
-								div(class="-for-text")
-									p= data[j].description
-							- else
-								div(class="-for-photo")
-									img(src= data[j].src, alt="")
-				
-			include footer.jade
-		script(src="/build/controller.js")
+			- for (var i = 0; i < data.length; i += 2)
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
+					- for (var j = i; j < 2+i; j++)  
+						- if(data[j].description)
+							div(class="-for-text")
+								p= data[j].description
+						- else
+							div(class="-for-photo")
+								img(src= data[j].src, alt="")
+			
+		include footer.jade
+	script(src="/build/controller.js")

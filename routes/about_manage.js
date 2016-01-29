@@ -1,6 +1,9 @@
 var About = require("../model/about").About;
 var multer = require('multer');
 var sha1 = require('sha1');
+var variables = require('../middleware/variables').Variables;
+var responseResult = require('../middleware/responseResult').responseResult;
+var multerCommon = require('../middleware/multerCommon').multerCommon;
 
 
 module.exports.get = function(req, res, next) {
@@ -19,74 +22,38 @@ module.exports.post = function(req, res, next) {
 
     if (req.body && req.body.description && req.body.number) {
 
-        var variables = {
-            description: req.body.description,
-            src: req.body.src
-        };
+        var variable = variables(req.body);
 
-        About.update({
-            number: parseInt(req.body.number)
-        }, {
-            $set: variables
-        }, {
-            upsert: true
-        }, function(err) {
-
-            if (err) return next(err);
-            res.send({
-                'status': 200
-            });
-
+        About.updates({
+            number: parseInt(variable.number)
+        }, variable, function(err) {
+            responseResult(err, res);
         });
 
     } else {
 
-        var namefile = {};
-        var storage = multer.diskStorage({
-            destination: function(req, file, callback) {
-                var description = '/images/about/';
-                namefile.name = description;
-                namefile.number = req.body;
-                callback(null, './public' + description);
-            },
-            filename: function(req, file, callback) {
-                var filename = sha1(Math.random()) + file.originalname;
-                namefile.name += filename;
-                callback(null, filename);
-            }
-        });
+        var multerStorage = multerCommon('/images/about/');
+
         var upload = multer({
-            storage: storage
-        }).array('upload', 'number');
+            storage: multerStorage.storage
+        }).any();
 
         upload(req, res, function(err) {
 
             if (err) {
-                return res.end("Error uploading file.");
+                responseResult(err, res);
             }
-            var variables = {
-                description: null,
-                src: namefile.name
-            };
+            var variable = variables(req.body);
 
-            About.update({
-                number: parseInt(namefile.number.number)
-            }, {
-                $set: variables
-            }, {
-                upsert: true
-            }, function(err) {
-                if (err) {
-                    res.send({
-                        'status': 500,
-                        'message': err
-                    });
-                }
-                res.send({
-                    'status': 200
-                });
+            variable.description = null;
+            variable.src = multerStorage.namefile.name
 
+            About.updates({
+                number: parseInt(variable.number)
+            }, variable, function(err) {
+                responseResult(err, res);
             });
+
         });
 
     }

@@ -1,155 +1,154 @@
 extends layout
 
 block content
-	body
-		include menu.jade
-		.container-all-outer
-			header(class="header-to-site")
-				a(href="/" class="logo-for-site")
-					img(src="/images/logo.png", class="-logo-web", alt="Logo")
-					img(src="/images/logo-mobile.png", class="-logo-mobile" alt="Logo Mobile")
-				a(href="#" class="menu-to-site")
-					span(class="first-line")
-					span(class="two-line")
-					span(class="third-line")
-				a(href="#" class="brif-for-site") Оставить заявку
-			.container-fluid
-				.row
-					.slider-side
-						.-absolute-preloader
-							img(src="/images/preload.gif", alt="")
-						ul(class="slider-list")
-							li(class="slider-list-item -blue")
-								img(src="/images/slide_one.png", alt="")
-								.slider-description
-									p(class="slider-author") henry wause
-									h2(class="slider-title") Современная классика
-									a(href="" class="button -light-blue-button-slider") Подробнее
-							li(class="slider-list-item -ros")
-								img(src="/images/slide_two.png", alt="")
-								.slider-description
-									p(class="slider-author") henry wause
-									h2(class="slider-title") Деревянная мебель
-									a(href="" class="button -light-rose-button-slider") Подробнее
-							li(class="slider-list-item -greens")
-								img(src="/images/slide_three.png", alt="")
-								.slider-description
-									p(class="slider-author") henry wause
-									h2(class="slider-title") Империя комфорта
-									a(href="" class="button -light-green-button-slider") Подробнее
-							li(class="slider-list-item -violets")
-								img(src="/images/slide_four.png", alt="")
-								.slider-description
-									p(class="slider-author") henry wause
-									h2(class="slider-title") Цветочная роскошь
-									a(href="" class="button -light-violet-button-slider") Подробнее
-						.controls-slider
-			div(class="container")
-				.row
-					div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
-						h2(class="name-of-services") Услуги
-						p(class="name-of-mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
-						div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
-							div(class="container-item-serv")
-								span(class="item-serv-icon branding")
-								div(class="item-serv-description")
-									h3 Брендинг
-									p Превратим ваш бренд в один из самых узнаваемых во всем мире
-						div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
-							div(class="container-item-serv")
-								span(class="item-serv-icon web-design")
-								div(class="item-serv-description")
-									h3 Веб-дизайн
-									p Преобразовываем ваши идеи в невероятно красивый интерфейс
-						div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
-							div(class="container-item-serv")
-								span(class="item-serv-icon illustration")
-								div(class="item-serv-description")
-									h3 Художественная иллюстрация
-									p Реализуем различные бизнес решения и закрытые  системы управления
-						div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
-							div(class="container-item-serv")
-								span(class="item-serv-icon web-development")
-								div(class="item-serv-description")
-									h3 Разработка сайтов и SPA
-									p Заставим работать самые  сложные и инимированные композиции дизайна
-						div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
-							div(class="container-item-serv")
-								span(class="item-serv-icon bussines")
-								div(class="item-serv-description")
-									h3 Решения для бизнеса
-									p Заставим работать самые  сложные и инимированные композиции дизайна
-			.outer-all-block-portfolio
-				div(class="container-of-slider grid")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/7.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/8.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/2.png", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/3.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/5.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/1.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/6.jpg", alt="")
-					.grid-item
-						.discription-of-work
-							h3 Fusion Agency
-								span World
-						img(src="/images/portfolio/4.jpg", alt="")
-			div(class="container -all-to-center")
-				.row
-					div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")
-						h2(class="name-of-services margin-more") Процес работы
-						div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
-							.container-item-precess
-								span(class="item-process-icon brain-storm")
-								h3(class="margin-class arrow-class") 
-									span мозговой штурм
-								p Мы используем мозговой штурм как основную методику, с помошью ее мы получаем всегда свежие, абсолютно смелые, индивидуальные и креативные идеи для вашего бизнеса 
-						div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
-							.container-item-precess
-								span(class="item-process-icon planning")
-								h3(class="margin-class arrow-class") 
-									span планирование
-								p Планиование происходит на основе выбранной идеи,создается прототип продукта, продумывается архитектура приложения и баз данных, для создания функционального решения
-						div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
-							.container-item-precess
-								span(class="item-process-icon design")
-								h3(class="margin-class arrow-class") 
-									span Дизайн
-								p Наши дизайнеры воплощают все идеи в великолепно красивый интерфейс, непревзойденный бренд или удобную и в тоже время современную СRM систему для бизнеса
-						div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
-							.container-item-precess
-								span(class="item-process-icon development")
-								h3(class="margin-class arrow-class") 
-									span Разработка
-								p В процесе дизайна, разработчики уже строят архитектуру баз данных, конфигурируют выбранные фреймверки для воплощения идеи, создают абстрактные шаблоны.
-			include footer.jade
-		script(src="/build/masonry.pkgd.min.js")
-		script(src="/build/controller.js")
-		
+	include menu.jade
+	.container-all-outer
+		header(class="header-to-site")
+			a(href="/" class="logo-for-site")
+				img(src="/images/logo.png", class="-logo-web", alt="Logo")
+				img(src="/images/logo-mobile.png", class="-logo-mobile" alt="Logo Mobile")
+			a(href="#" class="menu-to-site")
+				span(class="first-line")
+				span(class="two-line")
+				span(class="third-line")
+			a(href="#" class="brif-for-site") Оставить заявку
+		.container-fluid
+			.row
+				.slider-side
+					.-absolute-preloader
+						img(src="/images/preload.gif", alt="")
+					ul(class="slider-list")
+						li(class="slider-list-item -blue")
+							img(src="/images/slide_one.png", alt="")
+							.slider-description
+								p(class="slider-author") henry wause
+								h2(class="slider-title") Современная классика
+								a(href="" class="button -light-blue-button-slider") Подробнее
+						li(class="slider-list-item -ros")
+							img(src="/images/slide_two.png", alt="")
+							.slider-description
+								p(class="slider-author") henry wause
+								h2(class="slider-title") Деревянная мебель
+								a(href="" class="button -light-rose-button-slider") Подробнее
+						li(class="slider-list-item -greens")
+							img(src="/images/slide_three.png", alt="")
+							.slider-description
+								p(class="slider-author") henry wause
+								h2(class="slider-title") Империя комфорта
+								a(href="" class="button -light-green-button-slider") Подробнее
+						li(class="slider-list-item -violets")
+							img(src="/images/slide_four.png", alt="")
+							.slider-description
+								p(class="slider-author") henry wause
+								h2(class="slider-title") Цветочная роскошь
+								a(href="" class="button -light-violet-button-slider") Подробнее
+					.controls-slider
+		div(class="container")
+			.row
+				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
+					h2(class="name-of-services") Услуги
+					p(class="name-of-mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
+					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
+						div(class="container-item-serv")
+							span(class="item-serv-icon branding")
+							div(class="item-serv-description")
+								h3 Брендинг
+								p Превратим ваш бренд в один из самых узнаваемых во всем мире
+					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
+						div(class="container-item-serv")
+							span(class="item-serv-icon web-design")
+							div(class="item-serv-description")
+								h3 Веб-дизайн
+								p Преобразовываем ваши идеи в невероятно красивый интерфейс
+					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
+						div(class="container-item-serv")
+							span(class="item-serv-icon illustration")
+							div(class="item-serv-description")
+								h3 Художественная иллюстрация
+								p Реализуем различные бизнес решения и закрытые  системы управления
+					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
+						div(class="container-item-serv")
+							span(class="item-serv-icon web-development")
+							div(class="item-serv-description")
+								h3 Разработка сайтов и SPA
+								p Заставим работать самые  сложные и инимированные композиции дизайна
+					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
+						div(class="container-item-serv")
+							span(class="item-serv-icon bussines")
+							div(class="item-serv-description")
+								h3 Решения для бизнеса
+								p Заставим работать самые  сложные и инимированные композиции дизайна
+		.outer-all-block-portfolio
+			div(class="container-of-slider grid")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/7.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/8.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/2.png", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/3.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/5.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/1.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/6.jpg", alt="")
+				.grid-item
+					.discription-of-work
+						h3 Fusion Agency
+							span World
+					img(src="/images/portfolio/4.jpg", alt="")
+		div(class="container -all-to-center")
+			.row
+				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")
+					h2(class="name-of-services margin-more") Процес работы
+					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
+						.container-item-precess
+							span(class="item-process-icon brain-storm")
+							h3(class="margin-class arrow-class") 
+								span мозговой штурм
+							p Мы используем мозговой штурм как основную методику, с помошью ее мы получаем всегда свежие, абсолютно смелые, индивидуальные и креативные идеи для вашего бизнеса 
+					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
+						.container-item-precess
+							span(class="item-process-icon planning")
+							h3(class="margin-class arrow-class") 
+								span планирование
+							p Планиование происходит на основе выбранной идеи,создается прототип продукта, продумывается архитектура приложения и баз данных, для создания функционального решения
+					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
+						.container-item-precess
+							span(class="item-process-icon design")
+							h3(class="margin-class arrow-class") 
+								span Дизайн
+							p Наши дизайнеры воплощают все идеи в великолепно красивый интерфейс, непревзойденный бренд или удобную и в тоже время современную СRM систему для бизнеса
+					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
+						.container-item-precess
+							span(class="item-process-icon development")
+							h3(class="margin-class arrow-class") 
+								span Разработка
+							p В процесе дизайна, разработчики уже строят архитектуру баз данных, конфигурируют выбранные фреймверки для воплощения идеи, создают абстрактные шаблоны.
+		include footer.jade
+	script(src="/build/masonry.pkgd.min.js")
+	script(src="/build/controller.js")
+	
