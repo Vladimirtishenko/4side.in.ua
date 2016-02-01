@@ -25,6 +25,12 @@ label {
     font-weight: normal;
 }
 
+.table>thead>tr>th{
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
 .outer-all-container,
 .container-fluid,
 #container-for-content,

@@ -1,0 +1,40 @@
+extends layout
+
+block content
+	include menu.jade
+	div(class="container-all-outer grey-color")
+		include allHeader.jade
+		.container
+			.row
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
+					nav(class="outer-of-breadcrumps")
+						ul(class="list-of-breadcrumps")
+							each val in breadcrumps
+								if(val.link)
+									li 
+										a(href=val.link)= val.inRus
+								else
+									li= val.inRus
+					h1(class="title-of-h1 no-bottom-padding")= data.portfolio.title
+		.container
+			.row
+				.title-for-portfolio-single
+					.left-side
+						img(src=data.portfolio.src, alt=data.portfolio.title)
+					.rigth-side
+						p(class="side-full-description")= data.portfolio.description
+						h4(class="side-technology") Технологии
+							br
+							span=data.portfolio.technology
+						h4(class="side-origin") Особенности
+							br
+							span=data.portfolio.origin
+				.side-work-gallery
+						img(src=data.gallery.src[0], alt="")
+
+						
+			
+		include footer.jade
+	script
+		|var local_data =!{JSON.stringify(data)};
+	script(src="/build/controller.js")

@@ -63,12 +63,11 @@ Modal.prototype.letterSend = function(event) {
         validate = ['name', 'number', 'email'],
         messageInfo = document.querySelector('.hide-message');
     for (var i = 0; i < elementToSend.length; i++) {
-        if(validate.indexOf(elementToSend[i].name) > -1 && elementToSend[i].value){
-            data += elementToSend[i].name+"="+elementToSend[i].value+"&";
+        if (validate.indexOf(elementToSend[i].name) > -1 && elementToSend[i].value) {
+            data += elementToSend[i].name + "=" + elementToSend[i].value + "&";
             elementToSend[i].classList.remove('no-validate');
-        }
-        else if (validate.indexOf(elementToSend[i].name) == -1){
-            data += elementToSend[i].name+"="+elementToSend[i].value+"&";
+        } else if (validate.indexOf(elementToSend[i].name) == -1) {
+            data += elementToSend[i].name + "=" + elementToSend[i].value + "&";
         } else {
             elementToSend[i].classList.add('no-validate');
             return;
@@ -77,9 +76,9 @@ Modal.prototype.letterSend = function(event) {
 
     var xhr = site_.xhr();
 
-    xhr.onreadystatechange = function(){
-        if(xhr.status == 200 && xhr.readyState == 4){
-            if(JSON.parse(xhr.responseText).status != 200){
+    xhr.onreadystatechange = function() {
+        if (xhr.status == 200 && xhr.readyState == 4) {
+            if (JSON.parse(xhr.responseText).status != 200) {
                 messageInfo.innerHTML = 'Ваше сообщение не отправлено попробуйте позже';
             } else {
 
@@ -91,7 +90,7 @@ Modal.prototype.letterSend = function(event) {
     xhr.open('POST', '/mail', true);
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
     xhr.send(data.slice(0, -1));
-    
+
 }
 
 new Modal();
@@ -358,6 +357,50 @@ SandwichMenu.prototype.actions = function(element, self) {
 }
 
 var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
+
+function GalleryAjax() {
+
+    if (typeof local_data != 'object') return;
+
+    var self = this,
+        preloadImage = new Image();
+
+    preloadImage.src = '/images/proloader_opacity.gif';
+
+    this.preload = document.createElement('div');
+    this.preload.appendChild(preloadImage);
+
+    local_data.gallery.src.splice(0, 1);
+
+    this.galery = local_data.gallery.src;
+
+    this.container = document.querySelector('.side-work-gallery');
+    this.state = true;
+
+    window.addEventListener('scroll', self.loadGallery.bind(self));
+
+}
+
+GalleryAjax.prototype.loadGallery = function() {
+
+    var self = this;
+
+    if (document.body.offsetHeight - 500 < window.scrollY + window.innerHeight && this.state && this.galery.length > 0) {
+        this.state = false;
+        self.container.appendChild(self.preload);
+        var img = new Image();
+        img.src = this.galery[0];
+        this.galery.splice(0, 1);
+        img.onload = function() {
+            self.container.removeChild(self.container.lastElementChild);
+            self.container.appendChild(img);
+            self.state = true;
+        }
+    }
+
+}
+
+new GalleryAjax();
 
 function Grid() {
 

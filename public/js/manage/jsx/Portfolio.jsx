@@ -58,10 +58,10 @@ var MainTemplateTable = React.createClass({
 		}, this) : null;	
 		return(
 			<div className="outer-tebles">
-				<button onClick={this.props.change} className="btn btn-info add-portfolio">Добавить работу</button>
+				<button onClick={this.props.change} className="button add-portfolio">Добавить работу</button>
 				<table className="table-for-portfolio table">
 					<thead>
-						<tr className="info">  
+						<tr className="default">  
 							<th>#</th>
 							<th>Название</th>
 							<th>Превью</th>
@@ -254,7 +254,7 @@ var addTemplate = React.createClass({
 							{this.state.imagesContent}
 						</div>
 					</div>
-					<button className="save-form btn btn-info" type="submit">Сохранить</button>
+					<button className="save-form button" type="submit">Сохранить</button>
 				</div>
 			</form>
 		);
