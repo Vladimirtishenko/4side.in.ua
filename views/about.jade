@@ -17,9 +17,11 @@ block content
 									li= val.inRus
 					h1(class="title-of-h1") О Компании
 					p(class="mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения индивидуально создаются для каждого из наших клиентов
-
+			- var classie = '';
 			- for (var i = 0; i < data.length; i += 2)
-				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
+				- if (i == 2) {classie = 'reverse'}
+				- else {classie = ''}
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany "+classie)
 					- for (var j = i; j < 2+i; j++)  
 						- if(data[j].description)
 							div(class="-for-text")

@@ -23,6 +23,8 @@ function Modal() {
 
     var self = this;
 
+    this.Myscroll = null;
+
     this.buttonOpen = document.querySelector('.brif-for-site');
     this.buttonClose = document.querySelector('.side-modal-close');
     this.blurElement = document.querySelector('.container-all-outer');
@@ -47,12 +49,15 @@ Modal.prototype.closeHandler = function() {
     this.openElementModal.classList.remove('-animate-modal');
     setTimeout(function() {
         self.openElementModal.style.display = 'none';
+        self.Myscroll = null;
     }, 1000)
 }
 
 Modal.prototype.animate = function(openElementModal) {
+    var self = this;
     setTimeout(function() {
         openElementModal.classList.add('-animate-modal');
+        self.Myscroll = new IScroll('#wrapper', { mouseWheel: true });
     }, 1)
 }
 

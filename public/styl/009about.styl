@@ -16,3 +16,26 @@
 .-for-text p
 	padding 0 65px
 	
+@media screen and (max-width: 670px)
+	.-for-text, .-for-photo
+		display table
+		width 100%
+		
+	.-for-text
+		padding 15%
+	
+	.-for-text p
+		padding 0
+		font-size 150%
+	
+	.reverse
+		display flex
+		flex-direction column-reverse
+
+@media screen and (max-width: 500px)
+	.-for-text
+		padding 15% 10%
+	
+	.-for-text p
+		padding 0
+		font-size 120%

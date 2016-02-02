@@ -9,7 +9,6 @@ app.get("/about", require("./about").get);
 app.get("/contact", require("./contact").get);
 
 app.get("/portfolio", require("./portfolio").get);
-app.post("/portfolio", require("./portfolio").post);
 
 app.get("/portfolio/:id", require("./portfolio_single_project").get);
 

@@ -20,18 +20,23 @@ html
 		link(rel="apple-touch-icon-precomposed" sizes="128x128" href="/images/fav128.ico")
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
 		link(rel='stylesheet', href='/build/styl.min.css')
+		script(src="/build/iscroll.js")
 	body
 		.side-modal-outer
 			.side-modal-cell
-				.side-madal-content
+				
+				div(class="side-madal-content")
 					a(href="#" class="side-modal-close")
-					h2(class="side-modal-title") Оставить заявку
-					form(action="/modal" id="modal-letter")
-						input(type="text" name="name" class="form-input modal-input" placeholder="Контактное лицо" required="required")
-						input(type="number" name="number" class="form-input modal-input" placeholder="Телефон" required="required")
-						input(type="email" name="email" class="form-input modal-input" placeholder="Email" required="required")
-						input(type="text" name="company" class="form-input modal-input" placeholder="Название компании")
-						textarea(class="form-textarea modal-input" name="description" placeholder="Описание проекта")
-						button(class="button" type="submit") Отправить
-					p(class="hide-message") 
+					#wrapper
+						#scroller
+							h2(class="side-modal-title") Оставить заявку
+							form(action="/modal" id="modal-letter")
+								input(type="text" name="name" class="form-input modal-input" placeholder="Контактное лицо" required="required")
+								input(type="number" name="number" class="form-input modal-input" placeholder="Телефон" required="required")
+								input(type="email" name="email" class="form-input modal-input" placeholder="Email" required="required")
+								input(type="text" name="company" class="form-input modal-input" placeholder="Название компании")
+								textarea(class="form-textarea modal-input" name="description" placeholder="Описание проекта")
+								button(class="button" type="submit") Отправить
+							p(class="hide-message") 
 		block content
+

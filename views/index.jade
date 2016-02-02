@@ -80,46 +80,12 @@ block content
 								p Заставим работать самые  сложные и инимированные композиции дизайна
 		.outer-all-block-portfolio
 			div(class="container-of-slider grid")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/7.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/8.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/2.png", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/3.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/5.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/1.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/6.jpg", alt="")
-				.grid-item
-					.discription-of-work
-						h3 Fusion Agency
-							span World
-					img(src="/images/portfolio/4.jpg", alt="")
+				each val in data
+					.grid-item
+						a(class="discription-of-work" href="/portfolio/"+val._id)
+							h3= val.title
+								span= val.description
+						img(src=val.src, alt=val.title)
 		div(class="container -all-to-center")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")

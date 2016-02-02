@@ -63,3 +63,34 @@
 @media screen and (max-width: 991px)
 	.side-madal-content
 		width 80%;
+
+@media screen and (max-height: 980px)
+	.side-madal-content
+		padding 30px 0
+		
+	.form-textarea
+		margin 20px auto 30px
+		
+	.side-modal-title
+		margin 20px 0 40px
+		
+@media screen and (max-height: 745px)
+	.side-madal-content, #wrapper
+		position absolute
+		z-index 999
+		top 45px
+		bottom 48px
+		left 0 
+		right 0
+		overflow hidden
+	
+	#wrapper
+		top 80px
+
+	#scroller
+		position absolute
+		z-index 999
+		width 100%
+		transform translateZ(0)
+		text-size-adjust none
+		padding-bottom 10px
