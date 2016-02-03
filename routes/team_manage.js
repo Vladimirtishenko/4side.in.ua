@@ -6,11 +6,14 @@ var multerCommon = require('../middleware/multerCommon').multerCommon;
 var responseResult = require('../middleware/responseResult').responseResult;
 var variables = require('../middleware/variables').Variables;
 var fs = require('fs');
+var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
 
     Team.find({}, function(err, result) {
-        if (err) next(err);
+        if (err) {
+            return ErrorSelf(res, err, next);
+        }
         res.send({
             team: result
         });
@@ -22,7 +25,9 @@ module.exports.delete = function(req, res, next) {
     Team.findByIdAndRemove(
         req.body.id,
         function(err, offen) {
-            if (err) {responseResult(err, res)};
+            if (err) {
+                responseResult(err, res)
+            };
             var filePath = "./public" + offen.src;
             fs.unlink(filePath, function(err) {
                 responseResult(err, res);
@@ -55,7 +60,7 @@ module.exports.post = function(req, res, next) {
         if (multerStorage.namefile.name) {
             variable.src = multerStorage.namefile.name;
         }
-        
+
         Team.updates({
             _id: _id
         }, variable, function(err) {

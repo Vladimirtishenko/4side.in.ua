@@ -20,7 +20,8 @@ block content
 					.outer-of-team
 						each value in data
 							.item-team
-								img(src=value.src)
+								.outer-image-team
+									img(src=value.src)
 								h3= value.name
 								h4= value.profession
 								p= value.description 

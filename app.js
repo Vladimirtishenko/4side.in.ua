@@ -9,6 +9,7 @@ var config = require('./config/');
 var app = express();
 var mongoose = require('./lib/mongoose');
 var MongoStore = require('connect-mongo/es5')(session);
+var ErrorSelf = require('./middleware/ErrorSelf').ErrorSelf;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +40,7 @@ require('./routes/manage')(app);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  ErrorSelf(res, err);
 });
 
 // error handlers
@@ -49,10 +50,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    ErrorSelf(res, err);
   });
 }
 
@@ -60,10 +58,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  ErrorSelf(res, err);
 });
 
 

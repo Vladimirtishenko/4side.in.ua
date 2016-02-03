@@ -4,12 +4,15 @@ var sha1 = require('sha1');
 var variables = require('../middleware/variables').Variables;
 var responseResult = require('../middleware/responseResult').responseResult;
 var multerCommon = require('../middleware/multerCommon').multerCommon;
+var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 
 module.exports.get = function(req, res, next) {
 
     About.find({}, function(err, result) {
-        if (err) next(err);
+        if (err) {
+            return ErrorSelf(res, err, next);
+        }
         res.send({
             abouts: result
         });

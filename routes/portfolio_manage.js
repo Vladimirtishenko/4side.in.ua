@@ -5,10 +5,13 @@ var sha1 = require('sha1');
 var mongoose = require('mongoose');
 var async = require('async');
 var fs = require('fs');
+var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
     Portfolio.find({}, function(err, result) {
-        if (err) next(err)
+        if (err) {
+            return ErrorSelf(res, err, next);
+        }
         res.json(result);
     })
 }

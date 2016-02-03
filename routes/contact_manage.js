@@ -3,11 +3,14 @@ var multer = require('multer');
 var multerCommon = require('../middleware/multerCommon').multerCommon;
 var variables = require('../middleware/variables').Variables;
 var responseResult = require('../middleware/responseResult').responseResult;
+var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 
 module.exports.get = function(req, res, next) {
     Contact.find({}, function(err, result) {
-        if (err) next(err)
+        if (err) {
+            return ErrorSelf(res, err, next);
+        }
         res.json(result);
     })
 }

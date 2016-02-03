@@ -227,6 +227,12 @@ a {
   background: #fff;
 }
 
+.mistake-status {
+  font-size: 200px;
+  padding: 50px 0 20px;
+  display: inline-block;
+}
+
 /* icon serv */
 
 .branding {
@@ -1077,6 +1083,18 @@ a {
   font-size: 14px;
   color: #787878;
   line-height: 25px;
+}
+
+.outer-image-team {
+  width: 265px;
+  height: 265px;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.outer-image-team img {
+  width: 100%;
 }
 
 @media screen and (max-width: 991px) {

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	include menu.jade
+	div(class="container-all-outer grey-color")
+		include allHeader.jade
+		.container
+			.row
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-outer-team")
+					h1(class="title-of-h1")
+						| Ошибка 
+						br 
+						span(class="mistake-status")= err.status
+					p(class="mini-description") Простите такой страницы нет на нашем сервере или вы не можете на нее попасть из за отсутствия прав, перейдите на главную или воспользуйтесь меню справа.
+
+		include footer.jade
+	script(src="/build/controller.js")
