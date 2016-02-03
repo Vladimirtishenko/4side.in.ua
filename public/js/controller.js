@@ -304,6 +304,7 @@ SandwichMenu.prototype.actions = function(element, self) {
         }]);
 
         element.classList.remove("-open")
+        document.querySelector(".container-fixed-menu").style.cssText = "opacity: 0";
         document.querySelector(".container-all-outer").style.cssText = "transform: translateX(0)";
 
     } else {
@@ -325,7 +326,7 @@ SandwichMenu.prototype.actions = function(element, self) {
         }])
 
         element.classList.add("-open");
-
+        document.querySelector(".container-fixed-menu").style.cssText = "opacity: 1";
         document.querySelector(".container-all-outer").style.cssText = "transform: translateX(-200px)";
     }
 

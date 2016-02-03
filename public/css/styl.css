@@ -64,6 +64,7 @@ a {
   background: #f8f8fa;
   padding: 20px 0;
   text-align: center;
+  opacity: 0;
 }
 
 .list-menu {
