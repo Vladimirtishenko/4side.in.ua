@@ -3,7 +3,6 @@ function ErrorSelf(res, err, next){
 		if(typeof err == 'string'){err = {}, err.status = '404'}
 		res.render('err', {err: err});
 	}
-
 }
 
 ErrorSelf.prototype.name = "ErrorSelf"
