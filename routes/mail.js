@@ -1,21 +1,22 @@
 var nodemailer = require('nodemailer');
+var config = require('../config/');
 
 module.exports.post = function(req, res, next) {
-    console.log(req.body);
 
-
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
+    var transport = nodemailer.createTransport("SMTP", {
+        host: config.get('mail:host'), 
+        secureConnection: true, 
+        port: config.get('mail:port'), 
         auth: {
-            user: 'vladimirtishenko1@gmail.com',
-            pass: 'MEDS8placebo'
+            user: config.get('mail:username'),
+            pass: config.get('mail:pass')
         }
     });
 
-    var text = 'Hello world from \n\n' + req.body.number;
+    var text = 'Hello world from \n\n';
 
     var mailOptions = {
-        from: 'vladimirtishenko1@gmail.com', // sender address
+        from: config.get('mail:username'), // sender address
         to: 'vladimirtishenko1@gmail.com', // list of receivers
         subject: 'Email Example', // Subject line
         text: text //, // plaintext body

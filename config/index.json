@@ -13,5 +13,11 @@
 			"path": "/",
 			"httpOnly": true
 		}
+	},
+	"mail": {
+		"host": "91.219.28.30",
+		"username": "support@4side.in.ua",
+		"pass": "meds8pl",
+		"port": 465
 	}
 }
