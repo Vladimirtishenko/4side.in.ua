@@ -281,7 +281,7 @@ label {
     right: 0;
     margin: auto;
 }
-#hidden_file {
+#hidden_file, #hidden_files {
     opacity: 0;
     position: absolute;
 }
@@ -299,13 +299,17 @@ label {
     float: left;
     width: 30%;
 }
+.left-to-gen-image label{
+    width: 50%;
+    display: inline-block;
+}
+
 .right-to-desctiption {
     float: right;
     width: 70%;
 }
 .add-gen-photo {
-    width: 70%;
-    margin: 0 auto;
+    width: 100%;
     cursor: pointer;
 }
 .outer-all-photos {

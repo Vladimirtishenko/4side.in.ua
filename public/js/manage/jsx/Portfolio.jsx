@@ -83,7 +83,8 @@ var addTemplate = React.createClass({
 		return {
 			imagesContent: [],
 			imagesArray: {},
-			imagesTempString: '/images/add_gen_photo.png',
+			imagesTempString: '/images/addTempPhoto.png',
+			imagesTempTitleString: '/images/addTitlePhoto.png',
 			imageTemp: null
 		}
 	},
@@ -168,6 +169,10 @@ var addTemplate = React.createClass({
 
 	},
 
+	tempToImageTitle: function(event) {
+		
+	},
+
 	addFormGalery: function(event){
 		event.preventDefault();
 		var input = event.target.querySelectorAll('input[type="text"]'),
@@ -232,6 +237,10 @@ var addTemplate = React.createClass({
 							<label htmlFor="hidden_file">
 								<img className="add-gen-photo" src={this.state.imagesTempString} />
 								<input onChange={this.tempImageToGallery} type="file" name="upload" id="hidden_file" required="required"/>
+							</label>
+							<label htmlFor="hidden_files">
+								<img className="add-gen-photo" src={this.state.imagesTempTitleString} />
+								<input onChange={this.tempToImageTitle} type="file" name="upload" id="hidden_files" required="required"/>
 							</label>
 						</div>
 						<div className="right-to-desctiption">
