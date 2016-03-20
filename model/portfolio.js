@@ -22,6 +22,10 @@ var schema = new Schema({
 		type: String,
 		required: true
 	},
+	tempTitle: {
+		type: String,
+		required: true
+	},
 	gallery_id: {
 		type: String,
 		required: true

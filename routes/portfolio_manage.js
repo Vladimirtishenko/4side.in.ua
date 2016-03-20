@@ -72,6 +72,7 @@ module.exports.post = function(req, res, next) {
 
     var namefile = {
         preview: [],
+        tempTitle: [],
         gallery: []
     };
     var storage = multer.diskStorage({
@@ -87,6 +88,8 @@ module.exports.post = function(req, res, next) {
                 namefile.preview.push(namefile.src);
             } else if (file.fieldname == 'upload_galery_image') {
                 namefile.gallery.push(namefile.src);
+            } else if (file.fieldname == 'upload_title_image'){
+                namefile.tempTitle.push(namefile.src);
             }
             delete namefile.src;
             callback(null, filename);
@@ -114,6 +117,7 @@ module.exports.post = function(req, res, next) {
                 technology: req.body.technology,
                 origin: req.body.origin,
                 src: namefile.preview[0],
+                tempTitle: namefile.tempTitle[0],
                 gallery_id: categoryRandom
             },
             variablesGalery = {

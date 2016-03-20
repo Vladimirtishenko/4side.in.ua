@@ -879,45 +879,23 @@ a {
   color: #aaa;
   display: block;
   margin-top: 8px;
-  line-height: 14px;
+  line-height: 17px;
   font-size: 14px;
+  padding: 0 50px;
 }
 
 .grid-item {
   padding: 15px;
-}
-
-.container-of-slider .grid-item:nth-child(1) {
-  width: 29.2%;
-}
-
-.container-of-slider .grid-item:nth-child(2) {
-  width: 35%;
-}
-
-.container-of-slider .grid-item:nth-child(3) {
-  width: 34.9%;
+  width: 33%;
 }
 
 .container-of-slider .grid-item:nth-child(4) {
-  width: 34.9%;
+  width: 64%;
 }
 
-.container-of-slider .grid-item:nth-child(5) {
-  width: 64.2%;
-}
-
-.container-of-slider .grid-item:nth-child(6) {
-  width: 34.9%;
-}
-
-.container-of-slider .grid-item:nth-child(7) {
-  width: 29.2%;
-}
-
-.container-of-slider .grid-item:nth-child(8) {
-  width: 34.9%;
-}
+/*.container-of-slider .grid-item:nth-child(5)
+	width 64%
+	*/
 
 .title-for-portfolio-single {
   margin: 0 auto;

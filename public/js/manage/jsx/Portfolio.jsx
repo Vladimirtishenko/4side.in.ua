@@ -85,7 +85,8 @@ var addTemplate = React.createClass({
 			imagesArray: {},
 			imagesTempString: '/images/addTempPhoto.png',
 			imagesTempTitleString: '/images/addTitlePhoto.png',
-			imageTemp: null
+			imageTemp: null,
+			imageTitle: null
 		}
 	},
 
@@ -148,7 +149,8 @@ var addTemplate = React.createClass({
 
 	},
 
-	tempImageToGallery: function(event){
+	tempImageToGallery: function(strings, event){
+
 		var file = event.target.files[0],
 			self = this;
 
@@ -157,20 +159,23 @@ var addTemplate = React.createClass({
 		reader.onload = (function(theFile) {
 		return function(e) {
 
-			self.setState({
-				imagesTempString: e.target.result,
-				imageTemp: theFile
-			})
+			if(strings == 'title'){
+				self.setState({
+					imagesTempTitleString: e.target.result,
+					imageTitle: theFile
+				})
+			} else {
+				self.setState({
+					imagesTempString: e.target.result,
+					imageTemp: theFile
+				})
+			}
 
 		};
 		})(file);
 
 		reader.readAsDataURL(file);
 
-	},
-
-	tempToImageTitle: function(event) {
-		
 	},
 
 	addFormGalery: function(event){
@@ -187,6 +192,7 @@ var addTemplate = React.createClass({
 		};
 
 		data['upload_temp_image'] = this.state.imageTemp;
+		data['upload_title_image'] = this.state.imageTitle;
 		data['upload_galery_image'] = [];
 
 
@@ -236,11 +242,11 @@ var addTemplate = React.createClass({
 						<div className="left-to-gen-image">
 							<label htmlFor="hidden_file">
 								<img className="add-gen-photo" src={this.state.imagesTempString} />
-								<input onChange={this.tempImageToGallery} type="file" name="upload" id="hidden_file" required="required"/>
+								<input onChange={this.tempImageToGallery.bind(this, 'temp')} type="file" name="upload" id="hidden_file" required="required"/>
 							</label>
 							<label htmlFor="hidden_files">
 								<img className="add-gen-photo" src={this.state.imagesTempTitleString} />
-								<input onChange={this.tempToImageTitle} type="file" name="upload" id="hidden_files" required="required"/>
+								<input onChange={this.tempImageToGallery.bind(this, 'title')} type="file" name="upload" id="hidden_files" required="required"/>
 							</label>
 						</div>
 						<div className="right-to-desctiption">
