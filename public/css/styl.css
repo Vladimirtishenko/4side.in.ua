@@ -1002,6 +1002,12 @@ a {
     padding: 40px 30px;
     width: 100%;
   }
+
+  .title-for-portfolio-single {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
 }
 .block-outer-team {
   padding: 75px 0;
