@@ -118,7 +118,8 @@ module.exports.post = function(req, res, next) {
                 origin: req.body.origin,
                 src: namefile.preview[0],
                 tempTitle: namefile.tempTitle[0],
-                gallery_id: categoryRandom
+                gallery_id: categoryRandom,
+                date: new Date()
             },
             variablesGalery = {
                 gallery_id: categoryRandom,

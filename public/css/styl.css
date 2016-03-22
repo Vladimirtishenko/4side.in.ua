@@ -890,16 +890,19 @@ a {
 }
 
 .container-of-slider .grid-item:nth-child(4) {
-  width: 64%;
+  width: 66%;
 }
-
-/*.container-of-slider .grid-item:nth-child(5)
-	width 64%
-	*/
 
 .title-for-portfolio-single {
   margin: 0 auto;
-  display: table;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .rigth-side {
