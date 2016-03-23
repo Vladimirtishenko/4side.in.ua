@@ -80,8 +80,10 @@ block content
 								p Заставим работать самые  сложные и инимированные композиции дизайна
 		.outer-all-block-portfolio
 			div(class="container-of-slider grid")
+				- var i = 0;
 				each val in data
-					.grid-item
+					- i++;
+					div(class="grid-item item-"+i)
 						a(class="discription-of-work" href="/portfolio/"+val._id)
 							h3= val.title
 								span= val.description
