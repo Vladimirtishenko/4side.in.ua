@@ -18,7 +18,7 @@ module.exports.post = function(req, res, next) {
     text: "test text",
     html: "<b>Test text</b>"
   }, function (error, response) {
-        responseResult(error, response);
+        responseResult(error, res);
   });
 
 }
