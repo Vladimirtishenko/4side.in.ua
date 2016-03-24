@@ -86,7 +86,7 @@ Modal.prototype.letterSend = function(event) {
             if (JSON.parse(xhr.responseText).status != 200) {
                 messageInfo.innerHTML = 'Ваше сообщение не отправлено попробуйте позже';
             } else {
-
+                messageInfo.innerHTML = 'Ваше сообщение отправлено, мы вам перезвоним';
             }
             event.target.reset();
         }
