@@ -1,6 +1,7 @@
 var nodemailer = require('nodemailer');
 var smtpTransport = require("nodemailer-smtp-transport");
 var config = require('../config/');
+var responseResult = require('../middleware/responseResult').responseResult;
 
 module.exports.post = function(req, res, next) {
 
@@ -11,22 +12,13 @@ module.exports.post = function(req, res, next) {
   }));
 
   transporter.sendMail({
-    from: 'Contact <support@4side.in.ua>',
+    from: 'support@4side.in.ua',
     to: "vladimirtishenko1@gmail.com",
     subject: 'Test sujet',
     text: "test text",
     html: "<b>Test text</b>"
-  }, function (error, response) {
-    //Email not sent
-    if (error) {
-        console.log(error)
-      res.json("Email send Falied");
-    }
-    //email send sucessfully
-    else {
-      console.log(response);
-      res.json("sucess");
-    }
+  }, function (error, response) 
+    responseResult(error, response);
   });
 
 }
