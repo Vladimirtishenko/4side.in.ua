@@ -3,7 +3,7 @@ var config = require('../config/');
 
 module.exports.post = function(req, res, next) {
 
-    var transport = nodemailer.createTransport("SMTP", {
+    var smtpTransport = nodemailer.createTransport("SMTP",{
         host: config.get('mail:host'), 
         secureConnection: true, 
         port: config.get('mail:port'), 
@@ -13,30 +13,22 @@ module.exports.post = function(req, res, next) {
         }
     });
 
-    var text = 'Hello world from \n\n';
+    var mail = {
+        from: config.get('mail:username'),
+        to: config.get('mail:username'),
+        subject: "Send Email Using Node.js",
+        text: "Node.js New world for me",
+        html: "<b>Node.js New world for me</b>"
+    }
 
-    var mailOptions = {
-        from: config.get('mail:username'), // sender address
-        to: config.get('mail:username'), // list of receivers
-        subject: 'Email Example', // Subject line
-        text: text //, // plaintext body
-            // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
-    };
-
-
-    transport.sendMail(mailOptions, function(error, info) {
-        if (error) {
+    smtpTransport.sendMail(mail, function(error, response){
+        if(error){
             console.log(error);
-            res.json({
-                status: 500,
-                massage: error
-            });
-        } else {
-            console.log('Message sent: ' + info.response);
-            res.json({
-                status: 200
-            });
-        };
+        }else{
+            console.log("Message sent: " + response.message);
+        }
+
+        smtpTransport.close();
     });
 
 
