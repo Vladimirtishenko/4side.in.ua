@@ -24,7 +24,7 @@ module.exports.post = function(req, res, next) {
     };
 
 
-    transporter.sendMail(mailOptions, function(error, info) {
+    transport.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error);
             res.json({
