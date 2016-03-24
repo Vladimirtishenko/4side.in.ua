@@ -17,7 +17,7 @@ module.exports.post = function(req, res, next) {
 
     var mailOptions = {
         from: config.get('mail:username'), // sender address
-        to: 'vladimirtishenko1@gmail.com', // list of receivers
+        to: config.get('mail:username'), // list of receivers
         subject: 'Email Example', // Subject line
         text: text //, // plaintext body
             // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
