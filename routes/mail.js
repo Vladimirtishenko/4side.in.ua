@@ -1,34 +1,32 @@
 var nodemailer = require('nodemailer');
 var smtpTransport = require("nodemailer-smtp-transport");
 var config = require('../config/');
-var smtpTransport = nodemailer.createTransport(smtpTransport({
-    host: config.get('mail:host'), 
-    secureConnection: true, 
-    port: config.get('mail:port'), 
-    auth: {
-        user: config.get('mail:username'),
-        pass: config.get('mail:pass')
-    }
-}));
 
 module.exports.post = function(req, res, next) {
 
-   var mailOptions = {
-        from : config.get('mail:username'),
-        to : config.get('mail:username'),
-        subject : "Your Subject",
-        text : "Your Text",
-        html : "HTML GENERATED"
+   var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'Gmail',
+  auth: { user: 'vladimirtishenko1@gmail.com',
+        pass: 'MEDS8placebo' }
+  }));
+
+  transporter.sendMail({
+    from: 'Contact <support@4side.in.ua>',
+    to: "vladimirtishenko1@gmail.com",
+    subject: 'Test sujet',
+    text: "test text",
+    html: "<b>Test text</b>"
+  }, function (error, response) {
+    //Email not sent
+    if (error) {
+        console.log(error)
+      res.json("Email send Falied");
     }
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if(error){
-            console.log(error);
-            res.json("error");
-        }else{
-            console.log(response.response.toString());
-            console.log("Message sent: " + response.message);
-            res.json("sent");
-        }
-    });
+    //email send sucessfully
+    else {
+      console.log(response);
+      res.json("sucess");
+    }
+  });
 
 }
