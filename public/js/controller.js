@@ -249,15 +249,8 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
 
-        self.list.style.cssText += "transition-duration: " + speed + "s;" +
-                                    "-webkit-transition-duration: " + speed + "s;" +
-                                    "-o-transition-duration: " + speed + "s;" +
-                                    "-moz-transition-duration: " + speed + "s;";
-        self.list.style.cssText += "transform: translateX(" + move + "px)" +
-                                    "-moz-transform:  translateX(" + move + "px)" +
-                                    "-ms-transform:  translateX(" + move + "px)" +
-                                    "-webkit-transform:  translateX(" + move + "px)" +
-                                    "-o-transform:  translateX(" + move + "px)";
+        self.list.style.cssText += "transition-duration: " + speed + "s; -webkit-transition-duration: " + speed + "s; -o-transition-duration: " + speed + "s;-moz-transition-duration: " + speed + "s;";
+        self.list.style.cssText += "transform: translateX(" + move + "px); -moz-transform: translateX(" + move + "px); -ms-transform:  translateX(" + move + "px); -webkit-transform:  translateX(" + move + "px); -o-transform:  translateX(" + move + "px)";
         self.currentSlide = clicked;
         self.move = move;
 
