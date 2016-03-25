@@ -249,14 +249,35 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
 
-        self.list.style.cssText += "transition-duration: " + speed + "s; -webkit-transition-duration: " + speed + "s; -o-transition-duration: " + speed + "s;-moz-transition-duration: " + speed + "s;";
-        self.list.style.cssText += "transform: translateX(" + move + "px); -moz-transform: translateX(" + move + "px); -ms-transform:  translateX(" + move + "px); -webkit-transform:  translateX(" + move + "px); -o-transform:  translateX(" + move + "px)";
+        self.list.style.cssText += transition(speed);
+        self.list.style.cssText += transform(move);
         self.currentSlide = clicked;
         self.move = move;
 
         activeBeforeSlide.parentNode.querySelector("span[data-slide='" + clicked + "']").classList.add("-active-slide");
         activeBeforeSlide.classList.remove("-active-slide");
 
+    }
+
+
+    function transition(t) {
+        t = (typeof t === "undefined") ? 0 : t; 
+        var tr = '-webkit-transition-duration: '+t+'s;' + 
+             '-moz-transition-duration: '+t+'s;' + 
+             '-ms-transition-duration: '+t+'s;' + 
+             '-o-transition-duration: '+t+'s;' +
+             'transition-duration: '+t+'s;';
+        return tr
+    }
+
+    function transform(t) {
+        t = (typeof t === "undefined") ? 0 : t; 
+        var tr = '-webkit-transform: translateX('+ t + 'px);' + 
+             '-moz-transform: translateX('+ t + 'px);' + 
+             '-ms-transform: translateX('+ t + 'px);' + 
+             '-o-transform: translateX('+ t + 'px);' +
+             'transform: translateX('+ t + 'px);';
+        return tr
     }
 
 }
