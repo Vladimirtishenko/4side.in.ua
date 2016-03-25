@@ -308,7 +308,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.remove("-open")
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 0";
-        document.querySelector(".container-all-outer").style.cssText = transform(0);
+        document.querySelector(".container-all-outer").setAttribute('style',transform(0));
 
     } else {
 
@@ -330,7 +330,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.add("-open");
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 1";
-        document.querySelector(".container-all-outer").style.cssText = transform(-200);
+        document.querySelector(".container-all-outer").setAttribute('style',transform(-200));
     }
 
     function cssAnimate(objects) {
