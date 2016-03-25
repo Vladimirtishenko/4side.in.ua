@@ -262,27 +262,6 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
     }
 
-
-    function transition(t) {
-        t = (typeof t === "undefined") ? 0 : t; 
-        var tr = '-webkit-transition-duration: '+t+'s;' + 
-             '-moz-transition-duration: '+t+'s;' + 
-             '-ms-transition-duration: '+t+'s;' + 
-             '-o-transition-duration: '+t+'s;' +
-             'transition-duration: '+t+'s;';
-        return tr
-    }
-
-    function transform(t) {
-        t = (typeof t === "undefined") ? 0 : t; 
-        var tr = '-webkit-transform: translateX('+ t + 'px);' + 
-             '-moz-transform: translateX('+ t + 'px);' + 
-             '-ms-transform: translateX('+ t + 'px);' + 
-             '-o-transform: translateX('+ t + 'px);' +
-             'transform: translateX('+ t + 'px);';
-        return tr
-    }
-
 }
 
 
@@ -329,7 +308,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.remove("-open")
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 0";
-        document.querySelector(".container-all-outer").style.cssText = "transform: translateX(0)";
+        document.querySelector(".container-all-outer").style.cssText = transform(0);
 
     } else {
 
@@ -351,7 +330,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.add("-open");
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 1";
-        document.querySelector(".container-all-outer").style.cssText = "transform: translateX(-200px)";
+        document.querySelector(".container-all-outer").style.cssText = transform(-200);
     }
 
     function cssAnimate(objects) {
@@ -444,6 +423,27 @@ function Grid() {
 
 function allHandlerToload() {
     Grid(); // Load Grig Portfolio Layout
+}
+
+
+function transition(t) {
+        t = (typeof t === "undefined") ? 0 : t; 
+        var tr = '-webkit-transition-duration: '+t+'s;' + 
+             '-moz-transition-duration: '+t+'s;' + 
+             '-ms-transition-duration: '+t+'s;' + 
+             '-o-transition-duration: '+t+'s;' +
+             'transition-duration: '+t+'s;';
+        return tr
+}
+
+function transform(t) {
+    t = (typeof t === "undefined") ? 0 : t; 
+    var tr = '-webkit-transform: translateX('+ t + 'px);' + 
+         '-moz-transform: translateX('+ t + 'px);' + 
+         '-ms-transform: translateX('+ t + 'px);' + 
+         '-o-transform: translateX('+ t + 'px);' +
+         'transform: translateX('+ t + 'px);';
+    return tr
 }
 
 window.addEventListener("load", allHandlerToload)
