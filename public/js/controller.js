@@ -106,8 +106,8 @@ function Slider(element, list) {
     this.list = list ? list : null;
     this.countSlide = this.list ? this.list.children.length - 1 : null;
     this.element = element ? element : null;
-    this.height = window.clientWidth;
-    this.width = window.clientWidth;
+    this.height = element.clientWidth;
+    this.width = element.clientWidth;
     this.controlsBuild = false;
     this.currentSlide = 0;
     this.move = 0;
@@ -117,8 +117,8 @@ function Slider(element, list) {
     window.addEventListener("resize", resizeHandler);
 
     function resizeHandler() {
-        self.height = window.clientWidth;
-        self.width = window.clientWidth;
+        self.height = element.clientWidth;
+        self.width = element.clientWidth;
         self.running("resize");
     }
 
@@ -128,6 +128,11 @@ function Slider(element, list) {
 Slider.prototype.running = function(options) {
 
     var self = this;
+
+
+    console.log(self.element);
+    console.log(self.list);
+    console.log(self.width);
 
     if (!self.element && !self.list) return;
 
@@ -249,9 +254,6 @@ Slider.prototype._clickSlideHandlers = function(event) {
     function toSlideAnimation(move, speed) {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
-
-        console.log(transition(speed));
-        console.log(transform(move));
 
 
         self.list.style.cssText += transition(speed) + transformX(move);
