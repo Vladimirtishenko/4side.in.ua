@@ -122,6 +122,7 @@ function Slider(element, list) {
         self.running("resize");
     }
 
+    self.running();
 }
 
 Slider.prototype.running = function(options) {
@@ -407,6 +408,10 @@ GalleryAjax.prototype.loadGallery = function() {
 
 new GalleryAjax();
 
+function startAsync(){
+    new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
+}
+
 function Grid() {
 
     var msnry = (typeof Masonry == 'function') ? new Masonry('.grid', {
@@ -451,12 +456,6 @@ function transformY(t, d) {
          '-o-transform: translateY('+ t + 'px) rotate('+d+'deg);' +
          'transform: translateY('+ t + 'px) rotate('+d+'deg);';
     return tr
-}
-
-
-function startAsync(){
-    var _Slider_ = new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
-        _Slider_.running();
 }
 
 window.addEventListener("load", allHandlerToload)
