@@ -249,8 +249,8 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
         var activeBeforeSlide = document.querySelector(".-active-slide");
 
-        console.log(transition(t));
-        console.log(transform(t));
+        console.log(transition(speed));
+        console.log(transform(move));
 
 
         self.list.style.cssText += transition(speed) + transform(move);
