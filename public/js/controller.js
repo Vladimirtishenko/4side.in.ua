@@ -253,7 +253,7 @@ Slider.prototype._clickSlideHandlers = function(event) {
         console.log(transform(move));
 
 
-        self.list.style.cssText += transition(speed) + transform(move);
+        self.list.style.cssText += transition(speed) + transformX(move);
         self.currentSlide = clicked;
         self.move = move;
 
@@ -308,7 +308,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.remove("-open")
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 0";
-        document.querySelector(".container-all-outer").setAttribute('style',transform(0));
+        document.querySelector(".container-all-outer").setAttribute('style',transformX(0));
 
     } else {
 
@@ -330,7 +330,7 @@ SandwichMenu.prototype.actions = function(element, self) {
 
         element.classList.add("-open");
         document.querySelector(".container-fixed-menu").style.cssText = "opacity: 1";
-        document.querySelector(".container-all-outer").setAttribute('style',transform(-200));
+        document.querySelector(".container-all-outer").setAttribute('style',transformX(-200));
     }
 
     function cssAnimate(objects) {
@@ -354,9 +354,9 @@ SandwichMenu.prototype.actions = function(element, self) {
     function createCss(operator, step) {
 
         var objectStep = {
-            one: "transition: .4s; transform: translateY(" + operator + "12px) rotate(0deg)",
-            two: "transition: .4s; transform: translateY(0px) rotate(0deg)",
-            three: "transition: .4s; transform: translateY(" + operator + "12px) rotate(" + operator + "45deg)",
+            one: transition(0.4) + transformY(operator+12, 0),
+            two: transition(0.4) + transformY(0, 0),
+            three: transition(0.4) + transformY(operator+12, operator+45),
             four: "opacity: " + operator
         }
         return objectStep[step];
@@ -436,13 +436,24 @@ function transition(t) {
         return tr
 }
 
-function transform(t) {
+function transformX(t) {
     t = (typeof t === "undefined") ? 0 : t; 
     var tr = '-webkit-transform: translateX('+ t + 'px);' + 
          '-moz-transform: translateX('+ t + 'px);' + 
          '-ms-transform: translateX('+ t + 'px);' + 
          '-o-transform: translateX('+ t + 'px);' +
          'transform: translateX('+ t + 'px);';
+    return tr
+}
+
+
+function transformY(t, d) {
+    t = (typeof t === "undefined") ? 0 : t; 
+    var tr = '-webkit-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
+         '-moz-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
+         '-ms-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
+         '-o-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' +
+         'transform: translateY('+ t + 'px) rotate: ('+d+'deg);';
     return tr
 }
 
