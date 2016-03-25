@@ -106,8 +106,8 @@ function Slider(element, list) {
     this.list = list ? list : null;
     this.countSlide = this.list ? this.list.children.length - 1 : null;
     this.element = element ? element : null;
-    this.height = window.innerHeight;
-    this.width = window.innerWidth;
+    this.height = window.clientWidth;
+    this.width = window.clientWidth;
     this.controlsBuild = false;
     this.currentSlide = 0;
     this.move = 0;
@@ -117,8 +117,8 @@ function Slider(element, list) {
     window.addEventListener("resize", resizeHandler);
 
     function resizeHandler() {
-        self.height = window.innerHeight;
-        self.width = window.innerWidth;
+        self.height = window.clientWidth;
+        self.width = window.clientWidth;
         self.running("resize");
     }
 
@@ -263,9 +263,6 @@ Slider.prototype._clickSlideHandlers = function(event) {
     }
 
 }
-
-
-var _Slider_ = new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
 
 
 function SandwichMenu(element) {
@@ -458,7 +455,8 @@ function transformY(t, d) {
 
 
 function startAsync(){
-    _Slider_.running();
+    var _Slider_ = new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
+        _Slider_.running();
 }
 
 window.addEventListener("load", allHandlerToload)
