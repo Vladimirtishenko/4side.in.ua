@@ -450,10 +450,10 @@ function transformX(t) {
 function transformY(t, d) {
     t = (typeof t === "undefined") ? 0 : t; 
     var tr = '-webkit-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
-         '-moz-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
-         '-ms-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' + 
-         '-o-transform: translateY('+ t + 'px) rotate: ('+d+'deg);' +
-         'transform: translateY('+ t + 'px) rotate: ('+d+'deg);';
+         '-moz-transform: translateY('+ t + 'px) rotate('+d+'deg);' + 
+         '-ms-transform: translateY('+ t + 'px) rotate('+d+'deg);' + 
+         '-o-transform: translateY('+ t + 'px) rotate('+d+'deg);' +
+         'transform: translateY('+ t + 'px) rotate('+d+'deg);';
     return tr
 }
 
