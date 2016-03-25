@@ -266,7 +266,6 @@ Slider.prototype._clickSlideHandlers = function(event) {
 
 
 var _Slider_ = new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
-_Slider_.running();
 
 
 function SandwichMenu(element) {
@@ -457,4 +456,10 @@ function transformY(t, d) {
     return tr
 }
 
+
+function startAsync(){
+    _Slider_.running();
+}
+
 window.addEventListener("load", allHandlerToload)
+window.addEventListener("DOMContentLoaded", startAsync)
