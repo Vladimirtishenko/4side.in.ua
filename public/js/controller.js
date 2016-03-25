@@ -338,12 +338,12 @@ SandwichMenu.prototype.actions = function(element, self) {
         for (var i = 0; i < objects.length; i++) {
 
             if (objects[i].label) {
-                objects[i].state.style.cssText = createCss(objects[i].operator, objects[i].label);
+                objects[i].state.setAttribute('style', createCss(objects[i].operator, objects[i].label));
             }
 
             (function(i) {
                 setTimeout(function() {
-                    objects[i].state.style.cssText = createCss(objects[i].operator, objects[i].delay);
+                    objects[i].state.setAttribute('style', createCss(objects[i].operator, objects[i].delay));
                     self.state = true;
                 }, 400)
             })(i);
