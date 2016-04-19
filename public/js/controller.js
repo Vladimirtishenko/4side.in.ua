@@ -101,6 +101,9 @@ Modal.prototype.letterSend = function(event) {
 new Modal();
 
 function Slider(element, list) {
+    
+    if(!element && !list) return;
+
     var self = this;
 
     this.list = list ? list : null;
