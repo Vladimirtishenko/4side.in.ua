@@ -897,10 +897,6 @@ a {
   width: 33%;
 }
 
-.container-of-slider .grid-item:nth-child(4) {
-  width: 66%;
-}
-
 .title-for-portfolio-single {
   margin: 0 auto;
   display: -webkit-box;
