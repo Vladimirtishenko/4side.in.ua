@@ -10,5 +10,5 @@ module.exports.get = function(req, res, next) {
             res.render('index', {
                 data: result
             });
-        }).limit(8).sort({date: -1});
+        }).limit(10).sort({date: -1});
 }

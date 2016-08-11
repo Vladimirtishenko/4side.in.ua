@@ -16,7 +16,7 @@ module.exports.get = function(req, res, next) {
                 breadcrumps: _breadcrumps_,
                 data: result
             });
-        }).limit(8).sort({date: -1});
+        }).sort({date: -1});
 
 
 }
