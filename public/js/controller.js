@@ -132,11 +132,6 @@ Slider.prototype.running = function(options) {
 
     var self = this;
 
-
-    console.log(self.element);
-    console.log(self.list);
-    console.log(self.width);
-
     if (!self.element && !self.list) return;
 
     if (!this.controlsBuild) {
