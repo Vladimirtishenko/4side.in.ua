@@ -11,7 +11,7 @@ block content
 				span(class="first-line")
 				span(class="two-line")
 				span(class="third-line")
-			a(href="#" class="brif-for-site") Оставить заявку
+			a(href="#" class="brif-for-site")= texts.REQUEST
 		.container-fluid
 			.row
 				.slider-side
@@ -22,62 +22,62 @@ block content
 							img(src="/images/slide_one.png", alt="")
 							.slider-description
 								p(class="slider-author") henry wause
-								h2(class="slider-title") Современная классика
-								a(href="/portfolio/56eef402b253494b0d0e6201" class="button -light-blue-button-slider") Подробнее
+								h2(class="slider-title")= texts.CLASSIC
+								a(href="/portfolio/56eef402b253494b0d0e6201" class="button -light-blue-button-slider")= texts.MORE
 						li(class="slider-list-item -ros")
 							img(src="/images/slide_two.png", alt="")
 							.slider-description
 								p(class="slider-author") henry wause
-								h2(class="slider-title") Деревянная мебель
-								a(href="/portfolio/56eef184b253494b0d0e61fb" class="button -light-rose-button-slider") Подробнее
+								h2(class="slider-title")= texts.WOODS
+								a(href="/portfolio/56eef184b253494b0d0e61fb" class="button -light-rose-button-slider")= texts.MORE
 						li(class="slider-list-item -greens")
 							img(src="/images/slide_three.png", alt="")
 							.slider-description
 								p(class="slider-author") henry wause
-								h2(class="slider-title") Империя комфорта
-								a(href="/portfolio/56eef27fb253494b0d0e61fd" class="button -light-green-button-slider") Подробнее
+								h2(class="slider-title")= texts.EMPIRE
+								a(href="/portfolio/56eef27fb253494b0d0e61fd" class="button -light-green-button-slider")= texts.MORE
 						li(class="slider-list-item -violets")
 							img(src="/images/slide_four.png", alt="")
 							.slider-description
 								p(class="slider-author") henry wause
-								h2(class="slider-title") Цветочная роскошь
-								a(href="/portfolio/56eef34eb253494b0d0e61ff" class="button -light-violet-button-slider") Подробнее
+								h2(class="slider-title")= texts.FLORA
+								a(href="/portfolio/56eef34eb253494b0d0e61ff" class="button -light-violet-button-slider")= texts.MORE
 					.controls-slider
 		div(class="container")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
-					h2(class="name-of-services") Услуги
-					p(class="name-of-mini-description") Мы понимаем, ваша история и желания уникальны. Именно поэтому наши микро-команды и решения, индивидуально создаются для каждого из наших клиентов
+					h2(class="name-of-services")= texts.SERVICES
+					p(class="name-of-mini-description")= texts.SERVICES_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
 						div(class="container-item-serv")
 							span(class="item-serv-icon branding")
 							div(class="item-serv-description")
-								h3 Брендинг
-								p Превратим ваш бренд в один из самых узнаваемых во всем мире
+								h3= texts.BRAND
+								p= texts.BRAND_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
 						div(class="container-item-serv")
 							span(class="item-serv-icon web-design")
 							div(class="item-serv-description")
-								h3 Веб-дизайн
-								p Преобразовываем ваши идеи в невероятно красивый интерфейс
+								h3= texts.WEB_DESIGN
+								p= texts.WEB_DESIGN_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
 						div(class="container-item-serv")
 							span(class="item-serv-icon illustration")
 							div(class="item-serv-description")
-								h3 Художественная иллюстрация
-								p Реализуем различные бизнес решения и закрытые  системы управления
+								h3= texts.ILLUSTRATION
+								p= texts.ILLUSTRATION_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
 						div(class="container-item-serv")
 							span(class="item-serv-icon web-development")
 							div(class="item-serv-description")
-								h3 Разработка сайтов и SPA
-								p Заставим работать самые сложные и анимированные композиции дизайна
+								h3= texts.WEB_DEVELOPMENT
+								p= texts.WEB_DEVELOPMENT_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-6 col-lg-6")
 						div(class="container-item-serv")
 							span(class="item-serv-icon bussines")
 							div(class="item-serv-description")
-								h3 Решения для бизнеса
-								p Построение систем учета и управления исходя из индивидуальных потребностей
+								h3= texts.BUSSINES
+								p= texts.BUSSINES_TEXT
 		.outer-all-block-portfolio
 			div(class="container-of-slider grid")
 				- var i = 0;

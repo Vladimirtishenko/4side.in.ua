@@ -8,6 +8,8 @@ var session = require('express-session');
 var config = require('./config/');
 var app = express();
 var mongoose = require('./lib/mongoose');
+var i18n=require("i18n-express");
+var geolang=require("geolang-express");
 var MongoStore = require('connect-mongo/es5')(session);
 var ErrorSelf = require('./middleware/ErrorSelf').ErrorSelf;
 
@@ -31,6 +33,21 @@ app.use(session({
     cookie: config.get('session:cookie'),
     store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
+
+app.use(geolang({
+  siteLangs: ["ru","en"],
+  cookieLangName: "lang"
+}));
+
+
+app.use(i18n({
+  translationsPath: path.join(__dirname, 'i18n'),
+  siteLangs: ["ru","en"],
+  defaultLang: "ru",
+  cookieLangName: "lang"
+}));
+
+
 
 require('./routes')(app);
 require('./routes/manage')(app);
