@@ -4,16 +4,16 @@ div(class="container-fluid -light-blue -side-for-logo")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
 					.container-for-subscribe
-						h2 Подписаться на обновления
+						h2= texts.UPDATES
 						form(action="" class="form-to-control")
-							input(type="text" class="form-input col-xs-12 col-sm-7 col-md-8 col-lg-8" placeholder="Email адрес")
-							button(class="button col-xs-12 col-sm-5 col-md-4 col-lg-4") Подписаться
-						p(class="text-for-subscribe") Будет использоваться в соответствии с нашей политикой конфиденциальности
+							input(type="text" class="form-input col-xs-12 col-sm-7 col-md-8 col-lg-8" placeholder="#{texts.MAIL}")
+							button(class="button col-xs-12 col-sm-5 col-md-4 col-lg-4")= texts.SUBSCRIBE
+						p(class="text-for-subscribe")= texts.POLICY
 div(class="container-fluid -dark-grey")
 	.row
 		div(class="footer-container")
 			div(class="col-xs-12 col-sm-5 col-md-4 col-lg-4")
-				p Адрес: Украина, Киев, ул. Архитектора Городецкого, 10/1
+				p= texts.ADRESS
 				p E-mail: support@4side.in.ua
 			div(class="col-xs-12 col-sm-2 col-md-4 col-lg-4 -center-align")
 				span(class="mini-logo")

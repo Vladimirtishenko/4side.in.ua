@@ -4,8 +4,8 @@ var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
     var _breadcrumps_ = new Breadcrumps([{
-        inRus: "Портфолио"
-    }]);
+        inRus: req.i18n_texts.PORTFOLIO
+    }], req.i18n_texts.GENERAL);
 
     Portfolio.find({},
         function(err, result) {

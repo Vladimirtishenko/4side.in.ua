@@ -15,8 +15,8 @@ block content
 										a(href=val.link)= val.inRus
 								else
 									li= val.inRus
-					h1(class="title-of-h1") Контакты
-					p(class="mini-description") Звоните в любое удобное для вас время, и наша служба поддержки вам поможет решить любые проблемы на сайте и не только.
+					h1(class="title-of-h1")= texts.CONTACT
+					p(class="mini-description")= texts.CONTACT_TEXT
 				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany")
 					div(class="-for-text")
 						- var phones = data[0].phone.split(';');

@@ -4,8 +4,8 @@ var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
     var _breadcrumps_ = new Breadcrumps([{
-        inRus: "О Компании"
-    }]);
+        inRus: req.i18n_texts.ABOUT
+    }], req.i18n_texts.GENERAL);
 
     About.find({},
         function(err, result) {
@@ -17,6 +17,4 @@ module.exports.get = function(req, res, next) {
                 data: result
             });
         }).sort({number:1})
-
-
 }

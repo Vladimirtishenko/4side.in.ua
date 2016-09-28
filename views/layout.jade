@@ -29,14 +29,14 @@ html
 					a(href="#" class="side-modal-close")
 					#wrapper
 						#scroller
-							h2(class="side-modal-title") Оставить заявку
+							h2(class="side-modal-title")= texts.BRIF
 							form(action="/modal" id="modal-letter")
-								input(type="text" name="name" class="form-input modal-input" placeholder="Контактное лицо" required="required")
-								input(type="number" name="number" class="form-input modal-input" placeholder="Телефон" required="required")
+								input(type="text" name="name" class="form-input modal-input" placeholder="#{texts.PERSON}" required="required")
+								input(type="number" name="number" class="form-input modal-input" placeholder="#{texts.PHONE}" required="required")
 								input(type="email" name="email" class="form-input modal-input" placeholder="Email" required="required")
-								input(type="text" name="company" class="form-input modal-input" placeholder="Название компании")
-								textarea(class="form-textarea modal-input" name="description" placeholder="Описание проекта")
-								button(class="button" type="submit") Отправить
+								input(type="text" name="company" class="form-input modal-input" placeholder="#{texts.COMPANY_NAME}")
+								textarea(class="form-textarea modal-input" name="description" placeholder="#{texts.DESCRIPTION}")
+								button(class="button" type="submit")= texts.SUBMIT
 							p(class="hide-message") 
 		block content
 

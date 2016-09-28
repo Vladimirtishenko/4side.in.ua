@@ -40,11 +40,11 @@ module.exports.get = function(req, res, next) {
         }
 
         var _breadcrumps_ = new Breadcrumps([{
-            inRus: "Портфолио",
+            inRus: req.i18n_texts.PORTFOLIO,
             link: "/portfolio"
         }, {
             inRus: result.portfolio.title
-        }]);
+        }], req.i18n_texts.GENERAL);
 
         res.render('portfolio_single_project', {
             breadcrumps: _breadcrumps_,

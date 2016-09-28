@@ -1,9 +1,9 @@
-function Breadcrumps(list){
+function Breadcrumps(list, gen){
 	var self = this;
 
 	self.general = [
 		{
-			inRus: "Главная",
+			inRus: gen,
 			link: "/"
 		}
 	]

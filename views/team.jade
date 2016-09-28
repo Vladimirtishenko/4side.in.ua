@@ -15,8 +15,8 @@ block content
 										a(href=val.link)= val.inRus
 								else
 									li= val.inRus
-					h1(class="title-of-h1") Команда
-					p(class="mini-description") Консультация с широким активом нашей команды, представляет собой интересный эксперимент направленый на реализацию ваших идей.
+					h1(class="title-of-h1")= texts.TEAM
+					p(class="mini-description")= texts.TEAM_TEXT
 					.outer-of-team
 						each value in data
 							.item-team

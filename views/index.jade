@@ -91,31 +91,31 @@ block content
 		div(class="container -all-to-center")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")
-					h2(class="name-of-services margin-more") Процесc работы
+					h2(class="name-of-services margin-more")= texts.WORKFLOW
 					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
 						.container-item-precess
 							span(class="item-process-icon brain-storm")
 							h3(class="margin-class arrow-class") 
-								span мозговой штурм
-							p Мы используем мозговой штурм как основную методику, с помощью которой мы получаем всегда свежие, абсолютно смелые, индивидуальные и креативные идеи для вашего бизнеса 
+								span= texts.BRAINSTORM
+							p= texts.BRAINSTORM_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
 						.container-item-precess
 							span(class="item-process-icon planning")
 							h3(class="margin-class arrow-class") 
-								span планирование
-							p Планирование происходит на основе выбранной идеи,создается прототип продукта, продумывается архитектура приложения и баз данных, для создания функционального решения
+								span= texts.PLANNING
+							p= texts.PLANNING_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
 						.container-item-precess
 							span(class="item-process-icon design")
 							h3(class="margin-class arrow-class") 
-								span Дизайн
-							p Наши дизайнеры воплощают все идеи в великолепно-красивый интерфейс, непревзойденный бренд или удобную и в тоже время современную СRM систему для бизнеса
+								span= texts.DESIGN
+							p= texts.DESIGN_TEXT
 					div(class="col-xs-12 col-sm-6 col-md-3 col-lg-3")
 						.container-item-precess
 							span(class="item-process-icon development")
 							h3(class="margin-class arrow-class") 
-								span Разработка
-							p В процессе дизайна, разработчики уже строят архитектуру баз данных, конфигурируют выбранные фреймверки для воплощения идеи, создают абстрактные шаблоны.
+								span= texts.DEVELOPMENT
+							p= texts.DEVELOPMENT_TEXT
 		include footer.jade
 	script(src="/build/masonry.pkgd.min.js")
 	script(src="/build/controller.js")
