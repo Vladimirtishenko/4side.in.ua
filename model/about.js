@@ -2,6 +2,12 @@ var mongoose = require("../lib/mongoose"),
 	Schema = mongoose.Schema;
 
 var schema = new Schema({
+	description_ru: {
+		type: String
+	},
+	description_en: {
+		type: String
+	},
 	description: {
 		type: String
 	},

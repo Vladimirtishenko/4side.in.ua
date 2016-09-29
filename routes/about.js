@@ -14,7 +14,8 @@ module.exports.get = function(req, res, next) {
             }
             res.render('about', {
                 breadcrumps: _breadcrumps_,
-                data: result
+                data: result,
+                lang: String(req.session.lang)
             });
         }).sort({number:1})
 }

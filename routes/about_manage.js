@@ -16,7 +16,7 @@ module.exports.get = function(req, res, next) {
         res.send({
             abouts: result
         });
-    })
+    }).sort({number: 1})
 
 }
 

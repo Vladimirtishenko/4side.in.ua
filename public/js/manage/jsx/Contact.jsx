@@ -46,16 +46,16 @@ var ContactTemplate = React.createClass({
 				<h1 className="title-for-block">{this.props.title}</h1>
 				<div className="outer-members">
 					<i className="fa fa-pencil edit-about-block" onClick={this.props.edit}></i>
-					<div className="block-for-slides-campany">
 						<div className="area-for-content">
-							{phones}
-							<p>{data.adress}</p>
-							<p>{data.mail}</p>
+							<div className="area-for-content__helpers">
+								{phones}
+								<p>{data.adress}</p>
+								<p>{data.mail}</p>
+							</div>
 						</div>
 						<div className="area-for-content">
 							<img src={data.images} />
 						</div>
-					</div>
 				</div>
 			</div>
 		);
@@ -137,7 +137,8 @@ var EditTemplate = React.createClass({
 								<p>Перечислить телефоны разделяя знаком ';' без пробелов между номерами.</p>
 								<input type="hidden" name='id' defaultValue={data.id}/>
 								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phones ? data.phones.join(";") : null} required="required"/>
-								<input type="text" className="description-portfolio" name="adress" placeholder="Адресс" defaultValue={data.adress} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_en" placeholder="Адресс" defaultValue={data.adress_en} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_ru" placeholder="Адресс" defaultValue={data.adress_ru} required="required"/>
 								<input type="text" className="technology-portfolio" name="mail" placeholder="Email" defaultValue={data.mail} required="required"/>
 							</div>
 						</div>

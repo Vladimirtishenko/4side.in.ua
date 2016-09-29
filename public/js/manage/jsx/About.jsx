@@ -1,197 +1,156 @@
 var About = React.createClass({
 
-		getInitialState: function (){
-			return {
-				content: this.props.content
-			}
-		},
+	getInitialState: function (){
+		return {
+			content: this.props.content,
+			append: false,
+			editNumber: null,
+		}
+	},
 
-		editState: function (event) {
+	editState: function (event) {
 
-			var NumberBlock = event.target.parentNode.getAttribute('name'),
-				self = this;
+		this.setState({
+			append: true,
+			editNumber: event.target.parentNode.getAttribute('name')
+		})
+	},
 
-			this.state.content.abouts.forEach(function (item, i) {
-				if(item.number == NumberBlock){
-					self.state.content.abouts.splice(i, 1);
-				}
-			})
+	componentWillReceiveProps: function(nextProps){
+		this.setState({
+			content: nextProps.content
+		})
+	},
 
-			this.setState({
-				content: this.state.content
-			})
-		},
+	saveInfo: function(event){
 
+		event.preventDefault();
 
-		componentWillReceiveProps: function(nextProps){
-			this.setState({
-				content: nextProps.content
-			})
-		},
+		var variables = event.target.querySelectorAll('textarea');
+			data = 'src='+null+'&number='+this.state.editNumber+'&description='+true,
+			url = '/manage/About',
+			method = 'POST',
+			type = 'application/x-www-form-urlencoded',
+			actionName = 'About';
 
-		newAddInformation: function (descr, num) {
-			var data = 'description='+descr+'&src='+null+'&number='+num,
-				url = '/manage/About',
-				method = 'POST',
-				type = 'application/x-www-form-urlencoded';
+		for (var i = 0; i < variables.length; i++) {
+				data += '&'+variables[i].getAttribute('name')+'='+variables[i].value
+		};
 
-			_controller_.OnlyAddNoResponseData(url, data, method, type, "About");
-		},
+		this.setState({
+			append: false,
+			editNumber: null
+		})
 
-		newAddImages: function(event){
-			var files = event.target.files[0],
-				num = event.target.parentNode.getAttribute('name');
-				url = '/manage/About',
-				method = 'POST',
-				self = this,
-				type = null,
-				actionName = 'About';
+		_controller_.OnlyAddNoResponseData(url, data, method, type, actionName);
+	},
+
+	newAddImages: function(event){
+
+		var files = event.target.files[0],
+			url = '/manage/About',
+			method = 'POST',
+			self = this,
+			type = null,
+			actionName = 'About';
+
+		self.setState({
+			append: false,
+			editNumber: null
+		})
+
+		 _controller_.OnlyAddNoResponseData(url, {upload:files, number: parseInt(this.state.editNumber)}, method, type, actionName); 
+	},
+
+	closeEditZone: function(){
+		this.setState({
+			append: false,
+			editNumber: null
+		})
+	},
+
+	render: function () {
+
+		var ArrayOfTemplateComponents = [],
+			emptyObj = {},
+			objOfEdit;
+
+		for (var i = 0; i < 6; i++) {
+				ArrayOfTemplateComponents.push(
+					<TemplateForAbout 
+						info={this.state.content.abouts[i] && this.state.content.abouts[i].number == i ? this.state.content.abouts[i] : emptyObj} 
+						edit={this.editState} 
+						key={i+Math.random()} 
+						keys={i}/>
+				)
 				
-				 var reader = new FileReader();
-
-				  reader.onload = (function(theFile) {
-				    return function(e) {
-				      	
-				      	self.state.content.abouts.push({description: null, src: e.target.result, number: parseInt(num)})
-				      	self.setState({
-							content: self.state.content
-						})
-
-				    };
-				  })(files);
-
-			      reader.readAsDataURL(files);
-
-			 _controller_.OnlyAddNoResponseData(url, {upload:files, number: parseInt(num)}, method, type, actionName); 
-
-		},
-
-		render: function () {
-			var ArrayOfTemplateComponents = [],
-				ArrayOfComponents = [],
-				relate;
-
-			for (var i = 1; i <= 6; i++) {
-				if(relate = this.inArray(i)){
-					ArrayOfTemplateComponents.push(<TemplateForAboutBusy key={i+Math.random()} infoAdd={this.newAddInformation} edit={this.editState} content={relate} keys={i} />);
-				} else {
-					ArrayOfTemplateComponents.push(<TemplateForAbout key={i+Math.random()} imgAdd={this.newAddImages} infoAdd={this.newAddInformation} keys={i}/>);
+				if(this.state.editNumber && this.state.content.abouts[i] && this.state.editNumber == this.state.content.abouts[i].number){
+					objOfEdit = this.state.content.abouts[i];
 				}
-				if(i%2 == 0){
-					ArrayOfComponents.push(<TemplateOuterForAbout key={i+Math.random()} element={ArrayOfTemplateComponents} />);
-					ArrayOfTemplateComponents = [];
+		};
+
+		return (
+			<div className="About height-full">
+				{this.state.append 
+					? 
+					<TemplateEdit 
+						saveImg={this.newAddImages} 
+						data={objOfEdit} 
+						saveInfo={this.saveInfo} 
+						closeEditZone={this.closeEditZone} 
+						number={this.state.editNumber} /> 
+					: ""
 				}
-			};
-
-			return (
-				<div className="About height-full">
-					<h1 className="title-for-block">{this.props.title}</h1>
-					<div className="outer-all-about-block">
-						{ArrayOfComponents}
-					</div>
+				<h1 className="title-for-block">{this.props.title}</h1>
+				<div className="outer-all-about-block">
+					{ArrayOfTemplateComponents}
 				</div>
-			)
-		},
-		inArray: function(number){
-			var ArrayOfContent = this.state.content;
-			var returnArray = ArrayOfContent.abouts.filter(function (item, i) {
-				if(item.number == number){
-					return item;
-				}
-			});
+			</div>
+		)
+	}
+})
 
-			if(returnArray.length > 0){
-				return returnArray;
-			} else {
-				return null;
-			}
-		}
+var TemplateForAbout = React.createClass({
+	render: function () {
+		var description = this.props.info.description ? <p className="padding-text">{this.props.info.description_ru}</p> : null,
+			src = this.props.info.src ? <img src={this.props.info.src} /> : null;
+		return (
+			<div className="area-for-content" name={this.props.keys}>
+				{description ? description : src ? src : <p className="padding-text">Block are empty</p>}
+				<i className="fa fa-pencil edit-about-block" onClick={this.props.edit}></i>
+			</div>
+		);
+	} 
+})
 
-	})
+var TemplateEdit = React.createClass({
+	render: function () {
 
-	var TemplateForAboutBusy = React.createClass({
-		render: function () {
-			var description = this.props.content[0].description ? <p className="padding-text">{this.props.content[0].description}</p> : null,
-				src = this.props.content[0].src ? <img src={this.props.content[0].src} /> : null;
-			return (
-				<div className="area-for-content" name={this.props.keys}>
-					{description ? description : src}
-					<i className="fa fa-pencil edit-about-block" onClick={this.props.edit}></i>
-				</div>
-			);
-		}
-	})
+		var data = this.props.data ? this.props.data : {},
+			description_ru = this.props.data.description_ru ? this.props.data.description_ru : "",
+			description_en = this.props.data.description_en ? this.props.data.description_en : "";
 
-	var TemplateOuterForAbout = React.createClass({
-		render: function () {
-			return (
-				<div className="block-for-slides-campany">{this.props.element}</div>
-			);
-		}
-	})
-
-	var TemplateForAbout = React.createClass({
-		getInitialState: function(){
-			return {
-				background: TemplateReady
-			}
-		},
-		addText: function () {
-			this.setState({
-				background: TemplateToText
-			})
-		},
-		returnPrevState: function(){
-			this.setState({
-				background: TemplateReady
-			})
-		},
-		contentUpgrade: function(event){
-			event.preventDefault();
-			var descr = event.target.querySelector('[name="description"]').value,
-				num = event.target.querySelector('[name="number"]').value;
-
-			this.props.infoAdd(descr, num);
-		},
-		render: function () {
-			return (
-				<this.state.background edit={this.returnPrevState} addImage={this.props.imgAdd} contentUpgrade={this.contentUpgrade} addText={this.addText} name={this.props.keys}/>	
-			);
-		}
-	})
-
-	var TemplateReady = React.createClass({
-
-		render: function (){
-			return (
-				<div className="area-for-content">
-					<div className="padding-area">
-						<button onClick={this.props.addText} className="button button-no-with">Добавить текст</button>
-						<p className="-or">или</p>
-						<label htmlFor="hidden_file" className="button button-no-with" name={this.props.name}>
-							Добавить изображение
-							<input onChange={this.props.addImage} name='upload' type="file" id="hidden_file" />
-						</label>
-					</div>
-				</div>
-			);
-		}
-	})
-
-	var TemplateToText = React.createClass({
-		render: function(){
-			return (
-				<div className="area-for-content" name={this.props.name}>
-					<i className="fa fa-long-arrow-left edit-about-block" onClick={this.props.edit}></i>
-					<form className="to-text-form" onSubmit={this.props.contentUpgrade}>
+		return (
+			<div className="block-for-slides-campany">
+				<div className="to-text-form">
+					<form className="to-text-form-inner" onSubmit={this.props.saveInfo}>
 						<p>Добавить текст</p>
-						<textarea className="area-of-text" name="description"></textarea>
-						<input type="hidden" name="number" value={this.props.name} />
-						<button type="submit" className="button button-no-with">Сохранить</button>
+						<div className="for-button-absolute">
+							<button type="submit" className="button-save"></button>
+							<span className="button-close" onClick={this.props.closeEditZone}></span>
+						</div>
+						<textarea rows="5" className="area-of-text" name="description_en" placeholder="Description English" defaultValue={description_en} required></textarea>
+						<textarea rows="5" className="area-of-text" name="description_ru" placeholder="Описание на русском" defaultValue={description_ru} required></textarea>
+						<p className="-or">или</p>
 					</form>
-				</div>
-			)
-		}
-	});
+					<label htmlFor="hidden_file" className="button button-no-with">
+						Добавить изображение
+						<input onChange={this.props.saveImg} name='upload' type="file" id="hidden_file" />
+					</label>
+				</div>	
+			</div>
+		);
+	}
+})
 
 allMyComponents['About'] = About;

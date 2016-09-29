@@ -23,9 +23,9 @@ block content
 				- else {classie = ''}
 				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany "+classie)
 					- for (var j = i; j < 2+i; j++)  
-						- if(data[j].description)
+						- if(data[j]['description_'+lang])
 							div(class="-for-text")
-								p= data[j].description
+								p= data[j]['description_'+lang]
 						- else
 							div(class="-for-photo")
 								img(src= data[j].src, alt="")
