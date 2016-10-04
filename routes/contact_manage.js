@@ -11,7 +11,7 @@ module.exports.get = function(req, res, next) {
         if (err) {
             return ErrorSelf(res, err, next);
         }
-        res.json(result);
+        res.json({result: result, lang: String(req.session.lang)});
     })
 }
 

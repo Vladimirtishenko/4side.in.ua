@@ -2,6 +2,7 @@ var Contact = React.createClass({
 	getInitialState: function(){
 		return {
 			content: this.props.content,
+			lang: this.props.lang,
 			template: ContactTemplate
 		}
 	},
@@ -17,19 +18,20 @@ var Contact = React.createClass({
 		})
 	},
 	arrayOfDatas: function(){
-		var property = this.state.content[0];
-		var images = (property && property.src) ? property.src : '/images/map_image_template.gif',
-			phonesArray = (property && property.phone) ? property.phone.split(";") : null,
-			mail = (property && property.mail) ? property.mail : null,
-			adress = (property && property.adress) ? property.adress : null,
-			id = (property && property._id) ? property._id : null;
+		var property = this.state.content[0],
+			data = {};
 
-		return {images: images, mail: mail, adress: adress, phones: phonesArray, id: id};
+		for(var key in property){
+			data[key] = property[key];
+		}
+
+		return data;
 	},
 	render: function () {
 		var data = this.arrayOfDatas();
+		console.log(this.state);
 		return (
-			<this.state.template title={this.props.title} edit={this.edit} getData={data} />
+			<this.state.template title={this.props.title} edit={this.edit} lang={this.state.lang} getData={data} />
 		);
 	}
 	
@@ -38,9 +40,11 @@ var Contact = React.createClass({
 var ContactTemplate = React.createClass({
 	render: function() {
 		var data = this.props.getData;
-		var phones = data.phones ? data.phones.map(function(item, i){
+		console.log(data);
+		console.log(this.props.lang);
+		var phones = (data.phones && data.phones.split(";")) ? data.phones.map(function(item, i){
 				return <p key={i}>{item}</p>
-			}) : null;
+			}) : "";
 		return( 
 			<div className="Contact height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
@@ -49,12 +53,12 @@ var ContactTemplate = React.createClass({
 						<div className="area-for-content">
 							<div className="area-for-content__helpers">
 								{phones}
-								<p>{data.adress}</p>
+								<p>{data['address_'+this.props.lang]}</p>
 								<p>{data.mail}</p>
 							</div>
 						</div>
 						<div className="area-for-content">
-							<img src={data.images} />
+							<img src={data.images ? data.images : '/images/map_image_template.gif'} />
 						</div>
 				</div>
 			</div>
@@ -136,7 +140,7 @@ var EditTemplate = React.createClass({
 							<div className="right-to-desctiption">
 								<p>Перечислить телефоны разделяя знаком ';' без пробелов между номерами.</p>
 								<input type="hidden" name='id' defaultValue={data.id}/>
-								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phones ? data.phones.join(";") : null} required="required"/>
+								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phones ? data.phones.join(";") : ""} required="required"/>
 								<input type="text" className="description-portfolio" name="adress_en" placeholder="Адресс" defaultValue={data.adress_en} required="required"/>
 								<input type="text" className="description-portfolio" name="adress_ru" placeholder="Адресс" defaultValue={data.adress_ru} required="required"/>
 								<input type="text" className="technology-portfolio" name="mail" placeholder="Email" defaultValue={data.mail} required="required"/>
