@@ -51,5 +51,12 @@
 "ERR": "Error",
 "ERR_TEXT": "I'm sorry this page is not on our server or you can not get to it because of the lack of rights, go to ",
 "ERR_GENERAL_LINK": "Home page",
-"ERR_RIGHT_MENU": ", or use the menu on the right"
+"ERR_RIGHT_MENU": ", or use the menu on the right",
+
+"EMPTY": "Block are empty",
+"ADD_ABOUT_TEXT": "Add description",
+"OR": "or",
+"ADD_ABOUT_IMAGE": "Add image",
+"SAVE": "Save",
+"PHONE_RULES": "List the phone numbers and addresses separated by ';' no spaces between the numbers or address."
 }

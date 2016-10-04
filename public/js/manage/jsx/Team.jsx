@@ -2,7 +2,8 @@ var Team = React.createClass({
 	
 	getInitialState: function(){
 		return {
-			content: this.props.content
+			content: this.props.content,
+			lang: this.props.lang
 		}
 	},
 
@@ -13,9 +14,9 @@ var Team = React.createClass({
 	},
 
 	render: function () {
-		var ArrayTeam = this.state.content.team.length > 0 ? this.state.content.team.map(function(item, i){
-			return <TemplateTeam key={i} data={item} context={TemplateWithoutInput} />
-		}): null;
+		var ArrayTeam = this.state.content.length > 0 ? this.state.content.map(function(item, i){
+			return <TemplateTeam key={i} data={item} lang={this.state.lang} context={TemplateWithoutInput} />
+		}.bind(this)): null;
 
 		return (
 			<div className="Team height-full">
@@ -63,7 +64,7 @@ var TemplateTeam = React.createClass({
 	},
 
 	render: function(){	
-		return (<this.state.context delets={this.deleteItem} replace={this.replaceTemplate} data={this.state.data} />);
+		return (<this.state.context delets={this.deleteItem} replace={this.replaceTemplate} lang={this.props.lang} data={this.state.data} />);
 	}	
 })
 
@@ -77,9 +78,9 @@ var TemplateWithoutInput = React.createClass({
 					<i className="fa fa-pencil edit-about-block" onClick={this.props.replace}></i>
 					<i className="fa fa-trash edit-about-block-right" onClick={this.props.delets}></i>
 					<img src={this.props.data.src} />
-					<h3>{this.props.data.name}</h3>
+					<h3>{this.props.data['name_'+this.props.lang]}</h3>
 					<h4>{this.props.data.profession}</h4>
-					<p>{this.props.data.description}</p>
+					<p>{this.props.data['description_'+this.props.lang]}</p>
 				</div>
 			</div>
 		);
@@ -158,9 +159,11 @@ var TemplateWithInput = React.createClass({
 						<img src={this.state.images} />
 						<input type="file" onChange={this.fileReaderImage} name="upload" id="hidden_file" required={this.props.data ? "" : "required"}/>
 					</label>
-					<input type="text" name="name" placeholder="Имя" defaultValue={this.props.data ? this.props.data.name : ""} required="required" />
+					<input type="text" name="name_ru" placeholder="Имя на русском" defaultValue={this.props.data ? this.props.data.name_ru : ""} required="required" />
+					<input type="text" name="name_en" placeholder="Имя на английском" defaultValue={this.props.data ? this.props.data.name_en : ""} required="required" />
 					<input type="text" name="profession" placeholder="Должность" defaultValue={this.props.data ? this.props.data.profession : ""} required="required" />
-					<input type="text" name="description" placeholder="Описание" defaultValue={this.props.data ? this.props.data.description : ""} required="required" />
+					<input type="text" name="description_ru" placeholder="Описание на русском" defaultValue={this.props.data ? this.props.data.description_ru : ""} required="required" />
+					<input type="text" name="description_en" placeholder="Описание на английском" defaultValue={this.props.data ? this.props.data.description_en : ""} required="required" />
 					<input type="hidden" name="id" defaultValue={this.props.data ? this.props.data._id : ""} />
 					<button type="submit"> + </button>
 				</form>

@@ -6,7 +6,11 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    name: {
+    name_ru: {
+        type: String,
+        required: true
+    },
+    name_en: {
         type: String,
         required: true
     },
@@ -15,6 +19,14 @@ var schema = new Schema({
         required: true
     },
     description: {
+        type: String,
+        required: true
+    },
+    description_ru: {
+        type: String,
+        required: true
+    },
+    description_en: {
         type: String,
         required: true
     },

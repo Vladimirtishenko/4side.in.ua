@@ -3,6 +3,7 @@ var Contact = React.createClass({
 		return {
 			content: this.props.content,
 			lang: this.props.lang,
+			translator: this.props.translator,
 			template: ContactTemplate
 		}
 	},
@@ -29,22 +30,27 @@ var Contact = React.createClass({
 	},
 	render: function () {
 		var data = this.arrayOfDatas();
-		console.log(this.state);
 		return (
-			<this.state.template title={this.props.title} edit={this.edit} lang={this.state.lang} getData={data} />
+			<this.state.template title={this.props.title} translator={this.state.translator} edit={this.edit} lang={this.state.lang} getData={data} />
 		);
 	}
 	
 })
 
 var ContactTemplate = React.createClass({
-	render: function() {
-		var data = this.props.getData;
-		console.log(data);
-		console.log(this.props.lang);
-		var phones = (data.phones && data.phones.split(";")) ? data.phones.map(function(item, i){
+
+	parseVariable: function(arr){
+		var el = (arr && arr.split(";")) ? arr.split(";").map(function(item, i){
 				return <p key={i}>{item}</p>
 			}) : "";
+
+		return el;
+	},
+
+	render: function() {
+		var data = this.props.getData,
+			phones = this.parseVariable(data.phone);
+			adress = this.parseVariable(data['adress_'+this.props.lang]);
 		return( 
 			<div className="Contact height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
@@ -53,12 +59,12 @@ var ContactTemplate = React.createClass({
 						<div className="area-for-content">
 							<div className="area-for-content__helpers">
 								{phones}
-								<p>{data['address_'+this.props.lang]}</p>
+								{adress}
 								<p>{data.mail}</p>
 							</div>
 						</div>
 						<div className="area-for-content">
-							<img src={data.images ? data.images : '/images/map_image_template.gif'} />
+							<img src={data.src ? data.src : '/images/map_image_template.gif'} />
 						</div>
 				</div>
 			</div>
@@ -69,7 +75,7 @@ var ContactTemplate = React.createClass({
 var EditTemplate = React.createClass({
 	getInitialState: function(){
 		return {
-			imagesTemplate: this.props.getData.images,
+			imagesTemplate: this.props.getData.src,
 			imagesFile: null
 		}
 	},
@@ -124,7 +130,8 @@ var EditTemplate = React.createClass({
 		reader.readAsDataURL(file);
 	},
 	render: function() {
-		var data = this.props.getData;
+		var data = this.props.getData,
+			translator = this.props.translator;
 		return (
 			<div className="Contact height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
@@ -138,15 +145,15 @@ var EditTemplate = React.createClass({
 								</label>
 							</div>
 							<div className="right-to-desctiption">
-								<p>Перечислить телефоны разделяя знаком ';' без пробелов между номерами.</p>
-								<input type="hidden" name='id' defaultValue={data.id}/>
-								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phones ? data.phones.join(";") : ""} required="required"/>
-								<input type="text" className="description-portfolio" name="adress_en" placeholder="Адресс" defaultValue={data.adress_en} required="required"/>
-								<input type="text" className="description-portfolio" name="adress_ru" placeholder="Адресс" defaultValue={data.adress_ru} required="required"/>
-								<input type="text" className="technology-portfolio" name="mail" placeholder="Email" defaultValue={data.mail} required="required"/>
+								<p>{translator.PHONE_RULES}</p>
+								<input type="hidden" name='id' defaultValue={data._id}/>
+								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phone || ""} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_ru" placeholder="Адресс на русском" defaultValue={data.adress_ru || ""} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_en" placeholder="Адресс на английском" defaultValue={data.adress_en || ""} required="required"/>
+								<input type="text" className="technology-portfolio" name="mail" placeholder="Email" defaultValue={data.mail || ""} required="required"/>
 							</div>
 						</div>
-					<button type="submit" className="button button-center">Сохранить</button>
+					<button type="submit" className="button button-center">{translator.SAVE}</button>
 					</form>
 				</div>
 			</div>

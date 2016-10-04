@@ -2,7 +2,11 @@ var mongoose = require("../lib/mongoose"),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-    adress: {
+    adress_ru: {
+        type: String,
+        required: true
+    },
+    adress_en: {
         type: String,
         required: true
     },

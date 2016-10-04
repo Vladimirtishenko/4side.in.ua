@@ -2,11 +2,19 @@ var mongoose = require("../lib/mongoose"),
 	Schema = mongoose.Schema;
 
 var schema = new Schema({
-	title: {
+	title_ru: {
 		type: String,
 		required: true
 	},
-	description: {
+	title_en: {
+		type: String,
+		required: true
+	},
+	description_ru: {
+		type: String,
+		required: true
+	},
+	description_en: {
 		type: String,
 		required: true
 	},
@@ -14,7 +22,11 @@ var schema = new Schema({
 		type: String ,
 		required: true
 	},
-	origin: {
+	origin_ru: {
+		type: String,
+		required: true
+	},
+	origin_en: {
 		type: String,
 		required: true
 	},

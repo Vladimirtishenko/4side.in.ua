@@ -14,9 +14,7 @@ module.exports.get = function(req, res, next) {
         if (err) {
             return ErrorSelf(res, err, next);
         }
-        res.send({
-            team: result
-        });
+        res.json({result: result, lang: String(req.session.lang)});
     })
 
 }
@@ -42,7 +40,7 @@ module.exports.post = function(req, res, next) {
     var multerStorage = multerCommon('/images/team/'),
         upload = multer({
             storage: multerStorage.storage
-        }).array('upload', 'name', 'profession', 'description', 'id');
+        }).any();
 
     upload(req, res, function(err) {
 

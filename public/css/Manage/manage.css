@@ -229,6 +229,7 @@ label {
     width: 100%;
     position: relative;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .outer-of-team {
     width: 47%;

@@ -3,7 +3,8 @@ var Portfolio = React.createClass({
 	getInitialState: function(){
 		return {
 			template: MainTemplateTable,
-			content: this.props.content
+			content: this.props.content,
+			lang: this.props.lang
 		}
 	},
 
@@ -24,7 +25,7 @@ var Portfolio = React.createClass({
 		return (
 			<div className="Portfolio height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
-				{this.state.template ? <this.state.template data={this.state.content} change={this.changeTemplate}/> : <MainTemplateTable data={this.state.content}/>}
+				{this.state.template ? <this.state.template data={this.state.content} lang={this.state.lang} change={this.changeTemplate}/> : <MainTemplateTable lang={this.state.lang} data={this.state.content}/>}
 			</div>
 		)
 	}
@@ -43,11 +44,12 @@ var MainTemplateTable = React.createClass({
 	},
 
 	render: function(){
+		console.log(this.props.lang);
 		var TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
 				return (
 						<tr key={i}>
 							<td>{i + 1}</td>
-							<td>{item.title}</td>
+							<td>{item['title_'+this.props.lang]}</td>
 							<td><img src={item.src} /></td>
 							<td>
 								<i className="fa fa-pencil" data-id-path={item._id} data-id-category={item.gallery_id}></i>

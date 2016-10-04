@@ -3,6 +3,8 @@ var About = React.createClass({
 	getInitialState: function (){
 		return {
 			content: this.props.content,
+			lang: this.props.lang,
+			translator: this.props.translator,
 			append: false,
 			editNumber: null,
 		}
@@ -25,7 +27,6 @@ var About = React.createClass({
 	saveInfo: function(event){
 
 		event.preventDefault();
-
 		var variables = event.target.querySelectorAll('textarea');
 			data = 'src='+null+'&number='+this.state.editNumber+'&description='+true,
 			url = '/manage/About',
@@ -70,7 +71,6 @@ var About = React.createClass({
 	},
 
 	render: function () {
-
 		var ArrayOfTemplateComponents = [],
 			emptyObj = {},
 			objOfEdit;
@@ -78,14 +78,16 @@ var About = React.createClass({
 		for (var i = 0; i < 6; i++) {
 				ArrayOfTemplateComponents.push(
 					<TemplateForAbout 
-						info={this.state.content.abouts[i] && this.state.content.abouts[i].number == i ? this.state.content.abouts[i] : emptyObj} 
+						info={this.state.content[i] && this.state.content[i].number == i ? this.state.content[i] : emptyObj} 
+						lang={this.state.lang}
+						translator={this.state.translator}
 						edit={this.editState} 
 						key={i+Math.random()} 
 						keys={i}/>
 				)
 				
-				if(this.state.editNumber && this.state.content.abouts[i] && this.state.editNumber == this.state.content.abouts[i].number){
-					objOfEdit = this.state.content.abouts[i];
+				if(this.state.editNumber && this.state.content[i] && this.state.editNumber == this.state.content[i].number){
+					objOfEdit = this.state.content[i];
 				}
 		};
 
@@ -98,7 +100,8 @@ var About = React.createClass({
 						data={objOfEdit} 
 						saveInfo={this.saveInfo} 
 						closeEditZone={this.closeEditZone} 
-						number={this.state.editNumber} /> 
+						number={this.state.editNumber}
+						translator={this.state.translator} /> 
 					: ""
 				}
 				<h1 className="title-for-block">{this.props.title}</h1>
@@ -112,11 +115,12 @@ var About = React.createClass({
 
 var TemplateForAbout = React.createClass({
 	render: function () {
-		var description = this.props.info.description ? <p className="padding-text">{this.props.info.description_ru}</p> : null,
-			src = this.props.info.src ? <img src={this.props.info.src} /> : null;
+		var description = this.props.info.description ? <p className="padding-text">{this.props.info['description_'+this.props.lang]}</p> : null,
+			src = this.props.info.src ? <img src={this.props.info.src} /> : null,
+			translator = this.props.translator;
 		return (
 			<div className="area-for-content" name={this.props.keys}>
-				{description ? description : src ? src : <p className="padding-text">Block are empty</p>}
+				{description ? description : src ? src : <p className="padding-text">{translator.EMPTY}</p>}
 				<i className="fa fa-pencil edit-about-block" onClick={this.props.edit}></i>
 			</div>
 		);
@@ -125,26 +129,23 @@ var TemplateForAbout = React.createClass({
 
 var TemplateEdit = React.createClass({
 	render: function () {
-
-		var data = this.props.data ? this.props.data : {},
-			description_ru = this.props.data.description_ru ? this.props.data.description_ru : "",
-			description_en = this.props.data.description_en ? this.props.data.description_en : "";
-
+		var data = this.props.data || {},
+			translator = this.props.translator;
 		return (
 			<div className="block-for-slides-campany">
 				<div className="to-text-form">
 					<form className="to-text-form-inner" onSubmit={this.props.saveInfo}>
-						<p>Добавить текст</p>
+						<p>{translator.ADD_ABOUT_TEXT}</p>
 						<div className="for-button-absolute">
 							<button type="submit" className="button-save"></button>
 							<span className="button-close" onClick={this.props.closeEditZone}></span>
 						</div>
-						<textarea rows="5" className="area-of-text" name="description_en" placeholder="Description English" defaultValue={description_en} required></textarea>
-						<textarea rows="5" className="area-of-text" name="description_ru" placeholder="Описание на русском" defaultValue={description_ru} required></textarea>
-						<p className="-or">или</p>
+						<textarea rows="5" className="area-of-text" name="description_en" placeholder="Description English" defaultValue={data.description_en || ""} required></textarea>
+						<textarea rows="5" className="area-of-text" name="description_ru" placeholder="Описание на русском" defaultValue={data.description_ru || ""} required></textarea>
+						<p className="-or">{translator.OR}</p>
 					</form>
 					<label htmlFor="hidden_file" className="button button-no-with">
-						Добавить изображение
+						{translator.ADD_ABOUT_IMAGE}
 						<input onChange={this.props.saveImg} name='upload' type="file" id="hidden_file" />
 					</label>
 				</div>	

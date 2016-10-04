@@ -11,12 +11,15 @@ module.exports.get = function(req, res, next) {
         if (err) {
             return ErrorSelf(res, err, next);
         }
-        res.json({result: result, lang: String(req.session.lang)});
+        res.json({result: result, lang: String(req.session.lang), translator: req.i18n_texts});
     })
 }
 
 module.exports.post = function(req, res, next) {
 
+
+    console.log(req.body);
+    
     if (req.body && req.body.src) {
 
         var variable = variables(req.body),
