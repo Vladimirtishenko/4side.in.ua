@@ -3,7 +3,8 @@ var Team = React.createClass({
 	getInitialState: function(){
 		return {
 			content: this.props.content,
-			lang: this.props.lang
+			lang: this.props.lang,
+			translator: this.props.translator
 		}
 	},
 
@@ -15,7 +16,7 @@ var Team = React.createClass({
 
 	render: function () {
 		var ArrayTeam = this.state.content.length > 0 ? this.state.content.map(function(item, i){
-			return <TemplateTeam key={i} data={item} lang={this.state.lang} context={TemplateWithoutInput} />
+			return <TemplateTeam key={i} data={item} translator={this.state.translator} lang={this.state.lang} context={TemplateWithoutInput} />
 		}.bind(this)): null;
 
 		return (
@@ -23,7 +24,7 @@ var Team = React.createClass({
 				<h1 className="title-for-block">{this.props.title}</h1>
 				<div className="outer-members">
 					{ArrayTeam}
-					<TemplateWithInput />
+					<TemplateWithInput translator={this.state.translator} lang={this.state.lang}/>
 				</div>
 			</div>
 		)
@@ -64,7 +65,7 @@ var TemplateTeam = React.createClass({
 	},
 
 	render: function(){	
-		return (<this.state.context delets={this.deleteItem} replace={this.replaceTemplate} lang={this.props.lang} data={this.state.data} />);
+		return (<this.state.context delets={this.deleteItem} replace={this.replaceTemplate} translator={this.props.translator} lang={this.props.lang} data={this.state.data} />);
 	}	
 })
 
@@ -151,6 +152,8 @@ var TemplateWithInput = React.createClass({
 	},
 
 	render: function (){
+		var translator = this.props.translator;
+		console.log(translator.NAME_RU);
 		return (
 			<div className="outer-of-team">
 				<div className="peloader-to-add"><img src="/images/preloader_1.gif" /></div>
@@ -159,11 +162,11 @@ var TemplateWithInput = React.createClass({
 						<img src={this.state.images} />
 						<input type="file" onChange={this.fileReaderImage} name="upload" id="hidden_file" required={this.props.data ? "" : "required"}/>
 					</label>
-					<input type="text" name="name_ru" placeholder="Имя на русском" defaultValue={this.props.data ? this.props.data.name_ru : ""} required="required" />
-					<input type="text" name="name_en" placeholder="Имя на английском" defaultValue={this.props.data ? this.props.data.name_en : ""} required="required" />
-					<input type="text" name="profession" placeholder="Должность" defaultValue={this.props.data ? this.props.data.profession : ""} required="required" />
-					<input type="text" name="description_ru" placeholder="Описание на русском" defaultValue={this.props.data ? this.props.data.description_ru : ""} required="required" />
-					<input type="text" name="description_en" placeholder="Описание на английском" defaultValue={this.props.data ? this.props.data.description_en : ""} required="required" />
+					<input type="text" name="name_ru" placeholder={translator.NAME_RU} defaultValue={this.props.data ? this.props.data.name_ru : ""} required="required" />
+					<input type="text" name="name_en" placeholder={translator.NAME_EN} defaultValue={this.props.data ? this.props.data.name_en : ""} required="required" />
+					<input type="text" name="profession" placeholder={translator.CAREER} defaultValue={this.props.data ? this.props.data.profession : ""} required="required" />
+					<input type="text" name="description_ru" placeholder={translator.DESCRIPTION_RU} defaultValue={this.props.data ? this.props.data.description_ru : ""} required="required" />
+					<input type="text" name="description_en" placeholder={translator.DESCRIPTION_EN} defaultValue={this.props.data ? this.props.data.description_en : ""} required="required" />
 					<input type="hidden" name="id" defaultValue={this.props.data ? this.props.data._id : ""} />
 					<button type="submit"> + </button>
 				</form>

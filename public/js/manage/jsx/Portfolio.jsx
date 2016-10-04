@@ -4,7 +4,8 @@ var Portfolio = React.createClass({
 		return {
 			template: MainTemplateTable,
 			content: this.props.content,
-			lang: this.props.lang
+			lang: this.props.lang,
+			translator: this.props.translator
 		}
 	},
 
@@ -25,7 +26,7 @@ var Portfolio = React.createClass({
 		return (
 			<div className="Portfolio height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
-				{this.state.template ? <this.state.template data={this.state.content} lang={this.state.lang} change={this.changeTemplate}/> : <MainTemplateTable lang={this.state.lang} data={this.state.content}/>}
+				{this.state.template ? <this.state.template data={this.state.content} translator={this.state.translator} lang={this.state.lang} change={this.changeTemplate}/> : <MainTemplateTable translator={this.state.translator} lang={this.state.lang} data={this.state.content}/>}
 			</div>
 		)
 	}
@@ -44,8 +45,8 @@ var MainTemplateTable = React.createClass({
 	},
 
 	render: function(){
-		console.log(this.props.lang);
-		var TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
+		var translator = this.props.translator,
+			TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
 				return (
 						<tr key={i}>
 							<td>{i + 1}</td>
@@ -60,14 +61,14 @@ var MainTemplateTable = React.createClass({
 		}, this) : null;	
 		return(
 			<div className="outer-tebles">
-				<button onClick={this.props.change} className="button add-portfolio">Добавить работу</button>
+				<button onClick={this.props.change} className="button add-portfolio">{translator.ADD_WORK}</button>
 				<table className="table-for-portfolio table">
 					<thead>
 						<tr className="default">  
 							<th>#</th>
-							<th>Название</th>
-							<th>Превью</th>
-							<th>Действия</th>
+							<th>{translator.NAME_OF_PROJECT}</th>
+							<th>{translator.PREVIEW}</th>
+							<th>{translator.ACTIONS}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -237,6 +238,7 @@ var addTemplate = React.createClass({
 	},
 
 	render: function(){
+		var translator = this.props.translator;
 		return (
 			<form onSubmit={this.addFormGalery}>
 				<div className="outer-to-add">
@@ -252,18 +254,21 @@ var addTemplate = React.createClass({
 							</label>
 						</div>
 						<div className="right-to-desctiption">
-							<input type="text" className="title-portfolio" name="title" placeholder="Название проекта" required="required"/>
-							<input type="text" className="description-portfolio" name="description" placeholder="Описание проекта" required="required"/>
-							<input type="text" className="technology-portfolio" name="technology" placeholder="Технологии" required="required"/>
-							<input type="text" className="origin-portfolio" name="origin" placeholder="Особенности" required="required"/>
+							<input type="text" className="title-portfolio" name="title_ru" placeholder={translator.NAME_OF_PROJECT_RU} required="required"/>
+							<input type="text" className="title-portfolio" name="title_en" placeholder={translator.NAME_OF_PROJECT_EN} required="required"/>
+							<input type="text" className="description-portfolio" name="description_ru" placeholder={translator.DESCRIPTION_RU} required="required"/>
+							<input type="text" className="description-portfolio" name="description_en" placeholder={translator.DESCRIPTION_EN} required="required"/>
+							<input type="text" className="technology-portfolio" name="technology" placeholder={translator.TECHNOLOGY} required="required"/>
+							<input type="text" className="origin-portfolio" name="origin_ru" placeholder={translator.FEAUTURES_RU} required="required"/>
+							<input type="text" className="origin-portfolio" name="origin_en" placeholder={translator.FEAUTURES_EN} required="required"/>
 						</div>
 					</div>
 					<div className="outer-all-photos">
-						<h4>Добавить галерею</h4>
+						<h4>{translator.ADD_GALLERY}</h4>
 						<div draggable='true' ref="target" className="add-many-images" onDragOver={this.onDragOver} onDrop={this.onDrops} onDragLeave={this.onDragLeave}>
 							<div className="area-of-drop">
-								<h2>Перетащить файл сюда</h2>
-								<p>или</p>
+								<h2>{translator.MOVE_FILE}</h2>
+								<p>{translator.OR}</p>
 								<input onChange={this.addPhoto} type="file" name="uploads" multiple/>
 							</div>
 						</div>
@@ -271,7 +276,7 @@ var addTemplate = React.createClass({
 							{this.state.imagesContent}
 						</div>
 					</div>
-					<button className="save-form button" type="submit">Сохранить</button>
+					<button className="save-form button" type="submit">{translator.SAVE}</button>
 				</div>
 			</form>
 		);

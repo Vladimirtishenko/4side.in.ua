@@ -147,9 +147,9 @@ var EditTemplate = React.createClass({
 							<div className="right-to-desctiption">
 								<p>{translator.PHONE_RULES}</p>
 								<input type="hidden" name='id' defaultValue={data._id}/>
-								<input type="text" className="title-portfolio" name="phone" placeholder="Телефоны" defaultValue={data.phone || ""} required="required"/>
-								<input type="text" className="description-portfolio" name="adress_ru" placeholder="Адресс на русском" defaultValue={data.adress_ru || ""} required="required"/>
-								<input type="text" className="description-portfolio" name="adress_en" placeholder="Адресс на английском" defaultValue={data.adress_en || ""} required="required"/>
+								<input type="text" className="title-portfolio" name="phone" placeholder={translator.PHONE} defaultValue={data.phone || ""} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_ru" placeholder={translator.ADRESS_RU} defaultValue={data.adress_ru || ""} required="required"/>
+								<input type="text" className="description-portfolio" name="adress_en" placeholder={translator.ADRESS_EN} defaultValue={data.adress_en || ""} required="required"/>
 								<input type="text" className="technology-portfolio" name="mail" placeholder="Email" defaultValue={data.mail || ""} required="required"/>
 							</div>
 						</div>

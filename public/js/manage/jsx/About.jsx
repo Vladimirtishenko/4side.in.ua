@@ -140,8 +140,8 @@ var TemplateEdit = React.createClass({
 							<button type="submit" className="button-save"></button>
 							<span className="button-close" onClick={this.props.closeEditZone}></span>
 						</div>
-						<textarea rows="5" className="area-of-text" name="description_en" placeholder="Description English" defaultValue={data.description_en || ""} required></textarea>
-						<textarea rows="5" className="area-of-text" name="description_ru" placeholder="Описание на русском" defaultValue={data.description_ru || ""} required></textarea>
+						<textarea rows="5" className="area-of-text" name="description_en" placeholder={translator.DESCRIPTION_EN} defaultValue={data.description_en || ""} required></textarea>
+						<textarea rows="5" className="area-of-text" name="description_ru" placeholder={translator.DESCRIPTION_RU} defaultValue={data.description_ru || ""} required></textarea>
 						<p className="-or">{translator.OR}</p>
 					</form>
 					<label htmlFor="hidden_file" className="button button-no-with">

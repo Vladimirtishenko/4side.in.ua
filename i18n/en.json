@@ -58,5 +58,29 @@
 "OR": "or",
 "ADD_ABOUT_IMAGE": "Add image",
 "SAVE": "Save",
-"PHONE_RULES": "List the phone numbers and addresses separated by ';' no spaces between the numbers or address."
+"PHONE_RULES": "List the phone numbers and addresses separated by ';' no spaces between the numbers or address.",
+
+"ADRESS_RU": "Address in Russian",
+"ADRESS_EN": "Address in English",
+
+"DESCRIPTION_RU": "Description of the Russian",
+"DESCRIPTION_EN": "English Description",
+
+"CAREER": "Position",
+
+"NAME_RU": "Name in Russian",
+"NAME_EN": "Name in English",
+
+"NAME_OF_PROJECT": "The name of the project",
+"NAME_OF_PROJECT_RU": "The name of the project on the Russian",
+"NAME_OF_PROJECT_EN": "The name of the project in English",
+"PREVIEW": "Preview",
+"ACTIONS": "Actions",
+"ADD_WORK": "Add job",
+"TECHNOLOGY": "Technology",
+"FEAUTURES_EN": "Features in Russian",
+"FEAUTURES_RU": "Features of the English language",
+"ADD_GALLERY": "Add gallery",
+"MOVE_FILE": "Drag an image here"
+
 }
