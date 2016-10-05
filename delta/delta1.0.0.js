@@ -1,11 +1,13 @@
 use side;
 
-[{name_ru: "Портфолио", name_en: "Portfolio", link: "/porfolio", context: "Portfolio"},
-{name_ru: "Команда", name_en: "Team", link: "/team", context: "Team"},
-{name_ru: "О нас", name_en: "About", link: "/about", context: "About"},
-{name_ru: "Контакты", name_en: "Contact", link: "/contact", context: "Contact"}].forEach(function(item){
-	 db.menus.insert(item);
-})
+if(db.menus.find().count() == 0){
+	[{name_ru: "Портфолио", name_en: "Portfolio", link: "/porfolio", context: "Portfolio"},
+	{name_ru: "Команда", name_en: "Team", link: "/team", context: "Team"},
+	{name_ru: "О нас", name_en: "About", link: "/about", context: "About"},
+	{name_ru: "Контакты", name_en: "Contact", link: "/contact", context: "Contact"}].forEach(function(item){
+		 db.menus.insert(item);
+	});
+}
 
 db.abouts.find().sort({number: 1}).forEach(function(item){
 
