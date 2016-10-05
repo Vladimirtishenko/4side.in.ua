@@ -118,6 +118,7 @@ var About = React.createClass({
 
 var TemplateForAbout = React.createClass({
 	render: function () {
+		console.log(this.props.info);
 		var description = this.props.info.description ? <p className="padding-text">{this.props.info['description_'+this.props.lang]}</p> : null,
 			src = this.props.info.src ? <img src={this.props.info.src} /> : null,
 			translator = this.props.translator;

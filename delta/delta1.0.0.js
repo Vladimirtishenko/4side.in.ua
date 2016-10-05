@@ -7,11 +7,14 @@ use side;
 	 db.menus.insert(item);
 })
 
-db.abouts.find({src: "null"}).sort({number: 1}).forEach(function(item){
+db.abouts.find().sort({number: 1}).forEach(function(item){
 
-	item.description_ru = item.description; 
-	item.description_en = item.description; 
-	item.description = "true";
+	if(item.src == null || item.src == "null"){
+		item.description_ru = item.description; 
+		item.description_en = item.description; 
+		item.description = "true";
+	}
+	
 	db.abouts.save(item)}
 );
 
