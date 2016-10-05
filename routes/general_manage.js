@@ -14,7 +14,7 @@ module.exports.post = function(req, res, next){
             return ErrorSelf(res, err, next);
         }
        console.log(result);
-       res.json({result: result, lang: String(req.session.lang), translator: req.i18n_texts});
+       res.json({result: result, lang: String(req.i18n_lang), translator: req.i18n_texts});
     })
 
 }

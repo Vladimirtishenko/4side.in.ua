@@ -13,7 +13,7 @@ module.exports.get = function(req, res, next) {
         if (err) {
             return ErrorSelf(res, err, next);
         }
-        res.json({result: result, lang: String(req.session.lang), translator: req.i18n_texts});
+        res.json({result: result, lang: String(req.i18n_lang), translator: req.i18n_texts});
     }).sort({number: 1})
 
 }

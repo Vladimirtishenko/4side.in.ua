@@ -40,7 +40,7 @@ module.exports.get = function(req, res, next) {
         res.render('about', {
             breadcrumps: _breadcrumps_,
             data: result,
-            lang: String(req.session.lang)
+            lang: String(req.i18n_lang)
         });
     });
 

@@ -35,15 +35,15 @@ app.use(session({
 }));
 
 app.use(geolang({
-  siteLangs: ["ru","en"],
+  siteLangs: ["en","ru"],
   cookieLangName: "lang"
 }));
 
 
 app.use(i18n({
   translationsPath: path.join(__dirname, 'i18n'),
-  siteLangs: ["ru","en"],
-  defaultLang: "ru",
+  siteLangs: ["en","ru"],
+  defaultLang: "en",
   cookieLangName: "lang"
 }));
 
