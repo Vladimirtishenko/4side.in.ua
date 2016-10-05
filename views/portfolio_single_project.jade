@@ -15,20 +15,20 @@ block content
 										a(href=val.link)= val.inRus
 								else
 									li= val.inRus
-					h1(class="title-of-h1 no-bottom-padding")= data.portfolio.title
+					h1(class="title-of-h1 no-bottom-padding")= data.portfolio["title_"+lang]
 		.container
 			.row
 				.title-for-portfolio-single
 					.left-side
-						img(src=data.portfolio.src, alt=data.portfolio.title)
+						img(src=data.portfolio.src, alt=data.portfolio["title_"+lang])
 					.rigth-side
-						p(class="side-full-description")= data.portfolio.description
-						h4(class="side-technology") Технологии
+						p(class="side-full-description")= data.portfolio["description_"+lang]
+						h4(class="side-technology")= texts.TECHNOLOGY
 							br
 							span=data.portfolio.technology
-						h4(class="side-origin") Особенности
+						h4(class="side-origin")= texts.FEAUTURES
 							br
-							span=data.portfolio.origin
+							span=data.portfolio["origin_"+lang]
 				.side-work-gallery
 						img(src=data.gallery.src[0], alt="")
 

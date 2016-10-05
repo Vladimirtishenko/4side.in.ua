@@ -18,12 +18,12 @@ block content
 					h1(class="title-of-h1")= texts.TEAM
 					p(class="mini-description")= texts.TEAM_TEXT
 					.outer-of-team
-						each value in data
+						each value in data.team
 							.item-team
 								.outer-image-team
 									img(src=value.src)
-								h3= value.name
+								h3= value['name_'+lang]
 								h4= value.profession
-								p= value.description 
+								p= value['description_'+lang] 
 		include footer.jade
 	script(src="/build/controller.js")

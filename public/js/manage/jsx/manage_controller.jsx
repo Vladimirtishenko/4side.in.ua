@@ -117,10 +117,11 @@ function View (MenuItem) {
 
 		getInitialState: function(){
 			return {
-				menu: MenuItem,
+				menu: MenuItem.result,
 				block: null,
 				content: null,
-				lang: null,
+				lang: MenuItem.lang,
+				translator: MenuItem.translator,
 				title: 'Портфолио',
 				errorBlock: 'hidden-error',
 				errorMessage: null
@@ -131,7 +132,7 @@ function View (MenuItem) {
 
 			var context = event.target.getAttribute('name');
 			var title = event.target.getAttribute('data-rus-title');
-			var StateMenuAray = MenuItem.map(function (item, i) {
+			var StateMenuAray = this.state.menu.map(function (item, i) {
 				if(item.context == context) {
 					item.active = true
 				} else {
@@ -157,7 +158,7 @@ function View (MenuItem) {
 		render: function () {
 			return (
 				<div className="outer-all-container">
-					<SideBar menu={this.state.menu} context={this.contextReplace} />
+					<SideBar menu={this.state.menu} lang={this.state.lang} context={this.contextReplace} />
 					<Main block={this.state.block} lang={this.state.lang} translator={this.state.translator} content={this.state.content} title={this.state.title}/>
 					<Error show={this.state.errorBlock} error={this.state.errorMessage}/>
 				</div>
@@ -192,7 +193,7 @@ function View (MenuItem) {
 		render: function () {
 			var MenuArray = this.props.menu ? this.props.menu : null,
 				Menu = MenuArray ? MenuArray.map(function (item, i) {
-					return item.active ? <li key={i} className="active-list"><span>{item.name_rus}</span></li> : <li key={i}><a onClick={this.props.context} name={item.context} data-rus-title={item.name_rus} href="#">{item.name_rus}</a></li>
+					return item.active ? <li key={i} className="active-list"><span>{item["name_"+this.props.lang]}</span></li> : <li key={i}><a onClick={this.props.context} name={item.context} data-rus-title={item["name_"+this.props.lang]} href="#">{item["name_"+this.props.lang]}</a></li>
 				}, this) : null;
 
 			return (

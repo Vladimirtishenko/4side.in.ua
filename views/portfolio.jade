@@ -20,11 +20,11 @@ block content
 		.container-fluid
 			.row
 				div(class="container-of-slider grid")
-					each value in data
+					each value in data.portfolio
 						.grid-item
 							a(class="discription-of-work" href="/portfolio/"+value._id)
-								h3=value.title
-									span=value.description
+								h3=value['title_'+lang]
+									span=value['description_'+lang]
 							img(src=value.tempTitle, alt="")
 			
 		include footer.jade

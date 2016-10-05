@@ -17,18 +17,15 @@ block content
 									li= val.inRus
 					h1(class="title-of-h1")= texts.ABOUT
 					p(class="mini-description")= texts.ABOUT_TEXT
-			- var classie = '';
-			- for (var i = 0; i < data.length; i += 2)
-				- if (i == 2) {classie = 'reverse'}
-				- else {classie = ''}
-				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany "+classie)
-					- for (var j = i; j < 2+i; j++)  
-						- if(data[j]['description_'+lang])
-							div(class="-for-text")
-								p= data[j]['description_'+lang]
-						- else
-							div(class="-for-photo")
-								img(src= data[j].src, alt="")
-			
-		include footer.jade
+			- for (var i = 0; i < data.about.length; i += 2)
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-for-slides-campany "+ ((i == 2) ? "reverse" : "") )
+				- for (var j = i; j < 2+i; j++)  
+					- if (data.about[j]['description_'+lang])
+						div(class="-for-text")
+							p= data.about[j]['description_'+lang]
+					- else
+						div(class="-for-photo")
+							img(src= data.about[j].src, alt="")
+						
+	include footer.jade
 	script(src="/build/controller.js")

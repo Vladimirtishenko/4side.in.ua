@@ -75,6 +75,9 @@ var About = React.createClass({
 			emptyObj = {},
 			objOfEdit;
 
+
+			console.log(this.state.content);
+
 		for (var i = 0; i < 6; i++) {
 				ArrayOfTemplateComponents.push(
 					<TemplateForAbout 

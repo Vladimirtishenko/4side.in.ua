@@ -153,7 +153,6 @@ var TemplateWithInput = React.createClass({
 
 	render: function (){
 		var translator = this.props.translator;
-		console.log(translator.NAME_RU);
 		return (
 			<div className="outer-of-team">
 				<div className="peloader-to-add"><img src="/images/preloader_1.gif" /></div>

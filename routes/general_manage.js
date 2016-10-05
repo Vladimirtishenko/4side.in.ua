@@ -1,12 +1,20 @@
+var Menu = require('../model/menu').Menu;
+var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
+
 module.exports.get = function(req, res, next){
 	res.render('admin_panel');
 }
 
 module.exports.post = function(req, res, next){
-	res.json([
-		{name_rus: "Портфолио", name_us: "Portfolio", link: "/porfolio", context: "Portfolio"},
-		{name_rus: "Команда", name_us: "Team", link: "/team", context: "Team"},
-		{name_rus: "О нас", name_us: "About", link: "/about", context: "About"},
-		{name_rus: "Контакты", name_us: "Contact", link: "/contact", context: "Contact"}
-		])
+
+	console.log(Menu);
+
+	Menu.find({}, function(err, result) {
+        if (err) {
+            return ErrorSelf(res, err, next);
+        }
+       console.log(result);
+       res.json({result: result, lang: String(req.session.lang), translator: req.i18n_texts});
+    })
+
 }

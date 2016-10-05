@@ -78,9 +78,15 @@
 "ACTIONS": "Actions",
 "ADD_WORK": "Add job",
 "TECHNOLOGY": "Technology",
+"FEAUTURES": "Features",
 "FEAUTURES_EN": "Features in Russian",
 "FEAUTURES_RU": "Features of the English language",
 "ADD_GALLERY": "Add gallery",
-"MOVE_FILE": "Drag an image here"
+"MOVE_FILE": "Drag an image here",
 
+"ERROR_LOGIN": "Login or password are incorrect",
+"LOGIN": "Login",
+"PWD": "Password",
+"ENTER": "Enter",
+"LANG": "Language"
 }

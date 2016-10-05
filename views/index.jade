@@ -21,25 +21,25 @@ block content
 						li(class="slider-list-item -blue")
 							img(src="/images/slide_one.png", alt="")
 							.slider-description
-								p(class="slider-author") henry wause
+								p(class="slider-author") henri weuse
 								h2(class="slider-title")= texts.CLASSIC
 								a(href="/portfolio/56eef402b253494b0d0e6201" class="button -light-blue-button-slider")= texts.MORE
 						li(class="slider-list-item -ros")
 							img(src="/images/slide_two.png", alt="")
 							.slider-description
-								p(class="slider-author") henry wause
+								p(class="slider-author") lis master
 								h2(class="slider-title")= texts.WOODS
 								a(href="/portfolio/56eef184b253494b0d0e61fb" class="button -light-rose-button-slider")= texts.MORE
 						li(class="slider-list-item -greens")
 							img(src="/images/slide_three.png", alt="")
 							.slider-description
-								p(class="slider-author") henry wause
+								p(class="slider-author") sleep expert
 								h2(class="slider-title")= texts.EMPIRE
 								a(href="/portfolio/56eef27fb253494b0d0e61fd" class="button -light-green-button-slider")= texts.MORE
 						li(class="slider-list-item -violets")
 							img(src="/images/slide_four.png", alt="")
 							.slider-description
-								p(class="slider-author") henry wause
+								p(class="slider-author") ascania flora
 								h2(class="slider-title")= texts.FLORA
 								a(href="/portfolio/56eef34eb253494b0d0e61ff" class="button -light-violet-button-slider")= texts.MORE
 					.controls-slider
@@ -81,13 +81,13 @@ block content
 		.outer-all-block-portfolio
 			div(class="container-of-slider grid")
 				- var i = 0;
-				each val in data
+				each val in data.portfolio
 					- i++;
 					div(class="grid-item item-"+i)
 						a(class="discription-of-work" href="/portfolio/"+val._id)
-							h3= val.title
-								span= val.description
-						img(src=val.tempTitle, alt=val.title)
+							h3= val['title_'+lang]
+								span= val['description_'+lang]
+						img(src=val.tempTitle, alt=val['title_'+lang])
 		div(class="container -all-to-center")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")

@@ -6,13 +6,13 @@ block content
 			.outer-for-logo-cell
 				.outer-center-block
 					img(src="/images/big_logo-blue.png", alt="")
-					p(class="error-message") Не верно введен логин или пароль
+					p(class="error-message")= texts.ERROR_LOGIN
 					form(action="/login" method="POST" id="form-authorize")
-						p Логин		
+						p= texts.LOGIN		
 						input(type="text", class="form-input", name="username", id="login")
-						p Пароль
+						p= texts.PWD
 						input(type="password", class="form-input", name="password", id="pass")
-						button(type="submit", class="button") Войти
+						button(type="submit", class="button")= texts.ENTER
 		script(src="/js/manage/lib/authorize.js")
 
 		

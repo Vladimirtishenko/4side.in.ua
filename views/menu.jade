@@ -1,4 +1,8 @@
 .container-fixed-menu
+	p(class="side-lang-wrapper")= texts.LANG 
+		|:
+		a(href="?clang=en") EN
+		a(href="?clang=ru") RU
 	ul(class="list-menu")
 		li
 			a(href="/")= texts.GENERAL
@@ -10,6 +14,3 @@
 			a(href="/team")= texts.TEAM
 		li 
 			a(href="/contact")= texts.CONTACT
-		li
-			a(href="?clang=en") EN
-			a(href="?clang=ru") RU

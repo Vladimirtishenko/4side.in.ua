@@ -4,20 +4,23 @@ use side;
 {name_ru: "Команда", name_en: "Team", link: "/team", context: "Team"},
 {name_ru: "О нас", name_en: "About", link: "/about", context: "About"},
 {name_ru: "Контакты", name_en: "Contact", link: "/contact", context: "Contact"}].forEach(function(item){
-	 db.menu.insert(item);
+	 db.menus.insert(item);
 })
 
-db.abouts.find(
-{
-	"src": "null"
-}).forEach(function(item){
+db.abouts.find({src: "null"}).sort({number: 1}).forEach(function(item){
+
 	item.description_ru = item.description; 
 	item.description_en = item.description; 
-
-	item.description = "true"; 
-	
+	item.description = "true";
 	db.abouts.save(item)}
 );
+
+if(db.abouts.find({number: 0}).count() == 0){
+db.abouts.find({}).sort({number: 1}).forEach(function(item){
+	item.number--;
+	db.abouts.save(item)
+});
+}
 
 db.contacts.find({}).forEach(function(item){
 	item.adress_ru = item.adress; 
