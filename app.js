@@ -43,7 +43,7 @@ app.use(geolang({
 app.use(i18n({
   translationsPath: path.join(__dirname, 'i18n'),
   siteLangs: ["en","ru"],
-  defaultLang: "en",
+  defaultLang: "ru",
   cookieLangName: "lang"
 }));
 
