@@ -29,22 +29,6 @@ var schema = new Schema({
 	origin_en: {
 		type: String,
 		required: true
-	},
-	src: {
-		type: String,
-		required: true
-	},
-	tempTitle: {
-		type: String,
-		required: true
-	},
-	date: {
-		type: Date,
-		required: true
-	},
-	gallery_id: {
-		type: String,
-		required: true
 	}
 });
 

@@ -6,13 +6,14 @@ var mongoose = require('mongoose');
 var async = require('async');
 var fs = require('fs');
 var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
+var responseResult = require('../middleware/responseResult').responseResult;
 
 module.exports.get = function(req, res, next) {
     Portfolio.find({}, function(err, result) {
         if (err) {
             return ErrorSelf(res, err, next);
         }
-        res.json({result: result, lang: String(req.i18n_lang), translator: req.i18n_texts});
+        res.json({ result: result, lang: String(req.i18n_lang), translator: req.i18n_texts });
     })
 }
 
@@ -70,99 +71,111 @@ module.exports.delete = function(req, res, next) {
 
 module.exports.post = function(req, res, next) {
 
-    var namefile = {
-        preview: [],
-        tempTitle: [],
-        gallery: []
-    };
-    var storage = multer.diskStorage({
-        destination: function(req, file, callback) {
-            var dir = '/images/portfolio/';
-            namefile.src = dir;
-            callback(null, './public' + dir);
-        },
-        filename: function(req, file, callback) {
-            var filename = sha1(Math.random()) + file.originalname;
-            namefile.src += filename;
-            if (file.fieldname == 'upload_temp_image') {
-                namefile.preview.push(namefile.src);
-            } else if (file.fieldname == 'upload_galery_image') {
-                namefile.gallery.push(namefile.src);
-            } else if (file.fieldname == 'upload_title_image'){
-                namefile.tempTitle.push(namefile.src);
-            }
-            delete namefile.src;
-            callback(null, filename);
-        }
-    });
-    var upload = multer({
-        storage: storage
-    }).any();
+    console.log(Object.keys(req.body).length > 0);
 
+    if (Object.keys(req.body).length > 0) {
+        var variable = variables(req.body);
+        Portfolio.updates({
+            _id: req.body.id
+        }, variable, function(err) {
+            responseResult(err, res);
+        });
 
-    upload(req, res, function(err) {
-        if (err) {
-            res.send({
-                'status': 500,
-                'message': err
-            });
-            return;
-        }
-        var categoryRandom = sha1(Math.random()),
-            _idPreview = req.body.idPreview || new mongoose.mongo.ObjectID(),
-            _idGalery = req.body.idGallery || new mongoose.mongo.ObjectID(),
-            variablesPreview = {
-                title: req.body.title,
-                description: req.body.description,
-                technology: req.body.technology,
-                origin: req.body.origin,
-                src: namefile.preview[0],
-                tempTitle: namefile.tempTitle[0],
-                gallery_id: categoryRandom,
-                date: new Date()
+    } else {
+        var namefile = {
+            preview: [],
+            tempTitle: [],
+            gallery: []
+        };
+        var storage = multer.diskStorage({
+            destination: function(req, file, callback) {
+                var dir = '/images/portfolio/';
+                namefile.src = dir;
+                callback(null, './public' + dir);
             },
-            variablesGalery = {
-                gallery_id: categoryRandom,
-                src: namefile.gallery
+            filename: function(req, file, callback) {
+                var filename = sha1(Math.random()) + file.originalname;
+                namefile.src += filename;
+                if (file.fieldname == 'upload_temp_image') {
+                    namefile.preview.push(namefile.src);
+                } else if (file.fieldname == 'upload_galery_image') {
+                    namefile.gallery.push(namefile.src);
+                } else if (file.fieldname == 'upload_title_image') {
+                    namefile.tempTitle.push(namefile.src);
+                }
+                delete namefile.src;
+                callback(null, filename);
             }
+        });
+        var upload = multer({
+            storage: storage
+        }).any();
 
-        async.series([
-                function(callback) {
-                    Portfolio.update({
-                        _id: _idPreview
-                    }, {
-                        $set: variablesPreview
-                    }, {
-                        upsert: true
-                    }, function(err) {
-                        callback(null, {
-                            status: 200
-                        });
-                    });
+
+        upload(req, res, function(err) {
+            if (err) {
+                res.send({
+                    'status': 500,
+                    'message': err
+                });
+                return;
+            }
+            var categoryRandom = sha1(Math.random()),
+                _idPreview = req.body.idPreview || new mongoose.mongo.ObjectID(),
+                _idGalery = req.body.idGallery || new mongoose.mongo.ObjectID(),
+                variablesPreview = {
+                    title: req.body.title,
+                    description: req.body.description,
+                    technology: req.body.technology,
+                    origin: req.body.origin,
+                    src: namefile.preview[0],
+                    tempTitle: namefile.tempTitle[0],
+                    gallery_id: categoryRandom,
+                    date: new Date()
                 },
-                function(callback) {
-                    Gallery.update({
-                        _id: _idGalery
-                    }, {
-                        $set: variablesGalery
-                    }, {
-                        upsert: true
-                    }, function(err) {
-                        callback(null, {
-                            status: 200
+                variablesGalery = {
+                    gallery_id: categoryRandom,
+                    src: namefile.gallery
+                }
+
+            async.series([
+                    function(callback) {
+                        Portfolio.update({
+                            _id: _idPreview
+                        }, {
+                            $set: variablesPreview
+                        }, {
+                            upsert: true
+                        }, function(err) {
+                            callback(null, {
+                                status: 200
+                            });
                         });
-                    });
-                }
-            ],
-            function(err, results) {
-                if (err) {
-                    res.send({
-                        'status': 500,
-                        'message': err
-                    });
-                }
-                res.json(results[results.length - 1]);
-            });
-    });
+                    },
+                    function(callback) {
+                        Gallery.update({
+                            _id: _idGalery
+                        }, {
+                            $set: variablesGalery
+                        }, {
+                            upsert: true
+                        }, function(err) {
+                            callback(null, {
+                                status: 200
+                            });
+                        });
+                    }
+                ],
+                function(err, results) {
+                    if (err) {
+                        res.send({
+                            'status': 500,
+                            'message': err
+                        });
+                    }
+                    res.json(results[results.length - 1]);
+                });
+        });
+    }
 
 }

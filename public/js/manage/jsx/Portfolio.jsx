@@ -5,13 +5,16 @@ var Portfolio = React.createClass({
 			template: MainTemplateTable,
 			content: this.props.content,
 			lang: this.props.lang,
-			translator: this.props.translator
+			translator: this.props.translator,
+			id: null
 		}
 	},
 
-	changeTemplate: function(){
+	changeTemplate: function(edit, event){
+		var id = (event && event.target && event.target.getAttribute('data-id-number')) || null;
 		this.setState({
-			template: addTemplate
+			template: edit,
+			id: id
 		})
 	},
 
@@ -26,7 +29,7 @@ var Portfolio = React.createClass({
 		return (
 			<div className="Portfolio height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
-				{this.state.template ? <this.state.template data={this.state.content} translator={this.state.translator} lang={this.state.lang} change={this.changeTemplate}/> : <MainTemplateTable translator={this.state.translator} lang={this.state.lang} data={this.state.content}/>}
+				<this.state.template id={this.state.id} data={this.state.content} translator={this.state.translator} lang={this.state.lang} change={this.changeTemplate}/>
 			</div>
 		)
 	}
@@ -46,6 +49,8 @@ var MainTemplateTable = React.createClass({
 
 	render: function(){
 		var translator = this.props.translator,
+			edit = this.props.change.bind(null, EditTemplate),
+			add = this.props.change.bind(null, addTemplate),
 			TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
 				return (
 						<tr key={i}>
@@ -53,7 +58,7 @@ var MainTemplateTable = React.createClass({
 							<td>{item['title_'+this.props.lang]}</td>
 							<td><img src={item.src} /></td>
 							<td>
-								<i className="fa fa-pencil" data-id-path={item._id} data-id-category={item.gallery_id}></i>
+								<i className="fa fa-pencil" data-id-number={i} data-id-path={item._id} data-id-category={item.gallery_id} onClick={edit}></i>
 								<i className="fa fa-trash" data-id-path={item._id} data-id-category={item.gallery_id} onClick={this.deleteItem}></i>
 							</td>
 						</tr>
@@ -61,7 +66,7 @@ var MainTemplateTable = React.createClass({
 		}, this) : null;	
 		return(
 			<div className="outer-tebles">
-				<button onClick={this.props.change} className="button add-portfolio">{translator.ADD_WORK}</button>
+				<button onClick={add} className="button add-portfolio">{translator.ADD_WORK}</button>
 				<table className="table-for-portfolio table">
 					<thead>
 						<tr className="default">  
@@ -280,6 +285,46 @@ var addTemplate = React.createClass({
 				</div>
 			</form>
 		);
+	}
+})
+
+var EditTemplate = React.createClass({
+	updateDescription: function(event){
+		event.preventDefault();
+		var input = event.target.querySelectorAll('input[type="text"]'),
+			data = 'id='+this.props.data[this.props.id]._id,
+			url = '/manage/Portfolio',
+			method = 'POST',
+			type = 'application/x-www-form-urlencoded',
+			actionName = 'Portfolio';
+
+		for (var i = 0; i < input.length; i++) {
+			data += '&'+input[i].getAttribute('name')+'='+input[i].value
+		};
+
+		_controller_.OnlyAddNoResponseData(url, data, method, type, actionName);
+	},
+	render: function(){
+		var translator = this.props.translator,
+			data = this.props.data[this.props.id];
+		return (
+			<form onSubmit={this.updateDescription}>
+				<div className="outer-to-add">
+					<div className="outer-levels-step">
+						<div className="right-to-desctiption">
+							<input type="text" className="title-portfolio" name="title_ru" placeholder={translator.NAME_OF_PROJECT_RU} defaultValue={data.title_ru} required="required"/>
+							<input type="text" className="title-portfolio" name="title_en" placeholder={translator.NAME_OF_PROJECT_EN} defaultValue={data.title_en} required="required"/>
+							<input type="text" className="description-portfolio" name="description_ru" placeholder={translator.DESCRIPTION_RU} defaultValue={data.description_ru} required="required"/>
+							<input type="text" className="description-portfolio" name="description_en" placeholder={translator.DESCRIPTION_EN} defaultValue={data.description_en} required="required"/>
+							<input type="text" className="technology-portfolio" name="technology" placeholder={translator.TECHNOLOGY} defaultValue={data.technology} required="required"/>
+							<input type="text" className="origin-portfolio" name="origin_ru" placeholder={translator.FEAUTURES_RU} defaultValue={data.origin_ru} required="required"/>
+							<input type="text" className="origin-portfolio" name="origin_en" placeholder={translator.FEAUTURES_EN} defaultValue={data.origin_en} required="required"/>
+						</div>
+					</div>
+					<button className="save-form button" type="submit">{translator.SAVE}</button>
+				</div>
+			</form>
+		)
 	}
 })
 
