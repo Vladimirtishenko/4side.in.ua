@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var async = require('async');
 var fs = require('fs');
 var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
+var variables = require('../middleware/variables').Variables;
 var responseResult = require('../middleware/responseResult').responseResult;
 
 module.exports.get = function(req, res, next) {
@@ -71,11 +72,12 @@ module.exports.delete = function(req, res, next) {
 
 module.exports.post = function(req, res, next) {
 
-    console.log(Object.keys(req.body).length > 0);
+    
 
     if (Object.keys(req.body).length > 0) {
         var variable = variables(req.body);
-        Portfolio.updates({
+
+        Portfolio.update({
             _id: req.body.id
         }, variable, function(err) {
             responseResult(err, res);
