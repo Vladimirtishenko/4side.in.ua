@@ -101,8 +101,8 @@ Modal.prototype.letterSend = function(event) {
 new Modal();
 
 function Slider(element, list) {
-    
-    if(!element && !list) return;
+
+    if(!element) return;
 
     var self = this;
 
@@ -409,7 +409,7 @@ GalleryAjax.prototype.loadGallery = function() {
 new GalleryAjax(document.querySelector('.side-work-gallery'));
 
 function startAsync(){
-    new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));
+    new Slider(document.querySelector(".to-index-general"), document.querySelector(".slider-list"));
 }
 
 function Grid() {

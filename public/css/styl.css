@@ -330,6 +330,10 @@ a {
   position: relative;
 }
 
+.side-for-art {
+  width: 100%;
+}
+
 .slider-list {
   padding: 0;
   margin: 0;

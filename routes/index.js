@@ -14,4 +14,6 @@ app.get("/portfolio/:id", require("./portfolio_single_project").get);
 
 app.post("/mail", require("./mail").post);
 
+app.get("/art", require("./art").get);
+
 }

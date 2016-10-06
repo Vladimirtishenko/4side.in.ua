@@ -1,0 +1,43 @@
+extends layout
+
+block content
+	include menu.jade
+	.container-all-outer
+		header(class="header-to-site")
+			a(href="/" class="logo-for-site")
+				img(src="/images/logo.png", class="-logo-web", alt="Logo")
+				img(src="/images/logo-mobile.png", class="-logo-mobile" alt="Logo Mobile")
+			a(href="#" class="menu-to-site")
+				span(class="first-line")
+				span(class="two-line")
+				span(class="third-line")
+			a(href="#" class="brif-for-site")= texts.REQUEST
+		.container-fluid
+			.row
+				div(class="slider-side")
+					ul(class="slider-list side-for-art")
+						li(class="slider-list-item side-for-art -blue")
+							img(src="/images/slide_one.png", alt="")
+							.slider-description
+								p(class="slider-author") 
+								h2(class="slider-title")= texts.ART
+								a(href="/portfolio/56eef402b253494b0d0e6201" class="button -light-blue-button-slider")= texts.ART_GALLERY
+		div(class="container")
+			.row
+				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12")
+					h2(class="name-of-services")= texts.SERVICES
+					p(class="name-of-mini-description")= texts.SERVICES_TEXT
+		.outer-all-block-portfolio
+			div(class="container-of-slider grid")
+				- var i = 0;
+				each val in data.portfolio
+					- i++;
+					div(class="grid-item item-"+i)
+						a(class="discription-of-work" href="/portfolio/"+val._id)
+							h3= val['title_'+lang]
+								span= val['description_'+lang]
+						img(src=val.tempTitle, alt=val['title_'+lang])
+		include footer.jade
+	script(src="/build/masonry.pkgd.min.js")
+	script(src="/build/controller.js")
+	
