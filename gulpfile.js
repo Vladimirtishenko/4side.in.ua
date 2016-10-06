@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 
 gulp.task('js', function () {
     return gulp.src('./public/js/*.js')
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('./public/build/'));
 });
 
