@@ -49,8 +49,8 @@ var MainTemplateTable = React.createClass({
 
 	render: function(){
 		var translator = this.props.translator,
-			edit = this.props.change.bind(null, EditTemplate),
-			add = this.props.change.bind(null, addTemplate),
+			edit = this.props.change.bind(null, PortfolioEditTemplate),
+			add = this.props.change.bind(null, PortfolioAddTemplate),
 			TableArray = this.props.data.length > 0 ? this.props.data.map(function(item, i){
 				return (
 						<tr key={i}>
@@ -85,7 +85,7 @@ var MainTemplateTable = React.createClass({
 	}
 })
 
-var addTemplate = React.createClass({
+var PortfolioAddTemplate = React.createClass({
 	
 	getInitialState: function(){
 		return {
@@ -288,7 +288,7 @@ var addTemplate = React.createClass({
 	}
 })
 
-var EditTemplate = React.createClass({
+var PortfolioEditTemplate = React.createClass({
 	updateDescription: function(event){
 		event.preventDefault();
 		var input = event.target.querySelectorAll('input[type="text"]'),
