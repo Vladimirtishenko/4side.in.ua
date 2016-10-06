@@ -364,9 +364,9 @@ SandwichMenu.prototype.actions = function(element, self) {
 
 var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
 
-function GalleryAjax() {
+function GalleryAjax(elem) {
 
-    if (typeof local_data != 'object') return;
+    if (typeof local_data != 'object' || !elem) return;
 
     var self = this,
         preloadImage = new Image();
@@ -406,7 +406,7 @@ GalleryAjax.prototype.loadGallery = function() {
 
 }
 
-new GalleryAjax();
+new GalleryAjax(document.querySelector('.side-work-gallery'));
 
 function startAsync(){
     new Slider(document.querySelector(".slider-side"), document.querySelector(".slider-list"));

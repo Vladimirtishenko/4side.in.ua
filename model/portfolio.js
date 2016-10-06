@@ -29,7 +29,19 @@ var schema = new Schema({
 	origin_en: {
 		type: String,
 		required: true
-	}
+	},
+	src: {
+ 		type: String,
+ 	},
+ 	tempTitle: {
+		type: String,
+	},
+	date: {
+		type: Date,
+	},
+	gallery_id: {
+		type: String,
+  	}
 });
 
 exports.Portfolio = mongoose.model("Portfolio", schema);
