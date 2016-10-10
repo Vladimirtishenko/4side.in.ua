@@ -41,7 +41,7 @@ module.exports.get = function(req, res, next) {
         res.render('index', {
             data: result,
             lang: String(req.i18n_lang),
-            title: "4SIDE Web Agency"
+            title: req.i18n_texts.TEXT_TITLE
         });
     });
 
