@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /manage/
+Host: www.4side.in.ua
