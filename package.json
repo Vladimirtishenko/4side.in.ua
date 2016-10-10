@@ -29,6 +29,7 @@
     "nodemailer-smtp-transport": "^2.4.1",
     "serve-favicon": "~2.3.0",
     "sha1": "^1.1.1",
+    "sitemap-generator": "^4.1.1",
     "util": "^0.10.3"
   },
   "devDependencies": {
