@@ -351,6 +351,13 @@ a {
   float: left;
 }
 
+.side-art {
+  background: url("../images/art.jpg");
+  background-repeat: no-repeat;
+  height: 702px !important;
+  background-position: 50% 50%;
+}
+
 .container-item-serv {
   margin-bottom: 60px;
 }

@@ -46,6 +46,7 @@ module.exports.get = function(req, res, next) {
 
         res.render('art', {
             data: result,
+            breadcrumps: _breadcrumps_,
             lang: String(req.i18n_lang)
         });
     });
