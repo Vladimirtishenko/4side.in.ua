@@ -14,7 +14,8 @@ module.exports.get = function(req, res, next) {
             }
             res.render('contact', {
                 breadcrumps: _breadcrumps_,
-                data: result
+                data: result,
+                title: req.i18n_texts.CONTACT_TEXT,
             });
         })
 

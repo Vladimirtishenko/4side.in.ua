@@ -40,7 +40,8 @@ module.exports.get = function(req, res, next) {
         res.render('team', {
             breadcrumps: _breadcrumps_,
             data: result,
-            lang: String(req.i18n_lang)
+            lang: String(req.i18n_lang),
+            title: String(req.i18n_texts.TEAM_TEXT)
         });
     });
 

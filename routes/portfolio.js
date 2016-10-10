@@ -47,7 +47,8 @@ module.exports.get = function(req, res, next) {
         res.render('portfolio', {
             breadcrumps: _breadcrumps_,
             data: result,
-            lang: String(req.i18n_lang)
+            lang: String(req.i18n_lang),
+            title: req.i18n_texts.PORTFOLIO_TEXT
         });
     });
 

@@ -51,10 +51,13 @@ module.exports.get = function(req, res, next) {
             inRus: result.portfolio['title_'+String(req.session.lang)]
         }], req.i18n_texts.GENERAL);
 
+        console.log(res);
+
         res.render('portfolio_single_project', {
             breadcrumps: _breadcrumps_,
             data: result,
-            lang: String(req.i18n_lang)
+            lang: String(req.i18n_lang),
+            title: result.portfolio['title_'+req.i18n_lang]
         });
     });
 
