@@ -102,8 +102,6 @@ Modal.prototype.letterSend = function(event) {
 
 }
 
-new Modal();
-
 function Slider(element, list) {
 
     if(!element) return;
@@ -366,8 +364,6 @@ SandwichMenu.prototype.actions = function(element, self) {
 
 }
 
-var _SandwichMenu_ = new SandwichMenu(document.querySelector(".menu-to-site"));
-
 function GalleryAjax(elem) {
 
     if (typeof local_data != 'object' || !elem) return;
@@ -409,13 +405,6 @@ GalleryAjax.prototype.loadGallery = function() {
     }
 
 }
-
-new GalleryAjax(document.querySelector('.side-work-gallery'));
-
-function startAsync(){
-    new Slider(document.querySelector(".to-index-general"), document.querySelector(".slider-list"));
-}
-
 function Grid() {
 
     var msnry = (typeof Masonry == 'function') ? new Masonry('.grid', {
@@ -427,6 +416,10 @@ function Grid() {
 
 
 function allHandlerToload() {
+    new Slider(document.querySelector(".to-index-general"), document.querySelector(".slider-list"));
+    new Modal();
+    new SandwichMenu(document.querySelector(".menu-to-site"));
+    new GalleryAjax(document.querySelector('.side-work-gallery'));
     Grid(); // Load Grig Portfolio Layout
 }
 
@@ -462,5 +455,4 @@ function transformY(t, d) {
     return tr
 }
 
-window.addEventListener("load", allHandlerToload)
-window.addEventListener("DOMContentLoaded", startAsync)
+window.addEventListener("load", allHandlerToload);
