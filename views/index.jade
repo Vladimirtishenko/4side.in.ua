@@ -79,15 +79,15 @@ block content
 								h3= texts.BUSSINES
 								p= texts.BUSSINES_TEXT
 		.outer-all-block-portfolio
-			div(class="container-of-slider grid")
+			div(class="container-of-slider grid" itemscope itemtype="http://schema.org/Product")
 				- var i = 0;
 				each val in data.portfolio
 					- i++;
 					div(class="grid-item item-"+i)
-						a(class="discription-of-work" href="/portfolio/"+val._id)
-							h3= val['title_'+lang]
-								span= val['description_'+lang]
-						img(src=val.tempTitle, alt=val['title_'+lang])
+						a(itemprop="url" class="discription-of-work" href="/portfolio/"+val._id)
+							h3(itemprop="name")= val['title_'+lang]
+								span(itemprop="description")= val['description_'+lang]
+						img(itemprop="image" src=val.tempTitle, alt=val['title_'+lang])
 		div(class="container -all-to-center")
 			.row
 				div(class="col-xs-12 col-sm-12 col-md-12 col-lg-12 counts-process")

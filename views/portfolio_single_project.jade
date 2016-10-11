@@ -18,11 +18,11 @@ block content
 					h1(class="title-of-h1 no-bottom-padding")= data.portfolio["title_"+lang]
 		.container
 			.row
-				.title-for-portfolio-single
+				div(class="title-for-portfolio-single" itemscope itemtype="http://schema.org/Product")
 					.left-side
-						img(src=data.portfolio.src, alt=data.portfolio["title_"+lang])
+						img(itemprop="image" src=data.portfolio.src, alt=data.portfolio["title_"+lang])
 					.rigth-side
-						p(class="side-full-description")= data.portfolio["description_"+lang]
+						p(itemprop="description" class="side-full-description")= data.portfolio["description_"+lang]
 						h4(class="side-technology")= texts.TECHNOLOGY
 							br
 							span=data.portfolio.technology
