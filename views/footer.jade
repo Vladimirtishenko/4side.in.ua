@@ -11,17 +11,17 @@ div(class="container-fluid -light-blue -side-for-logo")
 						p(class="text-for-subscribe")= texts.POLICY
 div(class="container-fluid -dark-grey")
 	.row
-		div(class="footer-container")
+		div(class="footer-container" itemscope itemtype="http://schema.org/Organization")
 			div(class="col-xs-12 col-sm-5 col-md-4 col-lg-4")
 				- var adress_tmp = data.contact ? data.contact[0] : data[0];
 				- var adress = adress_tmp['adress_'+lang] && adress_tmp['adress_'+lang].split(";") ? adress_tmp['adress_'+lang].split(";") : []
 				each contact in adress
-					p= contact
-				p E-mail: support@4side.in.ua
+					p(itemprop="streetAddress")= contact
+				p(itemprop="email") E-mail: support@4side.in.ua
 			div(class="col-xs-12 col-sm-2 col-md-4 col-lg-4 -center-align")
 				span(class="mini-logo")
 			div(class="col-xs-12 col-sm-5 col-md-4 col-lg-4 -rigth-align")
-				p © 2016 4Side Web Agency All rights reserved
+				p(itemprop="name") © 2016 4SIDE Web Agency All rights reserved
 				.social-share-button
 					a(href="https://vk.com/4sideWebAgency" target="_blank" class="vk social-link")
 					a(href="https://www.facebook.com/groups/1586755234985038/" target="_blank" class="fb social-link")

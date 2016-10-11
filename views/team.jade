@@ -21,7 +21,7 @@ block content
 						each value in data.team
 							.item-team
 								.outer-image-team
-									img(src=value.src)
+									img(src=value.src alt="4SIDE " + value['name_'+lang])
 								h3= value['name_'+lang]
 								h4= value.profession
 								p= value['description_'+lang] 

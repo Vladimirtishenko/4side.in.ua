@@ -25,7 +25,7 @@ block content
 							a(class="discription-of-work" href="/portfolio/"+value._id)
 								h3=value['title_'+lang]
 									span=value['description_'+lang]
-							img(src=value.tempTitle, alt="")
+							img(src=value.tempTitle, alt=value['title_'+lang])
 			
 		include footer.jade
 	script(src="/build/masonry.pkgd.min.js")

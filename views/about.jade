@@ -25,7 +25,7 @@ block content
 							p= data.about[j]['description_'+lang]
 					- else
 						div(class="-for-photo")
-							img(src= data.about[j].src, alt="")
+							img(src= data.about[j].src, alt= texts.TEXT_TITLE_ALT_EMPTY)
 						
 		include footer.jade
 	script(src="/build/controller.js")

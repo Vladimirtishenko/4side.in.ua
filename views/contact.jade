@@ -28,6 +28,6 @@ block content
 								p(class="-side-adress")= value_adress	 
 						p(class="-side-mail")= data[0].mail
 					div(class="-for-photo")
-						img(src=data[0].src, alt="")
+						img(src=data[0].src, alt=texts.TEXT_TITLE_ALT_EMPTY)
 		include footer.jade
 	script(src="/build/controller.js")
