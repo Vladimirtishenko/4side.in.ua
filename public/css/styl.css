@@ -727,6 +727,13 @@ a {
   border-bottom: 1px solid transparent;
 }
 
+.side-lang-wrapper span {
+  font-size: 11px;
+  display: inline-block;
+  margin-left: 7px;
+  color: #787878;
+}
+
 .outers-to-block {
   padding: 25px 0;
   float: right;

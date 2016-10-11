@@ -1,8 +1,12 @@
 .container-fixed-menu
 	p(class="side-lang-wrapper")= texts.LANG 
 		|:
-		a(href="?clang=en") EN
-		a(href="?clang=ru") RU
+		- if (lang == 'ru')
+			a(href="?clang=en") EN
+			span RU
+		- else
+			span EN
+			a(href="?clang=ru") RU
 	ul(class="list-menu")
 		li
 			a(href="/")= texts.GENERAL
