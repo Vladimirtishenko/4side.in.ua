@@ -7,6 +7,8 @@ var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
 
+    res.locals.path = req.url;
+ 
     var _id = req.params.id;
 
     Async.waterfall([

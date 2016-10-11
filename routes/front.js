@@ -5,6 +5,8 @@ var Async = require('async');
 
 module.exports.get = function(req, res, next) {
 
+    res.locals.path = req.url;
+
     Async.waterfall([
         function(callback) {
 

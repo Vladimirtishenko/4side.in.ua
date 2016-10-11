@@ -6,6 +6,8 @@ var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
 
+    res.locals.path = req.url;
+    
     var _breadcrumps_ = new Breadcrumps([{
         inRus: req.i18n_texts.ABOUT
     }], req.i18n_texts.GENERAL);

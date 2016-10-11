@@ -3,6 +3,9 @@ var Contact = require('../model/contact').Contact;
 var ErrorSelf = require('../middleware/ErrorSelf').ErrorSelf;
 
 module.exports.get = function(req, res, next) {
+    
+    res.locals.path = req.url;
+    
     var _breadcrumps_ = new Breadcrumps([{
         inRus: req.i18n_texts.CONTACT
     }], req.i18n_texts.GENERAL);
