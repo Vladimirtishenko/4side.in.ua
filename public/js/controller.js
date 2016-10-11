@@ -24,16 +24,20 @@ function Modal() {
     var self = this;
 
     this.Myscroll = null;
-
+    this.script = document.createElement('script');
     this.buttonOpen = document.querySelector('.brif-for-site');
     this.buttonClose = document.querySelector('.side-modal-close');
     this.blurElement = document.querySelector('.container-all-outer');
     this.openElementModal = document.querySelector('.side-modal-outer');
     this.form = document.getElementById('modal-letter');
+    this.script.src = "/build/iscroll.js";
+    document.body.appendChild(this.script);
 
     this.buttonOpen.addEventListener('click', self.openHandler.bind(self));
     this.buttonClose.addEventListener('click', self.closeHandler.bind(self));
     this.form.addEventListener('submit', self.letterSend.bind(self));
+
+
 
 }
 
