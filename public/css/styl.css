@@ -29,15 +29,11 @@ p {
 a:focus,
 a:hover {
   color: #508dcb;
+  text-decoration: none;
 }
 
 a {
   color: #508dcb;
-}
-
-.-blur {
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
 }
 
 .container-all-outer {
@@ -690,6 +686,14 @@ a {
   text-decoration: none;
 }
 
+.brif-for-site:active {
+  color: #fff;
+}
+
+.brif-for-site:focus {
+  color: #fff;
+}
+
 .brif-for-site.colors-blue {
   color: #508dcb;
   border-bottom: 1px solid rgba(80,141,203,0.5);
@@ -697,6 +701,10 @@ a {
 
 .brif-for-site.colors-blue:hover {
   border-bottom: 1px solid transparent;
+}
+
+.brif-for-site.colors-blue:active {
+  color: #508dcb;
 }
 
 .menu-to-site {
