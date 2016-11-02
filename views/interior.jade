@@ -15,7 +15,7 @@ block content
 										a(href=val.link)= val.inRus
 								else
 									li= val.inRus
-					h1(class="title-of-h1")= texts.ART
+					h1(class="title-of-h1")= texts.INTERIOR_TITLE
 					p(class="mini-description")= texts.ART_TEXT
 		.outer-all-block-portfolio
 			div(class="container-of-slider grid")
@@ -23,10 +23,10 @@ block content
 				each val in data.portfolio
 					- i++;
 					div(class="grid-item item-"+i)
-						a(class="discription-of-work" href="/portfolio/"+val._id)
+						a(class="discription-of-work" href="/interior/"+val._id)
 							h3= val['title_'+lang]
 								span= val['description_'+lang]
-						img(src=val.tempTitle, alt=val['title_'+lang])		
+						img(src=val.src[0], alt=val['title_'+lang])		
 						
 		include footer.jade
 	script(src="/build/masonry.pkgd.min.js" async)

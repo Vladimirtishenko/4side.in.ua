@@ -12,6 +12,10 @@ app.get("/portfolio", require("./portfolio").get);
 
 app.get("/portfolio/:id", require("./portfolio_single_project").get);
 
+app.get("/interior", require("./interior").get);
+
+app.get("/interior/:id", require("./interior_single").get);
+
 app.post("/mail", require("./mail").post);
 
 app.get("/art", require("./art").get);

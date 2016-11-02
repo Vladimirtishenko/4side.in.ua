@@ -256,6 +256,19 @@ label {
     box-shadow: none;
     margin: 20px 0;
 }
+
+.right-to-desctiption select {
+    width: 80%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: 20px 0;
+    height: 40px;
+    background: transparent;
+    border-bottom: 1px solid #ddd;
+}
+
+
 .for-for-team-edit-or-add > button {
     width: 30px;
     height: 30px;
@@ -338,6 +351,11 @@ label {
     float: right;
     width: 70%;
 }
+
+.right-to-desctiption-else{
+    width: 100%;
+}
+
 .add-gen-photo {
     width: 100%;
     cursor: pointer;

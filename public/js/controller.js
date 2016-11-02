@@ -370,15 +370,16 @@ function GalleryAjax(elem) {
 
     var self = this,
         preloadImage = new Image();
+        data = local_data.gallery ? local_data.gallery : local_data.portfolio;
 
     preloadImage.src = '/images/proloader_opacity.gif';
 
     this.preload = document.createElement('div');
     this.preload.appendChild(preloadImage);
 
-    local_data.gallery.src.splice(0, 1);
+    data.src.splice(0, 1);
 
-    this.galery = local_data.gallery.src;
+    this.galery = data.src;
 
     this.container = document.querySelector('.side-work-gallery');
     this.state = true;

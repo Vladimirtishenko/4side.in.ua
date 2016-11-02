@@ -9,14 +9,14 @@ module.exports.get = function(req, res, next) {
     res.locals.path = req.url;
     
     var _breadcrumps_ = new Breadcrumps([{
-        inRus: req.i18n_texts.ART
+        inRus: req.i18n_texts.INTERIOR
     }], req.i18n_texts.GENERAL);
 
 
     Async.waterfall([
         function(callback) {
 
-             PortfolioElse.find({"category": "art"},
+             PortfolioElse.find({category: "interior"},
                 function(err, result) {
 
                     if(!result || err) return callback('error');
@@ -46,10 +46,10 @@ module.exports.get = function(req, res, next) {
             return ErrorSelf(res, err, next);
         }
 
-        res.render('art', {
+        res.render('interior', {
             data: result,
             breadcrumps: _breadcrumps_,
-            title: req.i18n_texts.ART_TEXT,
+            title: req.i18n_texts.INTERIOR_TITLE,
             lang: String(req.i18n_lang)
         });
     });
