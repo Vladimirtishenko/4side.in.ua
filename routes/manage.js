@@ -22,6 +22,7 @@ app.delete("/manage/Portfolio", CheckAuth, require("./portfolio_manage").delete)
 
 app.get("/manage/PortfolioElse", CheckAuth, require("./portfolio_else_manage").get);
 app.post("/manage/PortfolioElse", CheckAuth, require("./portfolio_else_manage").post);
+app.delete("/manage/PortfolioElse", CheckAuth, require("./portfolio_else_manage").delete);
 
 app.get("/manage/Contact", CheckAuth, require("./contact_manage").get);
 app.post("/manage/Contact", CheckAuth, require("./contact_manage").post);

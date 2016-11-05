@@ -66,13 +66,13 @@ gulp.task('css-manage', function () {
 
 
 gulp.task('image', function () {
-    return gulp.src('public/images/portfolio/*')
+    return gulp.src('public/images/portfolioElse/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest('public/images/portfolio/'));
+        .pipe(gulp.dest('public/images/portfolioElse/'));
 });
 
 

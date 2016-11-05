@@ -17,6 +17,39 @@ module.exports.get = function(req, res, next) {
     })
 }
 
+module.exports.delete = function(req, res, next) {
+    async.series([
+            function(callback) {
+                PortfolioElse.findByIdAndRemove(req.body.id, function(err, offer) {
+                    
+                    console.log(offer);
+
+                    var arrayForDelete = offer.src;
+                        async.each(arrayForDelete, function(src, callback) {
+                            fs.unlink("./public" + src, function(err) {
+                                callback();
+                            });
+                        }, function(err) {
+                            if (err) return next(err);
+                            callback(null, {
+                                'status': 200
+                            });
+                        });
+                })
+            },
+        ],
+        function(err, results) {
+            if (err) {
+                res.send({
+                    'status': 500,
+                    'message': err
+                });
+            }
+            res.json(results[results.length - 1]);
+        });
+
+}
+
 module.exports.post = function(req, res, next) {
 
 	if (Object.keys(req.body).length > 0) {

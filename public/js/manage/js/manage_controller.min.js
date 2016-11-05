@@ -86,6 +86,7 @@ function Controller () {
 
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
+				console.log(xhr.responseText);
 				if(JSON.parse(xhr.responseText).status == '200'){
 					self.Menu(string, actionName, "GET")
 				}

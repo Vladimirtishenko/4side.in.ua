@@ -12,6 +12,6 @@ module.exports.post = function(req, res, next){
             return ErrorSelf(res, err, next);
         }
        res.json({result: result, lang: String(req.i18n_lang), translator: req.i18n_texts});
-    })
+    }).ne("context", false)
 
 }

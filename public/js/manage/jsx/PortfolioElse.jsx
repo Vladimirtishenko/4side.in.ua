@@ -10,7 +10,7 @@ var PortfolioElse = React.createClass({
 		}
 	},
 
-	changeTemplate: function(edit, event){
+	changeTemplateElse: function(edit, event){
 		var id = (event && event.target && event.target.getAttribute('data-id-number')) || null;
 		this.setState({
 			template: edit,
@@ -20,7 +20,7 @@ var PortfolioElse = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 		this.setState({
-			template: MainTemplateTable,
+			template: MainTemplateTableElse,
 			content: nextProps.content
 		})
 	},
@@ -29,7 +29,7 @@ var PortfolioElse = React.createClass({
 		return (
 			<div className="Portfolio height-full">
 				<h1 className="title-for-block">{this.props.title}</h1>
-				<this.state.template id={this.state.id} data={this.state.content} translator={this.state.translator} lang={this.state.lang} change={this.changeTemplate}/>
+				<this.state.template id={this.state.id} data={this.state.content} translator={this.state.translator} lang={this.state.lang} change={this.changeTemplateElse}/>
 			</div>
 		)
 	}
@@ -39,16 +39,14 @@ var MainTemplateTableElse = React.createClass({
 	
 	deleteItem: function(event){
 		var _id = event.target.getAttribute("data-id-path"),
-			categoryId = event.target.getAttribute("data-id-category"),
 			type = 'application/x-www-form-urlencoded',
-			url = '/manage/Portfolio',
-			actionName = 'Portfolio';
+			url = '/manage/PortfolioElse',
+			actionName = 'PortfolioElse';
 
-		_controller_.OnlyDelete(_id, categoryId, type, actionName, url);
+		_controller_.OnlyDelete(_id, null, type, actionName, url);
 	},
 
 	render: function(){
-
 		var translator = this.props.translator,
 			edit = this.props.change.bind(null, PortfolioEditTemplateElse),
 			add = this.props.change.bind(null, PortfolioAddTemplateElse),
@@ -60,7 +58,7 @@ var MainTemplateTableElse = React.createClass({
 							<td><img src={item.src[0]} /></td>
 							<td>
 								<i className="fa fa-pencil" data-id-number={i} data-id-path={item._id} data-id-category={item.gallery_id} onClick={edit}></i>
-								<i className="fa fa-trash" data-id-path={item._id} data-id-category={item.gallery_id} onClick={this.deleteItem}></i>
+								<i className="fa fa-trash" data-id-path={item._id} onClick={this.deleteItem}></i>
 							</td>
 						</tr>
 					);
