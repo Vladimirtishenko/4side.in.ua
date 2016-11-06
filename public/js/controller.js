@@ -372,10 +372,7 @@ function GalleryAjax(elem) {
         preloadImage = new Image();
         data = local_data.gallery ? local_data.gallery : local_data.portfolio;
 
-    preloadImage.src = '/images/proloader_opacity.gif';
-
-    this.preload = document.createElement('div');
-    this.preload.appendChild(preloadImage);
+    this.preload = '<div class="side-preloader"><img src="/images/proloader_opacity.gif" /></div>';
 
     data.src.splice(0, 1);
 
@@ -394,7 +391,7 @@ GalleryAjax.prototype.loadGallery = function() {
 
     if (document.body.offsetHeight - 500 < window.scrollY + window.innerHeight && this.state && this.galery.length > 0) {
         this.state = false;
-        self.container.appendChild(self.preload);
+        self.container.insertAdjacentHTML('beforeend', self.preload);
         var img = new Image();
         img.src = this.galery[0];
         this.galery.splice(0, 1);

@@ -1074,7 +1074,7 @@ position absolute,
 
 .side-work-gallery > div {
   display: table;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 @media screen and (max-width: 1280px) {
