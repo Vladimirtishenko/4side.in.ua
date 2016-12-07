@@ -22,11 +22,11 @@ block content
 				- var i = 0;
 				each val in data.portfolio
 					- i++;
-					div(class="grid-item item-"+i)
-						a(class="discription-of-work" href="/portfolio/"+val._id)
+					div(class="grid-item art-no-resize item-"+i)
+						a(class="discription-of-work")
 							h3= val['title_'+lang]
 								span= val['description_'+lang]
-						img(src=val.tempTitle, alt=val['title_'+lang])		
+						img(src=val.src[0], alt=val['title_'+lang])		
 						
 		include footer.jade
 	script(src="/build/masonry.pkgd.min.js" async)
