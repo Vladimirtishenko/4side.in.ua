@@ -20,4 +20,6 @@ app.post("/mail", require("./mail").post);
 
 app.get("/art", require("./art").get);
 
+app.get("/art/:id", require("./art_single").get);
+
 }

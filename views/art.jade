@@ -23,7 +23,7 @@ block content
 				each val in data.portfolio
 					- i++;
 					div(class="grid-item art-no-resize item-"+i)
-						a(class="discription-of-work")
+						a(class="discription-of-work" href="/art/"+val._id)
 							h3= val['title_'+lang]
 								span= val['description_'+lang]
 						img(src=val.src[0], alt=val['title_'+lang])		
