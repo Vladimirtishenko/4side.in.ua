@@ -1,5 +1,5 @@
 {
-	"port": 8080,
+	"port": 3079,
 	"mongoose": {
 		"uri": "mongodb://localhost/side"
 	},
