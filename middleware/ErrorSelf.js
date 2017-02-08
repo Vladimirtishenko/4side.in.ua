@@ -10,7 +10,7 @@ function ErrorSelf(res, err, next){
 		            return ErrorSelf(res, error, next);
 		        }
 
-                res.render('err', {err: err, data: result});
+		        res.status(404).render('err', {err: err, data: result});
             });
 
 	}
