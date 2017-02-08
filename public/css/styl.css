@@ -167,6 +167,7 @@ a {
   color: #787878;
   padding-left: 55px;
   position: relative;
+  text-align: left;
 }
 
 .__anouther p:before {

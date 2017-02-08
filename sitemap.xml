@@ -1,48 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://4side.in.ua/</loc>
+    <loc>http://4side.xyz/</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/about</loc>
+    <loc>http://4side.xyz/about</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio</loc>
+    <loc>http://4side.xyz/team</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/team</loc>
+    <loc>http://4side.xyz/contact</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/contact</loc>
+    <loc>http://4side.xyz/portfolio</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef402b253494b0d0e6201</loc>
+    <loc>http://4side.xyz/interior</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef184b253494b0d0e61fb</loc>
+    <loc>http://4side.xyz/art</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef27fb253494b0d0e61fd</loc>
+    <loc>http://4side.xyz/portfolio/56eef402b253494b0d0e6201</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef34eb253494b0d0e61ff</loc>
+    <loc>http://4side.xyz/portfolio/56eef184b253494b0d0e61fb</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/57b2ec40eabef8a2352f7e5a</loc>
+    <loc>http://4side.xyz/portfolio/56eef27fb253494b0d0e61fd</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/57aae6da7ab539502a4a91e3</loc>
+    <loc>http://4side.xyz/portfolio/56eef34eb253494b0d0e61ff</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef49cb253494b0d0e6203</loc>
+    <loc>http://4side.xyz/portfolio/5899e08fa0aae20fe9702b7c</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eeeea5b253494b0d0e61f7</loc>
+    <loc>http://4side.xyz/portfolio/57b2ec40eabef8a2352f7e5a</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef4f5b253494b0d0e6205</loc>
+    <loc>http://4side.xyz/portfolio/57aae6da7ab539502a4a91e3</loc>
   </url>
   <url>
-    <loc>http://4side.in.ua/portfolio/56eef046b253494b0d0e61f9</loc>
+    <loc>http://4side.xyz/portfolio/56eef49cb253494b0d0e6203</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/portfolio/56eeeea5b253494b0d0e61f7</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/portfolio/56eef046b253494b0d0e61f9</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/portfolio/56eef4f5b253494b0d0e6205</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/interior/581e6857d459deff13a91663</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/interior/581e6748d459deff13a91662</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/interior/581e65dfd459deff13a91661</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/interior/581e60cad459deff13a91660</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/art/58480859fec6f4f00bc9d2d6</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/art/584806e1fec6f4f00bc9d2d5</loc>
+  </url>
+  <url>
+    <loc>http://4side.xyz/art/5847fe59fec6f4f00bc9d2d4</loc>
   </url>
 </urlset>
