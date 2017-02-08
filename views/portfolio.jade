@@ -19,7 +19,7 @@ block content
 					p(class="mini-description")= texts.PORTFOLIO_TEXT
 		.container-fluid
 			.row
-				div(class="container-of-slider grid" itemscope itemtype="http://schema.org/Product")
+				div(class="container-of-slider grid container-of-slider__hide" itemscope itemtype="http://schema.org/Product")
 					each value in data.portfolio
 						.grid-item
 							a(itemprop="url" class="discription-of-work" href="/portfolio/"+value._id)

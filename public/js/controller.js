@@ -405,11 +405,17 @@ GalleryAjax.prototype.loadGallery = function() {
 }
 function Grid() {
 
+    var el = document.querySelector('.container-of-slider__hide');
+
     var msnry = (typeof Masonry == 'function') ? new Masonry('.grid', {
         itemSelector: '.grid-item',
         columnWidth: 1,
         percentPosition: true
     }) : null;
+
+    if(el) {
+        el.classList.remove('container-of-slider__hide');
+    }
 }
 
 
