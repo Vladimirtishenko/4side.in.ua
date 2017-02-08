@@ -945,6 +945,14 @@ position absolute,
 
 .container-of-slider {
   background: #f5f5f5;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 1;
+}
+
+.container-of-slider__hide {
+  opacity: 0;
 }
 
 .container-of-slider img {
