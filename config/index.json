@@ -15,8 +15,8 @@
 		}
 	},
 	"mail": {
-		"host": "91.219.28.30",
-		"username": "support@4side.in.ua",
+		"host": "163.172.59.103",
+		"username": "support@4side.xyz",
 		"pass": "qwedsazxc123",
 		"port": 465
 	}

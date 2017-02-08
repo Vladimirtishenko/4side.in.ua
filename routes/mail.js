@@ -14,7 +14,7 @@ module.exports.post = function(req, res, next) {
     }));
 
     transporter.sendMail({
-        from: 'support@4side.in.ua',
+        from: 'support@4side.xyz',
         to: "4side.developer@gmail.com",
         subject: 'New Message from 4side',
         text: "Name client: "+req.body.name+"\r\n Number client: "+req.body.number+"\r\n Email client: "+req.body.email+"\r\n Company client: "+req.body.company+"\r\n Description of Project: "+req.body.description

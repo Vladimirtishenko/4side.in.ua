@@ -1,7 +1,7 @@
 var SitemapGenerator = require('sitemap-generator');
 var fs = require('fs');
 
-var generator = new SitemapGenerator('http://4side.in.ua');
+var generator = new SitemapGenerator('http://4side.xyz');
  
 generator.on('done', function (sitemap) {
 
